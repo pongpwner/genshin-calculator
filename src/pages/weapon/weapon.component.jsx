@@ -49,6 +49,8 @@ class Weapon extends React.Component {
       desiredAscension: 6,
     };
   }
+
+  //calculation functions
   calculateDomainMaterial(
     startA,
     endA,
@@ -74,11 +76,8 @@ class Weapon extends React.Component {
     let uBlue = 0;
     let uPurple = 0;
     let uOrange = 0;
-    // cost of overflow
-    let coGreen = 0;
-    let coBlue = 0;
-    let coPurple = 0;
-    let coOrange = 0;
+  
+
     //potential material
     //no green
     let pBlue = 0;
@@ -130,20 +129,16 @@ class Weapon extends React.Component {
       oBlue * WEAPON_MATERIALS.domainMaterial.blue +
       oPurple * WEAPON_MATERIALS.domainMaterial.purple +
       oOrange * WEAPON_MATERIALS.domainMaterial.orange;
-    coGreen = oGreen * WEAPON_MATERIALS.domainMaterial.green;
-    coBlue = oBlue * WEAPON_MATERIALS.domainMaterial.blue;
-    coPurple = oPurple * WEAPON_MATERIALS.domainMaterial.purple;
-    coOrange = oOrange * WEAPON_MATERIALS.domainMaterial.orange;
 
     // calculate what materials can be converted
     //can't convert green
     mGreen = 0 - uGreen;
     //top block = underflow greater bottom block = over flow greater
-    if (Math.floor(coGreen / 3) + oBlue - uBlue <= 0) {
+    if (Math.floor(oGreen / 3) + oBlue - uBlue <= 0) {
       pBlue = 0;
-      mBlue = Math.floor(coGreen / 3) + oBlue - uBlue;
+      mBlue = Math.floor(oGreen / 3) + oBlue - uBlue;
     } else {
-      pBlue = Math.floor(coGreen / 3) + oBlue - uBlue;
+      pBlue = Math.floor(oGreen / 3) + oBlue - uBlue;
     }
     if (Math.floor(pBlue / 3) + oPurple - uPurple <= 0) {
       pPurple = 0;
@@ -159,7 +154,7 @@ class Weapon extends React.Component {
     }
 
     //calculate remainders
-    rGreen = coGreen % 3;
+    rGreen = oGreen % 3;
     rBlue = pBlue % 3;
     rPurple = pPurple % 3;
     rOrange = Math.floor(pOrange / 3) + (pOrange % 3);
@@ -191,6 +186,132 @@ class Weapon extends React.Component {
     return;
   }
 
+  calculateEliteMaterial(
+    startA,
+    endA,
+    tGreen,
+    tBlue,
+    tPurple,
+    rarity
+  ) {
+    //n... is how many are needed. t... is how many you have
+    let nGreen = 0;
+    let nBlue = 0;
+    let nPurple = 0;
+    // over flow
+    let totalOverFlow;
+    let oGreen = 0;
+    let oBlue = 0;
+    let oPurple = 0;
+    // underflow
+    let uGreen = 0;
+    let uBlue = 0;
+    let uPurple = 0;
+ 
+
+    //potential material
+    //no green
+    let pBlue = 0;
+    let pPurple = 0;
+   
+    // remaining material
+    let rGreen = 0;
+    let rBlue = 0;
+    let rPurple = 0;
+
+    //missing material
+    let mGreen = 0;
+    let mBlue = 0;
+    let mPurple = 0;
+
+
+    // gets how many of each material is needed
+    for (let i = Number(startA) + 1; i < endA + 1; i++) {
+      console.log(typeof i);
+      nGreen += WEAPON[rarity].ascension[i].eliteCost.green;
+      nBlue += WEAPON[rarity].ascension[i].eliteCost.blue;
+      nPurple += WEAPON[rarity].ascension[i].eliteCost.purple;
+    
+    }
+    //calculate overflow and underflow
+    if (nGreen - tGreen < 0) {
+      oGreen = Math.abs(nGreen - tGreen);
+    } else {
+      uGreen = nGreen - tGreen;
+    }
+    if (nBlue - tBlue < 0) {
+      oBlue = Math.abs(nBlue - tBlue);
+    } else {
+      uBlue = nBlue - tBlue;
+    }
+    if (nPurple - tPurple < 0) {
+      oPurple = Math.abs(nPurple - tPurple);
+    } else {
+      uPurple = nPurple - tPurple;
+    }
+   
+    //calculate total over flow/ not needed
+    totalOverFlow =
+      oGreen * WEAPON_MATERIALS.eliteMaterial.green +
+      oBlue * WEAPON_MATERIALS.eliteMaterial.blue +
+      oPurple * WEAPON_MATERIALS.eliteMaterial.purple 
+
+
+    // calculate what materials can be converted
+    //can't convert green
+    mGreen = 0 - uGreen;
+    //top block = underflow greater bottom block = over flow greater
+    if (Math.floor(oGreen / 3) + oBlue - uBlue <= 0) {
+      pBlue = 0;
+      mBlue = Math.floor(oGreen / 3) + oBlue - uBlue;
+    } else {
+      pBlue = Math.floor(oGreen / 3) + oBlue - uBlue;
+    }
+    if (Math.floor(pBlue / 3) + oPurple - uPurple <= 0) {
+      pPurple = 0;
+      mPurple = Math.floor(pBlue / 3) + oPurple - uPurple;
+    } else {
+      pPurple = Math.floor(pBlue / 3) + oPurple - uPurple;
+    }
+    
+
+    //calculate remainders
+    rGreen = oGreen % 3;
+    rBlue = pBlue % 3;
+    rPurple = Math.floor(pPurple / 3)+(pPurple%3);
+    
+    console.log("extra");
+    console.log("blue" + pBlue);
+    console.log("purple" + pPurple);
+
+    console.log("converted");
+    console.log(mGreen);
+    console.log(mBlue);
+    console.log(mPurple);
+  
+    console.log("remainder");
+    console.log(rGreen);
+    console.log(rBlue);
+    console.log(rPurple);
+
+    //console.log(rGreen);
+    this.setState({
+     
+      eliteMaterialPurpleNeeded: mPurple,
+      eliteMaterialBlueNeeded: mBlue,
+      eliteMaterialGreenNeeded: mGreen,
+   
+      eliteMaterialPurpleRemaining: rPurple,
+      eliteMaterialBlueRemaining: rBlue,
+      eliteMaterialGreenRemaining: rGreen,
+    });
+    return;
+  }
+
+
+
+
+
   handleChange = (event) => {
     console.log(this.state);
     console.log(event.target);
@@ -207,6 +328,15 @@ class Weapon extends React.Component {
       this.state.domainMaterialOrange,
       this.state.rarity
     );
+    this.calculateEliteMaterial(
+      this.state.currentAscension,
+      this.state.desiredAscension,
+      this.state.eliteMaterialGreen,
+      this.state.eliteMaterialBlue,
+      this.state.eliteMaterialPurple,
+      this.state.rarity
+    );
+
   };
   render() {
     const {
@@ -382,19 +512,36 @@ class Weapon extends React.Component {
           <CustomButton onClick={this.handleSubmit}>Submit</CustomButton>
         </div>
         <div className="main-content">
+          <h1>Domain Materials</h1>
           <div className="material-info">
-            <h1>what you need</h1>
+            <h2>what you need</h2>
             <div>green:{domainMaterialGreenNeeded}</div>
             <div>blue:{domainMaterialBlueNeeded}</div>
             <div>purple:{domainMaterialPurpleNeeded}</div>
             <div>orange:{domainMaterialOrangeNeeded}</div>
           </div>
           <div className="material-info">
-            <h1>what's left after conversion</h1>
+            <h2>what's left after conversion</h2>
             <div>green:{domainMaterialGreenRemaining}</div>
             <div>blue:{domainMaterialBlueRemaining}</div>
             <div>purple:{domainMaterialPurpleRemaining}</div>
             <div>orange:{domainMaterialOrangeRemaining}</div>
+          </div>
+          <h1>Elite Materials</h1>
+
+          <div className="material-info">
+            <h2>what you need</h2>
+            <div>green:{eliteMaterialGreenNeeded}</div>
+            <div>blue:{eliteMaterialBlueNeeded}</div>
+            <div>purple:{eliteMaterialPurpleNeeded}</div>
+            
+          </div>
+          <div className="material-info">
+            <h2>what's left after conversion</h2>
+            <div>green:{eliteMaterialGreenRemaining}</div>
+            <div>blue:{eliteMaterialBlueRemaining}</div>
+            <div>purple:{eliteMaterialPurpleRemaining}</div>
+           
           </div>
         </div>
       </div>
