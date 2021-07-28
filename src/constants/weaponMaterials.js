@@ -16,5 +16,10 @@ const WEAPON_MATERIALS = {
     blue: 0,
   },
   mora: 0,
+  enhancementOre: {
+    white: 400,
+    green: 2000,
+    blue: 10000,
+  },
 };
 export default WEAPON_MATERIALS;

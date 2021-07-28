@@ -47,6 +47,10 @@ class Weapon extends React.Component {
       moraNeeded: 0,
       currentAscension: 0,
       desiredAscension: 6,
+      blueOre: 0,
+      greenOre: 0,
+      whiteOre: 0,
+      blueOreNeeded: 0,
     };
   }
 
@@ -368,7 +372,31 @@ class Weapon extends React.Component {
     for (let i = Number(startA) + 1; i < endA + 1; i++) {
       totalMora += WEAPON[rarity].ascension[i].mora;
     }
+    if (totalMora - mora <= 0) {
+      totalMora = 0;
+    } else {
+      totalMora = totalMora - mora;
+    }
     this.setState({ moraNeeded: totalMora });
+  }
+  calculateXP(startL, endL, whiteOre, greenOre, blueOre, rarity) {
+    let totalXP =
+      WEAPON_MATERIALS.enhancementOre.blue * blueOre +
+      WEAPON_MATERIALS.enhancementOre.green * greenOre +
+      WEAPON_MATERIALS.enhancementOre.white * whiteOre;
+    let totalXPNeeded = 0;
+    let xpNeeded = 0;
+    let blueOreNeeded = 0;
+    for (let i = Number(startL / 10) + 1; i < endL / 10 - 1; i++) {
+      totalXPNeeded += WEAPON[rarity].level[i].exp;
+    }
+    if (totalXPNeeded - totalXP <= 0) {
+      xpNeeded = 0;
+    } else {
+      xpNeeded = totalXPNeeded - totalXP;
+    }
+    blueOreNeeded = Math.ceil(xpNeeded / WEAPON_MATERIALS.enhancementOre.blue);
+    this.setState({ blueOreNeeded: blueOreNeeded });
   }
 
   handleChange = (event) => {
@@ -410,6 +438,15 @@ class Weapon extends React.Component {
       this.state.currentLevel,
       this.state.desiredLevel,
       this.state.mora,
+      this.state.rarity
+    );
+
+    this.calculateXP(
+      this.state.currentLevel,
+      this.state.desiredLevel,
+      this.state.whiteOre,
+      this.state.greenOre,
+      this.state.blueOre,
       this.state.rarity
     );
   };
@@ -454,6 +491,10 @@ class Weapon extends React.Component {
       moraRemaining,
       currentAscension,
       desiredAscension,
+      blueOre,
+      greenOre,
+      whiteOre,
+      blueOreNeeded,
     } = this.state;
     console.log(this.state);
     return (
@@ -583,10 +624,34 @@ class Weapon extends React.Component {
             value={mora}
             onChange={this.handleChange}
           ></FormInput>
+          <div className="input-row">
+            <FormInput
+              label="Mystic Enhancement Ore"
+              name="blueOre"
+              type="text"
+              value={blueOre}
+              onChange={this.handleChange}
+            ></FormInput>
+            <FormInput
+              label="Fine Enhancement Ore"
+              name="greenOre"
+              type="text"
+              value={greenOre}
+              onChange={this.handleChange}
+            ></FormInput>
+            <FormInput
+              label="Enhancement Ore"
+              name="whiteOre"
+              type="text"
+              value={whiteOre}
+              onChange={this.handleChange}
+            ></FormInput>
+          </div>
           <CustomButton onClick={this.handleSubmit}>Submit</CustomButton>
         </div>
         <div className="main-content">
           <div>Mora: {moraNeeded}</div>
+          <div>Mystic enhancementOre: {blueOreNeeded}</div>
           <h1>Domain Materials</h1>
           <div className="material-info">
             <h2>what you need</h2>
