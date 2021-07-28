@@ -76,7 +76,6 @@ class Weapon extends React.Component {
     let uBlue = 0;
     let uPurple = 0;
     let uOrange = 0;
-  
 
     //potential material
     //no green
@@ -96,7 +95,6 @@ class Weapon extends React.Component {
 
     // gets how many of each material is needed
     for (let i = Number(startA) + 1; i < endA + 1; i++) {
-      console.log(typeof i);
       nGreen += WEAPON[rarity].ascension[i].domainCost.green;
       nBlue += WEAPON[rarity].ascension[i].domainCost.blue;
       nPurple += WEAPON[rarity].ascension[i].domainCost.purple;
@@ -159,20 +157,6 @@ class Weapon extends React.Component {
     rPurple = pPurple % 3;
     rOrange = Math.floor(pOrange / 3) + (pOrange % 3);
 
-    console.log("blue" + pBlue);
-    console.log("purple" + pPurple);
-    console.log("orange" + pOrange);
-    console.log("333333333");
-    console.log(mGreen);
-    console.log(mBlue);
-    console.log(mPurple);
-    console.log(mOrange);
-    console.log("333333333");
-    console.log(rGreen);
-    console.log(rBlue);
-    console.log(rPurple);
-    console.log(rOrange);
-    //console.log(rGreen);
     this.setState({
       domainMaterialOrangeNeeded: mOrange,
       domainMaterialPurpleNeeded: mPurple,
@@ -186,14 +170,7 @@ class Weapon extends React.Component {
     return;
   }
 
-  calculateEliteMaterial(
-    startA,
-    endA,
-    tGreen,
-    tBlue,
-    tPurple,
-    rarity
-  ) {
+  calculateEliteMaterial(startA, endA, tGreen, tBlue, tPurple, rarity) {
     //n... is how many are needed. t... is how many you have
     let nGreen = 0;
     let nBlue = 0;
@@ -207,13 +184,12 @@ class Weapon extends React.Component {
     let uGreen = 0;
     let uBlue = 0;
     let uPurple = 0;
- 
 
     //potential material
     //no green
     let pBlue = 0;
     let pPurple = 0;
-   
+
     // remaining material
     let rGreen = 0;
     let rBlue = 0;
@@ -224,14 +200,11 @@ class Weapon extends React.Component {
     let mBlue = 0;
     let mPurple = 0;
 
-
     // gets how many of each material is needed
     for (let i = Number(startA) + 1; i < endA + 1; i++) {
-      console.log(typeof i);
       nGreen += WEAPON[rarity].ascension[i].eliteCost.green;
       nBlue += WEAPON[rarity].ascension[i].eliteCost.blue;
       nPurple += WEAPON[rarity].ascension[i].eliteCost.purple;
-    
     }
     //calculate overflow and underflow
     if (nGreen - tGreen < 0) {
@@ -249,13 +222,12 @@ class Weapon extends React.Component {
     } else {
       uPurple = nPurple - tPurple;
     }
-   
+
     //calculate total over flow/ not needed
     totalOverFlow =
       oGreen * WEAPON_MATERIALS.eliteMaterial.green +
       oBlue * WEAPON_MATERIALS.eliteMaterial.blue +
-      oPurple * WEAPON_MATERIALS.eliteMaterial.purple 
-
+      oPurple * WEAPON_MATERIALS.eliteMaterial.purple;
 
     // calculate what materials can be converted
     //can't convert green
@@ -273,34 +245,17 @@ class Weapon extends React.Component {
     } else {
       pPurple = Math.floor(pBlue / 3) + oPurple - uPurple;
     }
-    
 
     //calculate remainders
     rGreen = oGreen % 3;
     rBlue = pBlue % 3;
-    rPurple = Math.floor(pPurple / 3)+(pPurple%3);
-    
-    console.log("extra");
-    console.log("blue" + pBlue);
-    console.log("purple" + pPurple);
+    rPurple = Math.floor(pPurple / 3) + (pPurple % 3);
 
-    console.log("converted");
-    console.log(mGreen);
-    console.log(mBlue);
-    console.log(mPurple);
-  
-    console.log("remainder");
-    console.log(rGreen);
-    console.log(rBlue);
-    console.log(rPurple);
-
-    //console.log(rGreen);
     this.setState({
-     
       eliteMaterialPurpleNeeded: mPurple,
       eliteMaterialBlueNeeded: mBlue,
       eliteMaterialGreenNeeded: mGreen,
-   
+
       eliteMaterialPurpleRemaining: rPurple,
       eliteMaterialBlueRemaining: rBlue,
       eliteMaterialGreenRemaining: rGreen,
@@ -308,61 +263,47 @@ class Weapon extends React.Component {
     return;
   }
 
-  calculateCommonMaterial(
-    startA,
-    endA,
-    tWhite,
-    tGreen,
-    tBlue,
-    rarity
-  ) {
+  calculateCommonMaterial(startA, endA, tWhite, tGreen, tBlue, rarity) {
     //n... is how many are needed. t... is how many you have
     let nWhite = 0;
     let nGreen = 0;
     let nBlue = 0;
-    
+
     // over flow
     let totalOverFlow;
     let oWhite = 0;
     let oGreen = 0;
     let oBlue = 0;
-    
+
     // underflow
     let uWhite = 0;
     let uGreen = 0;
     let uBlue = 0;
-    
- 
 
     //potential material
     //no white
     let pGreen = 0;
     let pBlue = 0;
-    
-   
+
     // remaining material
     let rWhite = 0;
     let rGreen = 0;
     let rBlue = 0;
-    
 
     //missing material
     let mWhite = 0;
     let mGreen = 0;
     let mBlue = 0;
- 
 
     // gets how many of each material is needed
     for (let i = Number(startA) + 1; i < endA + 1; i++) {
-      console.log(typeof i);
       nGreen += WEAPON[rarity].ascension[i].commonCost.green;
       nBlue += WEAPON[rarity].ascension[i].commonCost.blue;
       nWhite += WEAPON[rarity].ascension[i].commonCost.white;
-    
     }
     //calculate overflow and underflow
     if (nWhite - tWhite < 0) {
-      oWhite = Math.abs(nWhite- tWhite);
+      oWhite = Math.abs(nWhite - tWhite);
     } else {
       uWhite = nWhite - tWhite;
     }
@@ -376,56 +317,59 @@ class Weapon extends React.Component {
     } else {
       uBlue = nBlue - tBlue;
     }
-   
-   
+
     //calculate total over flow/ not needed
     totalOverFlow =
       oWhite * WEAPON_MATERIALS.commonMaterial.white +
       oBlue * WEAPON_MATERIALS.commonMaterial.blue +
-      oGreen * WEAPON_MATERIALS.commonMaterial.green 
-
+      oGreen * WEAPON_MATERIALS.commonMaterial.green;
 
     // calculate what materials can be converted
     //can't convert green
     mWhite = 0 - uWhite;
     //top block = underflow greater bottom block = over flow greater
-    if (Math.floor(oWhite / 3) + oGreen - uGreen<= 0) {
+    if (Math.floor(oWhite / 3) + oGreen - uGreen <= 0) {
       pGreen = 0;
-      mGreen = Math.floor(oWhite/ 3) + oGreen - uGreen;
+      mGreen = Math.floor(oWhite / 3) + oGreen - uGreen;
     } else {
-      pGreen = Math.floor(oWhite/ 3) + oGreen - uGreen;
+      pGreen = Math.floor(oWhite / 3) + oGreen - uGreen;
     }
-    if (Math.floor(pGreen / 3) + oBlue- uBlue <= 0) {
+    if (Math.floor(pGreen / 3) + oBlue - uBlue <= 0) {
       pBlue = 0;
-      mBlue = Math.floor(pGreen / 3) + oBlue- uBlue;
+      mBlue = Math.floor(pGreen / 3) + oBlue - uBlue;
     } else {
       pBlue = Math.floor(pGreen / 3) + oBlue - uBlue;
     }
-    
 
     //calculate remainders
     rWhite = oWhite % 3;
     rGreen = pGreen % 3;
-    rBlue = Math.floor(pBlue / 3)+(pBlue%3);
-    
- 
+    rBlue = Math.floor(pBlue / 3) + (pBlue % 3);
+
     //console.log(rGreen);
     this.setState({
-     
       commonMaterialWhiteNeeded: mWhite,
       commonMaterialBlueNeeded: mBlue,
       commonMaterialGreenNeeded: mGreen,
-   
+
       commonMaterialWhiteRemaining: rWhite,
       commonMaterialBlueRemaining: rBlue,
       commonMaterialGreenRemaining: rGreen,
     });
     return;
   }
-
-
-
-
+  calculateMora(startA, endA, startL, endL, mora, rarity) {
+    let totalMora = 0;
+    for (let i = Number(startL / 10) + 1; i < endL / 10 - 1; i++) {
+      console.log(i);
+      console.log(totalMora);
+      totalMora += WEAPON[rarity].level[i].mora;
+    }
+    for (let i = Number(startA) + 1; i < endA + 1; i++) {
+      totalMora += WEAPON[rarity].ascension[i].mora;
+    }
+    this.setState({ moraNeeded: totalMora });
+  }
 
   handleChange = (event) => {
     console.log(this.state);
@@ -460,7 +404,14 @@ class Weapon extends React.Component {
       this.state.commonMaterialBlue,
       this.state.rarity
     );
-
+    this.calculateMora(
+      this.state.currentAscension,
+      this.state.desiredAscension,
+      this.state.currentLevel,
+      this.state.desiredLevel,
+      this.state.mora,
+      this.state.rarity
+    );
   };
   render() {
     const {
@@ -544,7 +495,6 @@ class Weapon extends React.Component {
             options={WEAPON[rarity].level}
           />
 
-          
           <div className="input-row">
             <div>domain material: </div>
             <FormInput
@@ -636,6 +586,7 @@ class Weapon extends React.Component {
           <CustomButton onClick={this.handleSubmit}>Submit</CustomButton>
         </div>
         <div className="main-content">
+          <div>Mora: {moraNeeded}</div>
           <h1>Domain Materials</h1>
           <div className="material-info">
             <h2>what you need</h2>
@@ -658,34 +609,28 @@ class Weapon extends React.Component {
             <div>green:{eliteMaterialGreenNeeded}</div>
             <div>blue:{eliteMaterialBlueNeeded}</div>
             <div>purple:{eliteMaterialPurpleNeeded}</div>
-            
           </div>
           <div className="material-info">
             <h2>what's left after conversion</h2>
             <div>green:{eliteMaterialGreenRemaining}</div>
             <div>blue:{eliteMaterialBlueRemaining}</div>
             <div>purple:{eliteMaterialPurpleRemaining}</div>
-           
           </div>
 
           <h1>Common Materials</h1>
 
-<div className="material-info">
-  <h2>what you need</h2>
-  <div>white:{commonMaterialWhiteNeeded}</div>
-  <div>green:{commonMaterialGreenNeeded}</div>
-  <div>blue:{commonMaterialBlueNeeded}</div>
- 
-  
-</div>
-<div className="material-info">
-  <h2>what's left after conversion</h2>
-  <div>white:{commonMaterialWhiteRemaining}</div>
-  <div>green:{commonMaterialGreenRemaining}</div>
-  <div>blue:{commonMaterialBlueRemaining}</div>
-  
- 
-</div>
+          <div className="material-info">
+            <h2>what you need</h2>
+            <div>white:{commonMaterialWhiteNeeded}</div>
+            <div>green:{commonMaterialGreenNeeded}</div>
+            <div>blue:{commonMaterialBlueNeeded}</div>
+          </div>
+          <div className="material-info">
+            <h2>what's left after conversion</h2>
+            <div>white:{commonMaterialWhiteRemaining}</div>
+            <div>green:{commonMaterialGreenRemaining}</div>
+            <div>blue:{commonMaterialBlueRemaining}</div>
+          </div>
         </div>
       </div>
     );
