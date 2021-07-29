@@ -6,7 +6,10 @@ import FormInput from "../../components/form-input/form-input.component";
 import FormDropdown from "../../components/form-dropdown/form-dropdown.component";
 import CustomButton from "../../components/custom-button/custom-button.component";
 import CustomRadioGroup from "../../components/custom-radio-group/custom-radio-group.component";
-import{CURRENT_ASCENSION_RADIO_BUTTONS,DESIRED_ASCENSION_RADIO_BUTTONS} from'./component-arrays/ascension-radio-buttons'
+import {
+  CURRENT_ASCENSION_RADIO_BUTTONS,
+  DESIRED_ASCENSION_RADIO_BUTTONS,
+} from "./component-arrays/ascension-radio-buttons";
 
 class Weapon extends React.Component {
   constructor(props) {
@@ -53,7 +56,10 @@ class Weapon extends React.Component {
       greenOre: 0,
       whiteOre: 0,
       blueOreNeeded: 0,
-      currentRadioButton:0
+      currentRadioButton: 0,
+      desiredRadioButton: 0,
+      sumCurrentAscension: 0,
+      sumDesiredAscension: 6,
     };
   }
 
@@ -238,7 +244,7 @@ class Weapon extends React.Component {
 
     // calculate what materials can be converted
     //can't convert green
-    mGreen =Math.abs( 0 - uGreen);
+    mGreen = Math.abs(0 - uGreen);
     //top block = underflow greater bottom block = over flow greater
     if (Math.floor(oGreen / 3) + oBlue - uBlue <= 0) {
       pBlue = 0;
@@ -303,11 +309,11 @@ class Weapon extends React.Component {
     let mBlue = 0;
 
     // gets how many of each material is needed
-    for (let i = Number(startA)+1 ; i < endA+1 ; i++) {
+    for (let i = Number(startA) + 1; i < endA + 1; i++) {
       nGreen += WEAPON[rarity].ascension[i].commonCost.green;
       nBlue += WEAPON[rarity].ascension[i].commonCost.blue;
       nWhite += WEAPON[rarity].ascension[i].commonCost.white;
-      console.log(WEAPON[rarity].ascension[i].commonCost.white)
+      console.log(WEAPON[rarity].ascension[i].commonCost.white);
     }
     //calculate overflow and underflow
     if (nWhite - tWhite < 0) {
@@ -325,8 +331,8 @@ class Weapon extends React.Component {
     } else {
       uBlue = nBlue - tBlue;
     }
-    console.log('nnnnnnnnnnnnnn'+nWhite)
-    console.log("uuuuuuuuuuuuuuuuuwhite"+uWhite);
+    console.log("nnnnnnnnnnnnnn" + nWhite);
+    console.log("uuuuuuuuuuuuuuuuuwhite" + uWhite);
 
     //calculate total over flow/ not needed
     totalOverFlow =
@@ -356,8 +362,8 @@ class Weapon extends React.Component {
     rGreen = pGreen % 3;
     rBlue = Math.floor(pBlue / 3) + (pBlue % 3);
 
-    console.log("uuuuuuuuuuuuuuuuuwhite"+uWhite);
-    console.log("mmmmmmmmmmmmwhite"+mWhite);
+    console.log("uuuuuuuuuuuuuuuuuwhite" + uWhite);
+    console.log("mmmmmmmmmmmmwhite" + mWhite);
     this.setState({
       commonMaterialWhiteNeeded: mWhite,
       commonMaterialBlueNeeded: mBlue,
@@ -412,69 +418,206 @@ class Weapon extends React.Component {
     const { name, value } = event.target;
     this.setState({ [name]: value });
   };
-  handleCurrentLevel=(event)=>{
+  handleCurrentLevel = (event) => {
     const { value } = event.target;
-    
-    this.handleChange(event);
-    //assume weapon is not ascended
-   switch(Number(value)){
-    case 0: this.setState({currentAscension:0});
-    break;
-     case 20: this.setState({currentAscension:0});
-     break;
-     case 40: this.setState({currentAscension:1});
-     break;
-     case 50: this.setState({currentAscension:2});
-     break;
-     case 60: this.setState({currentAscension:3});
-     break;
-     case 70: this.setState({currentAscension:4});
-     break;
-     case 80: this.setState({currentAscension:5});
-     break;
-     case 90: this.setState({currentAscension:6});
-     break;
-     default: this.setState({currentAscension:0});
-   }
-   
-    console.log(this.state);
-  }
 
-  handleDesiredLevel=(event)=>{
-    const { value } = event.target;
-    
     this.handleChange(event);
     //assume weapon is not ascended
-   switch(Number(value)){
-    case 0: this.setState({desiredAscension:0});
-    break;
-     case 20: this.setState({desiredAscension:0});
-     break;
-     case 40: this.setState({desiredAscension:1});
-     break;
-     case 50: this.setState({desiredAscension:2});
-     break;
-     case 60: this.setState({desiredAscension:3});
-     break;
-     case 70: this.setState({desiredAscension:4});
-     break;
-     case 80: this.setState({desiredAscension:5});
-     break;
-     case 90: this.setState({desiredAscension:6});
-     break;
-     default: this.setState({desiredAscension:0});
-   }
-   
-    console.log(this.state);
-  }
-  handleRadioButton=(event)=>{
+    const { currentAscension, currentRadioButton } = this.state;
+    switch (Number(value)) {
+      case 0:
+        this.setState({ currentAscension: 0 });
+        this.setState({ sumCurrentAscension: 0 });
+        break;
+      case 20:
+        if (currentRadioButton == 0) {
+          this.setState({ currentAscension: 0 });
+          this.setState({ sumCurrentAscension: 0 });
+        } else {
+          this.setState({ currentAscension: 0 });
+          this.setState({
+            sumCurrentAscension: 1,
+          });
+        }
+
+        break;
+      case 40:
+        if (currentRadioButton == 0) {
+          this.setState({ currentAscension: 1 });
+          this.setState({ sumCurrentAscension: 1 });
+        } else {
+          this.setState({ currentAscension: 1 });
+          this.setState({
+            sumCurrentAscension: 2,
+          });
+        }
+        break;
+      case 50:
+        if (currentRadioButton == 0) {
+          this.setState({ currentAscension: 2 });
+          this.setState({ sumCurrentAscension: 2 });
+        } else {
+          this.setState({ currentAscension: 2 });
+          this.setState({
+            sumCurrentAscension: 3,
+          });
+        }
+        break;
+      case 60:
+        if (currentRadioButton == 0) {
+          this.setState({ currentAscension: 3 });
+          this.setState({ sumCurrentAscension: 3 });
+        } else {
+          this.setState({ currentAscension: 3 });
+          this.setState({
+            sumCurrentAscension: 4,
+          });
+        }
+        break;
+      case 70:
+        if (currentRadioButton == 0) {
+          this.setState({ currentAscension: 4 });
+          this.setState({ sumCurrentAscension: 4 });
+        } else {
+          this.setState({ currentAscension: 4 });
+          this.setState({
+            sumCurrentAscension: 5,
+          });
+        }
+        break;
+      case 80:
+        if (currentRadioButton == 0) {
+          this.setState({ currentAscension: 5 });
+          this.setState({ sumCurrentAscension: 5 });
+        } else {
+          this.setState({ currentAscension: 5 });
+          this.setState({
+            sumCurrentAscension: 6,
+          });
+        }
+        break;
+      case 90:
+        this.setState({ currentAscension: 6 });
+        this.setState({ sumCurrentAscension: 6 });
+        break;
+      default:
+        this.setState({ currentAscension: 999 });
+    }
+
+    //console.log(this.state);
+  };
+  handleDesiredLevel = (event) => {
+    const { value } = event.target;
+
+    this.handleChange(event);
+    //assume weapon is not ascended
+    const { desiredAscension, desiredRadioButton } = this.state;
+    switch (Number(value)) {
+      case 0:
+        this.setState({ desiredAscension: 0 });
+        this.setState({ sumDesiredAscension: 0 });
+        break;
+      case 20:
+        if (desiredRadioButton == 0) {
+          this.setState({ desiredAscension: 0 });
+          this.setState({ sumDesiredAscension: 0 });
+        } else {
+          this.setState({ desiredAscension: 0 });
+          this.setState({
+            sumDesiredAscension: 1,
+          });
+        }
+
+        break;
+      case 40:
+        if (desiredRadioButton == 0) {
+          this.setState({ desiredAscension: 1 });
+          this.setState({ sumDesiredAscension: 1 });
+        } else {
+          this.setState({ desiredAscension: 1 });
+          this.setState({
+            sumDesiredAscension: 2,
+          });
+        }
+        break;
+      case 50:
+        if (desiredRadioButton == 0) {
+          this.setState({ desiredAscension: 2 });
+          this.setState({ sumDesiredAscension: 2 });
+        } else {
+          this.setState({ desiredAscension: 2 });
+          this.setState({
+            sumDesiredAscension: 3,
+          });
+        }
+        break;
+      case 60:
+        if (desiredRadioButton == 0) {
+          this.setState({ desiredAscension: 3 });
+          this.setState({ sumDesiredAscension: 3 });
+        } else {
+          this.setState({ desiredAscension: 3 });
+          this.setState({
+            sumDesiredAscension: 4,
+          });
+        }
+        break;
+      case 70:
+        if (desiredRadioButton == 0) {
+          this.setState({ desiredAscension: 4 });
+          this.setState({ sumDesiredAscension: 4 });
+        } else {
+          this.setState({ desiredAscension: 4 });
+          this.setState({
+            sumDesiredAscension: 5,
+          });
+        }
+        break;
+      case 80:
+        if (desiredRadioButton == 0) {
+          this.setState({ desiredAscension: 5 });
+          this.setState({ sumDesiredAscension: 5 });
+        } else {
+          this.setState({ desiredAscension: 5 });
+          this.setState({
+            sumDesiredAscension: 6,
+          });
+        }
+        break;
+      case 90:
+        this.setState({ desiredAscension: 6 });
+        this.setState({ sumDesiredAscension: 6 });
+        break;
+      default:
+        this.setState({ desiredAscension: 999 });
+    }
+
+    //console.log(this.state);
+  };
+
+  handleRadioButton = (event) => {
+    const { name, value } = event.target;
     console.log(event.target.value);
-    this.setState({currentRadioButton:event.target.value})
-  }
+    this.handleChange(event);
+    if (
+      Number(this.state[event.target.getAttribute("data-currentAscension")]) +
+        Number(value) <
+      7
+    ) {
+      this.setState({
+        [event.target.getAttribute("data-ascension")]:
+          Number(
+            this.state[event.target.getAttribute("data-currentAscension")]
+          ) + Number(value),
+      });
+    } else {
+      this.setState({ desiredRadioButton: 0 });
+    }
+  };
   handleSubmit = (event) => {
     this.calculateDomainMaterial(
-      this.state.currentAscension,
-      this.state.desiredAscension,
+      this.state.currensumCAscension,
+      this.state.sumDesiredAscension,
       this.state.domainMaterialGreen,
       this.state.domainMaterialBlue,
       this.state.domainMaterialPurple,
@@ -482,8 +625,8 @@ class Weapon extends React.Component {
       this.state.rarity
     );
     this.calculateEliteMaterial(
-      this.state.currentAscension,
-      this.state.desiredAscension,
+      this.state.sumCurrentAscension,
+      this.state.sumDesiredAscension,
       this.state.eliteMaterialGreen,
       this.state.eliteMaterialBlue,
       this.state.eliteMaterialPurple,
@@ -491,16 +634,16 @@ class Weapon extends React.Component {
     );
 
     this.calculateCommonMaterial(
-      this.state.currentAscension,
-      this.state.desiredAscension,
+      this.state.sumCurrentAscension,
+      this.state.sumDesiredAscension,
       this.state.commonMaterialWhite,
       this.state.commonMaterialGreen,
       this.state.commonMaterialBlue,
       this.state.rarity
     );
     this.calculateMora(
-      this.state.currentAscension,
-      this.state.desiredAscension,
+      this.state.sumCurrentAscension,
+      this.state.sumDesiredAscension,
       this.state.currentLevel,
       this.state.desiredLevel,
       this.state.mora,
@@ -561,7 +704,8 @@ class Weapon extends React.Component {
       greenOre,
       whiteOre,
       blueOreNeeded,
-      currentRadioButton
+      currentRadioButton,
+      desiredRadioButton,
     } = this.state;
     console.log(this.state);
     return (
@@ -595,16 +739,30 @@ class Weapon extends React.Component {
             value={currentLevel}
             options={WEAPON[rarity].level}
           />
-                    <CustomRadioGroup options={CURRENT_ASCENSION_RADIO_BUTTONS} label='Current Ascension' handleChange={this.handleRadioButton} value={currentRadioButton}></CustomRadioGroup>
+          <CustomRadioGroup
+            options={CURRENT_ASCENSION_RADIO_BUTTONS}
+            label="Ascended?"
+            handleChange={this.handleRadioButton}
+            value={currentRadioButton}
+            data-ascension="sumCurrentAscension"
+            data-currentAscension="currentAscension"
+          ></CustomRadioGroup>
 
           <FormDropdown
             name="desiredLevel"
             handleChange={this.handleDesiredLevel}
-           
             label="desired level"
             value={desiredLevel}
             options={WEAPON[rarity].level}
           />
+          <CustomRadioGroup
+            options={DESIRED_ASCENSION_RADIO_BUTTONS}
+            label="Ascended?"
+            handleChange={this.handleRadioButton}
+            value={desiredRadioButton}
+            data-ascension="sumDesiredAscension"
+            data-currentAscension="desiredAscension"
+          ></CustomRadioGroup>
 
           <div className="input-row">
             <div>domain material: </div>
