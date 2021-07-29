@@ -300,10 +300,11 @@ class Weapon extends React.Component {
     let mBlue = 0;
 
     // gets how many of each material is needed
-    for (let i = Number(startA) + 1; i < endA + 1; i++) {
+    for (let i = Number(startA)+1 ; i < endA+1 ; i++) {
       nGreen += WEAPON[rarity].ascension[i].commonCost.green;
       nBlue += WEAPON[rarity].ascension[i].commonCost.blue;
       nWhite += WEAPON[rarity].ascension[i].commonCost.white;
+      console.log(WEAPON[rarity].ascension[i].commonCost.white)
     }
     //calculate overflow and underflow
     if (nWhite - tWhite < 0) {
@@ -321,6 +322,8 @@ class Weapon extends React.Component {
     } else {
       uBlue = nBlue - tBlue;
     }
+    console.log('nnnnnnnnnnnnnn'+nWhite)
+    console.log("uuuuuuuuuuuuuuuuuwhite"+uWhite);
 
     //calculate total over flow/ not needed
     totalOverFlow =
@@ -350,7 +353,8 @@ class Weapon extends React.Component {
     rGreen = pGreen % 3;
     rBlue = Math.floor(pBlue / 3) + (pBlue % 3);
 
-    //console.log(rGreen);
+    console.log("uuuuuuuuuuuuuuuuuwhite"+uWhite);
+    console.log("mmmmmmmmmmmmwhite"+mWhite);
     this.setState({
       commonMaterialWhiteNeeded: mWhite,
       commonMaterialBlueNeeded: mBlue,

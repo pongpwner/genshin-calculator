@@ -29,49 +29,55 @@ const WEAPON = {
         ascension: 0,
         domainCost: { green: 0, blue: 0, purple: 0, orange: 0 },
         eliteCost: { green: 0, blue: 0, purple: 0 },
-        commonCost: { white: 1, green: 0, blue: 0 },
+        commonCost: { white: 0, green: 0, blue: 0 },
+       
         mora: 0,
       },
       {
         ascension: 1,
         domainCost: { green: 2, blue: 0, purple: 0, orange: 0 },
         eliteCost: { green: 2, blue: 0, purple: 0 },
-        commonCost: { white: 5, green: 0, blue: 0 },
+        commonCost: { white: 1, green: 0, blue: 0 },
+        
         mora: 5000,
       },
       {
         ascension: 2,
         domainCost: { green: 0, blue: 2, purple: 0, orange: 0 },
         eliteCost: { green: 8, blue: 0, purple: 0 },
-        commonCost: { white: 0, green: 4, blue: 0 },
+        commonCost: { white: 5, green: 0, blue: 0 },
+        
         mora: 10000,
       },
       {
         ascension: 3,
         domainCost: { green: 0, blue: 4, purple: 0, orange: 0 },
         eliteCost: { green: 0, blue: 4, purple: 0 },
-        commonCost: { white: 0, green: 6, blue: 0 },
+        commonCost: { white: 0, green: 4, blue: 0 },
+       
         mora: 15000,
       },
       {
         ascension: 4,
         domainCost: { green: 0, blue: 0, purple: 2, orange: 0 },
         eliteCost: { green: 0, blue: 8, purple: 0 },
-        commonCost: { white: 0, green: 0, blue: 4 },
+        commonCost: { white: 0, green: 6, blue: 0 },
+        
         mora: 20000,
       },
       {
         ascension: 5,
         domainCost: { green: 0, blue: 0, purple: 4, orange: 0 },
         eliteCost: { green: 0, blue: 0, purple: 6 },
-        commonCost: { white: 0, green: 0, blue: 8 },
+        commonCost: { white: 0, green: 0, blue: 4 },
         mora: 25000,
       },
       {
         ascension: 6,
         domainCost: { green: 0, blue: 0, purple: 0, orange: 3 },
         eliteCost: { green: 0, blue: 0, purple: 12 },
-        commonCost: 73,
+        commonCost: { white: 0, green: 0, blue: 8 },
+        
         mora: 30000,
       },
     ],
