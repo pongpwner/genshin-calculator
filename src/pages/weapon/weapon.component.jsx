@@ -5,6 +5,8 @@ import "./weapon.styles.css";
 import FormInput from "../../components/form-input/form-input.component";
 import FormDropdown from "../../components/form-dropdown/form-dropdown.component";
 import CustomButton from "../../components/custom-button/custom-button.component";
+import CustomRadioGroup from "../../components/custom-radio-group/custom-radio-group.component";
+import{CURRENT_ASCENSION_RADIO_BUTTONS,DESIRED_ASCENSION_RADIO_BUTTONS} from'./component-arrays/ascension-radio-buttons'
 
 class Weapon extends React.Component {
   constructor(props) {
@@ -51,6 +53,7 @@ class Weapon extends React.Component {
       greenOre: 0,
       whiteOre: 0,
       blueOreNeeded: 0,
+      currentRadioButton:0
     };
   }
 
@@ -404,11 +407,70 @@ class Weapon extends React.Component {
   }
 
   handleChange = (event) => {
-    console.log(this.state);
-    console.log(event.target);
+    //console.log(this.state);
+    //console.log(event.target);
     const { name, value } = event.target;
     this.setState({ [name]: value });
   };
+  handleCurrentLevel=(event)=>{
+    const { value } = event.target;
+    
+    this.handleChange(event);
+    //assume weapon is not ascended
+   switch(Number(value)){
+    case 0: this.setState({currentAscension:0});
+    break;
+     case 20: this.setState({currentAscension:0});
+     break;
+     case 40: this.setState({currentAscension:1});
+     break;
+     case 50: this.setState({currentAscension:2});
+     break;
+     case 60: this.setState({currentAscension:3});
+     break;
+     case 70: this.setState({currentAscension:4});
+     break;
+     case 80: this.setState({currentAscension:5});
+     break;
+     case 90: this.setState({currentAscension:6});
+     break;
+     default: this.setState({currentAscension:0});
+   }
+   
+    console.log(this.state);
+  }
+
+  handleDesiredLevel=(event)=>{
+    const { value } = event.target;
+    
+    this.handleChange(event);
+    //assume weapon is not ascended
+   switch(Number(value)){
+    case 0: this.setState({desiredAscension:0});
+    break;
+     case 20: this.setState({desiredAscension:0});
+     break;
+     case 40: this.setState({desiredAscension:1});
+     break;
+     case 50: this.setState({desiredAscension:2});
+     break;
+     case 60: this.setState({desiredAscension:3});
+     break;
+     case 70: this.setState({desiredAscension:4});
+     break;
+     case 80: this.setState({desiredAscension:5});
+     break;
+     case 90: this.setState({desiredAscension:6});
+     break;
+     default: this.setState({desiredAscension:0});
+   }
+   
+    console.log(this.state);
+  }
+  handleRadioButton=(event)=>{
+    console.log(event.target.value);
+    this.setState({currentRadioButton:event.target.value})
+  }
   handleSubmit = (event) => {
     this.calculateDomainMaterial(
       this.state.currentAscension,
@@ -499,6 +561,7 @@ class Weapon extends React.Component {
       greenOre,
       whiteOre,
       blueOreNeeded,
+      currentRadioButton
     } = this.state;
     console.log(this.state);
     return (
@@ -527,14 +590,17 @@ class Weapon extends React.Component {
           />
           <FormDropdown
             name="currentLevel"
-            handleChange={this.handleChange}
+            handleChange={this.handleCurrentLevel}
             label="current level"
             value={currentLevel}
             options={WEAPON[rarity].level}
           />
+                    <CustomRadioGroup options={CURRENT_ASCENSION_RADIO_BUTTONS} label='Current Ascension' handleChange={this.handleRadioButton} value={currentRadioButton}></CustomRadioGroup>
+
           <FormDropdown
             name="desiredLevel"
-            handleChange={this.handleChange}
+            handleChange={this.handleDesiredLevel}
+           
             label="desired level"
             value={desiredLevel}
             options={WEAPON[rarity].level}
