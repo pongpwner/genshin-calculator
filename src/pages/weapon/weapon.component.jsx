@@ -134,23 +134,23 @@ class Weapon extends React.Component {
 
     // calculate what materials can be converted
     //can't convert green
-    mGreen = 0 - uGreen;
+    mGreen = Math.abs(0 - uGreen);
     //top block = underflow greater bottom block = over flow greater
     if (Math.floor(oGreen / 3) + oBlue - uBlue <= 0) {
       pBlue = 0;
-      mBlue = Math.floor(oGreen / 3) + oBlue - uBlue;
+      mBlue = Math.abs(Math.floor(oGreen / 3) + oBlue - uBlue);
     } else {
       pBlue = Math.floor(oGreen / 3) + oBlue - uBlue;
     }
     if (Math.floor(pBlue / 3) + oPurple - uPurple <= 0) {
       pPurple = 0;
-      mPurple = Math.floor(pBlue / 3) + oPurple - uPurple;
+      mPurple = Math.abs(Math.floor(pBlue / 3) + oPurple - uPurple);
     } else {
       pPurple = Math.floor(pBlue / 3) + oPurple - uPurple;
     }
     if (Math.floor(pPurple / 3) + oOrange - uOrange <= 0) {
       pOrange = 0;
-      mOrange = Math.floor(pPurple / 3) + oOrange - uOrange;
+      mOrange = Math.abs(Math.floor(pPurple / 3) + oOrange - uOrange);
     } else {
       pOrange = Math.floor(pPurple / 3) + oOrange - uOrange;
     }
@@ -235,17 +235,17 @@ class Weapon extends React.Component {
 
     // calculate what materials can be converted
     //can't convert green
-    mGreen = 0 - uGreen;
+    mGreen =Math.abs( 0 - uGreen);
     //top block = underflow greater bottom block = over flow greater
     if (Math.floor(oGreen / 3) + oBlue - uBlue <= 0) {
       pBlue = 0;
-      mBlue = Math.floor(oGreen / 3) + oBlue - uBlue;
+      mBlue = Math.abs(Math.floor(oGreen / 3) + oBlue - uBlue);
     } else {
       pBlue = Math.floor(oGreen / 3) + oBlue - uBlue;
     }
     if (Math.floor(pBlue / 3) + oPurple - uPurple <= 0) {
       pPurple = 0;
-      mPurple = Math.floor(pBlue / 3) + oPurple - uPurple;
+      mPurple = Math.abs(Math.floor(pBlue / 3) + oPurple - uPurple);
     } else {
       pPurple = Math.floor(pBlue / 3) + oPurple - uPurple;
     }
@@ -333,17 +333,17 @@ class Weapon extends React.Component {
 
     // calculate what materials can be converted
     //can't convert green
-    mWhite = 0 - uWhite;
+    mWhite = Math.abs(0 - uWhite);
     //top block = underflow greater bottom block = over flow greater
     if (Math.floor(oWhite / 3) + oGreen - uGreen <= 0) {
       pGreen = 0;
-      mGreen = Math.floor(oWhite / 3) + oGreen - uGreen;
+      mGreen = Math.abs(Math.floor(oWhite / 3) + oGreen - uGreen);
     } else {
       pGreen = Math.floor(oWhite / 3) + oGreen - uGreen;
     }
     if (Math.floor(pGreen / 3) + oBlue - uBlue <= 0) {
       pBlue = 0;
-      mBlue = Math.floor(pGreen / 3) + oBlue - uBlue;
+      mBlue = Math.abs(Math.floor(pGreen / 3) + oBlue - uBlue);
     } else {
       pBlue = Math.floor(pGreen / 3) + oBlue - uBlue;
     }
