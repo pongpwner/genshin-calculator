@@ -616,7 +616,7 @@ class Weapon extends React.Component {
   };
   handleSubmit = (event) => {
     this.calculateDomainMaterial(
-      this.state.currensumCAscension,
+      this.state.sumCurrentAscension,
       this.state.sumDesiredAscension,
       this.state.domainMaterialGreen,
       this.state.domainMaterialBlue,
@@ -718,20 +718,7 @@ class Weapon extends React.Component {
             value={rarity}
             handleChange={this.handleChange}
           />
-          <FormDropdown
-            name="currentAscension"
-            handleChange={this.handleChange}
-            label="current ascension"
-            value={currentAscension}
-            options={WEAPON.ascension}
-          />
-          <FormDropdown
-            name="desiredAscension"
-            handleChange={this.handleChange}
-            label="desired ascension"
-            value={desiredAscension}
-            options={WEAPON.ascension}
-          />
+          
           <FormDropdown
             name="currentLevel"
             handleChange={this.handleCurrentLevel}
