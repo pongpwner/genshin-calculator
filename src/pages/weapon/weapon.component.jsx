@@ -710,208 +710,219 @@ class Weapon extends React.Component {
     console.log(this.state);
     return (
       <div className="weapon">
-        <div className="input-container">
-          <FormDropdown
-            name="rarity"
-            label="Weapon rarity"
-            options={WEAPON.rarity}
-            value={rarity}
-            handleChange={this.handleChange}
-          />
+        <h1 className="title">Weapon Material Calculator</h1>
+        <div className="content">
+          <div className="input-container">
+            <FormDropdown
+              name="rarity"
+              label="Weapon rarity"
+              options={WEAPON.rarity}
+              value={rarity}
+              handleChange={this.handleChange}
+            />
 
-          <FormDropdown
-            name="currentLevel"
-            handleChange={this.handleCurrentLevel}
-            label="current level"
-            value={currentLevel}
-            options={WEAPON[rarity].level}
-          />
-          <CustomRadioGroup
-            options={CURRENT_ASCENSION_RADIO_BUTTONS}
-            label="Ascended?:"
-            handleChange={this.handleRadioButton}
-            value={currentRadioButton}
-            data-ascension="sumCurrentAscension"
-            data-currentAscension="currentAscension"
-          ></CustomRadioGroup>
+            <FormDropdown
+              name="currentLevel"
+              handleChange={this.handleCurrentLevel}
+              label="current level"
+              value={currentLevel}
+              options={WEAPON[rarity].level}
+            />
+            <CustomRadioGroup
+              options={CURRENT_ASCENSION_RADIO_BUTTONS}
+              label="Ascended?:"
+              handleChange={this.handleRadioButton}
+              value={currentRadioButton}
+              data-ascension="sumCurrentAscension"
+              data-currentAscension="currentAscension"
+            ></CustomRadioGroup>
 
-          <FormDropdown
-            name="desiredLevel"
-            handleChange={this.handleDesiredLevel}
-            label="desired level"
-            value={desiredLevel}
-            options={WEAPON[rarity].level}
-          />
-          <CustomRadioGroup
-            options={DESIRED_ASCENSION_RADIO_BUTTONS}
-            label="Ascended?:"
-            handleChange={this.handleRadioButton}
-            value={desiredRadioButton}
-            data-ascension="sumDesiredAscension"
-            data-currentAscension="desiredAscension"
-          ></CustomRadioGroup>
-          <div>domain material: </div>
-          <div className="input-row">
-            <FormInput
-              label="green"
-              name="domainMaterialGreen"
-              type="text"
-              value={domainMaterialGreen}
-              onChange={this.handleChange}
-            ></FormInput>
-            <FormInput
-              label="blue"
-              name="domainMaterialBlue"
-              type="text"
-              value={domainMaterialBlue}
-              onChange={this.handleChange}
-            ></FormInput>
-            <FormInput
-              label="purple"
-              name="domainMaterialPurple"
-              type="text"
-              value={domainMaterialPurple}
-              onChange={this.handleChange}
-            ></FormInput>
+            <FormDropdown
+              name="desiredLevel"
+              handleChange={this.handleDesiredLevel}
+              label="desired level"
+              value={desiredLevel}
+              options={WEAPON[rarity].level}
+            />
+            <CustomRadioGroup
+              options={DESIRED_ASCENSION_RADIO_BUTTONS}
+              label="Ascended?:"
+              handleChange={this.handleRadioButton}
+              value={desiredRadioButton}
+              data-ascension="sumDesiredAscension"
+              data-currentAscension="desiredAscension"
+            ></CustomRadioGroup>
+            <div>domain material: </div>
+            <div className="input-row">
+              <FormInput
+                label="green"
+                name="domainMaterialGreen"
+                type="text"
+                value={domainMaterialGreen}
+                onChange={this.handleChange}
+              ></FormInput>
+              <FormInput
+                label="blue"
+                name="domainMaterialBlue"
+                type="text"
+                value={domainMaterialBlue}
+                onChange={this.handleChange}
+              ></FormInput>
+              <FormInput
+                label="purple"
+                name="domainMaterialPurple"
+                type="text"
+                value={domainMaterialPurple}
+                onChange={this.handleChange}
+              ></FormInput>
 
-            <FormInput
-              label="orange"
-              name="domainMaterialOrange"
-              type="text"
-              value={domainMaterialOrange}
-              onChange={this.handleChange}
-            ></FormInput>
+              <FormInput
+                label="orange"
+                name="domainMaterialOrange"
+                type="text"
+                value={domainMaterialOrange}
+                onChange={this.handleChange}
+              ></FormInput>
+            </div>
+            <div>Elite Material:</div>
+            <div className="input-row">
+              <FormInput
+                label="green"
+                name="eliteMaterialGreen"
+                type="text"
+                value={eliteMaterialGreen}
+                onChange={this.handleChange}
+              ></FormInput>
+              <FormInput
+                label="blue"
+                name="eliteMaterialBlue"
+                type="text"
+                value={eliteMaterialBlue}
+                onChange={this.handleChange}
+              ></FormInput>
+              <FormInput
+                label="purple"
+                name="eliteMaterialPurple"
+                type="text"
+                value={eliteMaterialPurple}
+                onChange={this.handleChange}
+              ></FormInput>
+            </div>
+            <div>Common Material:</div>
+            <div className="input-row">
+              <FormInput
+                label="white"
+                name="commonMaterialWhite"
+                type="text"
+                value={commonMaterialWhite}
+                onChange={this.handleChange}
+              ></FormInput>
+              <FormInput
+                label="green"
+                name="commonMaterialGreen"
+                type="text"
+                value={commonMaterialGreen}
+                onChange={this.handleChange}
+              ></FormInput>
+              <FormInput
+                label="blue"
+                name="commonMaterialBlue"
+                type="text"
+                value={commonMaterialBlue}
+                onChange={this.handleChange}
+              ></FormInput>
+            </div>
+            <div>Enhancement Ore</div>
+            <div className="input-row">
+              <FormInput
+                label="white"
+                name="whiteOre"
+                type="text"
+                value={whiteOre}
+                onChange={this.handleChange}
+              ></FormInput>
+              <FormInput
+                label="green"
+                name="greenOre"
+                type="text"
+                value={greenOre}
+                onChange={this.handleChange}
+              ></FormInput>
+              <FormInput
+                label="blue"
+                name="blueOre"
+                type="text"
+                value={blueOre}
+                onChange={this.handleChange}
+              ></FormInput>
+            </div>
+            <div>Mora:</div>
+            <div className="input-row">
+              <FormInput
+                label="Mora"
+                name="mora"
+                type="text"
+                value={mora}
+                onChange={this.handleChange}
+              ></FormInput>
+            </div>
+            <CustomButton onClick={this.handleSubmit}>Submit</CustomButton>
           </div>
-          <div>Elite Material:</div>
-          <div className="input-row">
-            <FormInput
-              label="green"
-              name="eliteMaterialGreen"
-              type="text"
-              value={eliteMaterialGreen}
-              onChange={this.handleChange}
-            ></FormInput>
-            <FormInput
-              label="blue"
-              name="eliteMaterialBlue"
-              type="text"
-              value={eliteMaterialBlue}
-              onChange={this.handleChange}
-            ></FormInput>
-            <FormInput
-              label="purple"
-              name="eliteMaterialPurple"
-              type="text"
-              value={eliteMaterialPurple}
-              onChange={this.handleChange}
-            ></FormInput>
-          </div>
-          <div>Common Material:</div>
-          <div className="input-row">
-            <FormInput
-              label="white"
-              name="commonMaterialWhite"
-              type="text"
-              value={commonMaterialWhite}
-              onChange={this.handleChange}
-            ></FormInput>
-            <FormInput
-              label="green"
-              name="commonMaterialGreen"
-              type="text"
-              value={commonMaterialGreen}
-              onChange={this.handleChange}
-            ></FormInput>
-            <FormInput
-              label="blue"
-              name="commonMaterialBlue"
-              type="text"
-              value={commonMaterialBlue}
-              onChange={this.handleChange}
-            ></FormInput>
-          </div>
-          <div>Enhancement Ore</div>
-          <div className="input-row">
-            <FormInput
-              label="white"
-              name="whiteOre"
-              type="text"
-              value={whiteOre}
-              onChange={this.handleChange}
-            ></FormInput>
-            <FormInput
-              label="green"
-              name="greenOre"
-              type="text"
-              value={greenOre}
-              onChange={this.handleChange}
-            ></FormInput>
-            <FormInput
-              label="blue"
-              name="blueOre"
-              type="text"
-              value={blueOre}
-              onChange={this.handleChange}
-            ></FormInput>
-          </div>
-          <div>Mora:</div>
-          <div className="input-row">
-            <FormInput
-              label="Mora"
-              name="mora"
-              type="text"
-              value={mora}
-              onChange={this.handleChange}
-            ></FormInput>
-          </div>
-          <CustomButton onClick={this.handleSubmit}>Submit</CustomButton>
-        </div>
-        <div className="main-content">
-          <div>Mora: {moraNeeded}</div>
-          <div>Mystic enhancementOre: {blueOreNeeded}</div>
-          <h1>Domain Materials</h1>
-          <div className="material-info">
-            <h2>what you need</h2>
-            <div>green:{domainMaterialGreenNeeded}</div>
-            <div>blue:{domainMaterialBlueNeeded}</div>
-            <div>purple:{domainMaterialPurpleNeeded}</div>
-            <div>orange:{domainMaterialOrangeNeeded}</div>
-          </div>
-          <div className="material-info">
-            <h2>what's left after conversion</h2>
-            <div>green:{domainMaterialGreenRemaining}</div>
-            <div>blue:{domainMaterialBlueRemaining}</div>
-            <div>purple:{domainMaterialPurpleRemaining}</div>
-            <div>orange:{domainMaterialOrangeRemaining}</div>
-          </div>
-          <h1>Elite Materials</h1>
+          <div className="main-content">
+            <div className="material">
+              <div>Mora Needed : {moraNeeded}</div>
+            </div>
+            <div className="material">
+              <div>Mystic Enhancement Ore Needed: {blueOreNeeded}</div>
+            </div>
+            <h2 className="material-title">Domain Materials</h2>
+            <div className="material">
+              <div className="material-info">
+                <h3>what you need</h3>
+                <div>green:{domainMaterialGreenNeeded}</div>
+                <div>blue:{domainMaterialBlueNeeded}</div>
+                <div>purple:{domainMaterialPurpleNeeded}</div>
+                <div>orange:{domainMaterialOrangeNeeded}</div>
+              </div>
+              <div className="material-info">
+                <h3>what's left after conversion</h3>
+                <div>green:{domainMaterialGreenRemaining}</div>
+                <div>blue:{domainMaterialBlueRemaining}</div>
+                <div>purple:{domainMaterialPurpleRemaining}</div>
+                <div>orange:{domainMaterialOrangeRemaining}</div>
+              </div>
+            </div>
+            <h2 className="material-title">Elite Materials</h2>
+            <div className="material">
+              <div className="material-info">
+                <h3>what you need</h3>
+                <div>green:{eliteMaterialGreenNeeded}</div>
+                <div>blue:{eliteMaterialBlueNeeded}</div>
+                <div>purple:{eliteMaterialPurpleNeeded}</div>
+              </div>
+              <div className="material-info">
+                <h3>what's left after conversion</h3>
+                <div>green:{eliteMaterialGreenRemaining}</div>
+                <div>blue:{eliteMaterialBlueRemaining}</div>
+                <div>purple:{eliteMaterialPurpleRemaining}</div>
+              </div>
+            </div>
 
-          <div className="material-info">
-            <h2>what you need</h2>
-            <div>green:{eliteMaterialGreenNeeded}</div>
-            <div>blue:{eliteMaterialBlueNeeded}</div>
-            <div>purple:{eliteMaterialPurpleNeeded}</div>
-          </div>
-          <div className="material-info">
-            <h2>what's left after conversion</h2>
-            <div>green:{eliteMaterialGreenRemaining}</div>
-            <div>blue:{eliteMaterialBlueRemaining}</div>
-            <div>purple:{eliteMaterialPurpleRemaining}</div>
-          </div>
-
-          <h1>Common Materials</h1>
-
-          <div className="material-info">
-            <h2>what you need</h2>
-            <div>white:{commonMaterialWhiteNeeded}</div>
-            <div>green:{commonMaterialGreenNeeded}</div>
-            <div>blue:{commonMaterialBlueNeeded}</div>
-          </div>
-          <div className="material-info">
-            <h2>what's left after conversion</h2>
-            <div>white:{commonMaterialWhiteRemaining}</div>
-            <div>green:{commonMaterialGreenRemaining}</div>
-            <div>blue:{commonMaterialBlueRemaining}</div>
+            <h2 className="material-title">Common Materials</h2>
+            <div className="material">
+              <div className="material-info">
+                <h3>what you need</h3>
+                <div>white:{commonMaterialWhiteNeeded}</div>
+                <div>green:{commonMaterialGreenNeeded}</div>
+                <div>blue:{commonMaterialBlueNeeded}</div>
+              </div>
+              <div className="material-info">
+                <h3>what's left after conversion</h3>
+                <div>white:{commonMaterialWhiteRemaining}</div>
+                <div>green:{commonMaterialGreenRemaining}</div>
+                <div>blue:{commonMaterialBlueRemaining}</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
