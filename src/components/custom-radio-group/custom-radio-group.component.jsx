@@ -12,7 +12,7 @@ const CustomRadioGroup = ({
 }) => (
   <div className="custom-radio-group">
     <label>{label}</label>
-    <fieldset>
+    <div className="radio-buttons">
       {options.map((option) => (
         <CustomRadioButton
           option={option}
@@ -23,7 +23,7 @@ const CustomRadioGroup = ({
           {...otherProps}
         />
       ))}
-    </fieldset>
+    </div>
   </div>
 );
 export default CustomRadioGroup;

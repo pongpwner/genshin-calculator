@@ -1,4 +1,18 @@
+body {
+  font-size: 1.4em;
+
+  background-color: #111111;
+  color: white;
+  padding: 2%;
+}
+.input-container {
+  background-color: #333333;
+  padding: 1%;
+  border-radius: 25px;
+}
 .input-row {
   display: flex;
   flex-direction: row;
+
+  width: 50%;
 }

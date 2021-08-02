@@ -1,0 +1,26 @@
+.group {
+  padding: 1%;
+  margin: 1%;
+  border-radius: 10px;
+  display: flex;
+}
+.white {
+  background-color: white;
+}
+.green {
+  background-color: green;
+}
+.blue {
+  background-color: blue;
+}
+.purple {
+  background-color: purple;
+}
+.orange {
+  background-color: orange;
+}
+
+.form-input {
+  font-size: 0.9em;
+  width: 100px;
+}

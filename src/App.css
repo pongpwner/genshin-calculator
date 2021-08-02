@@ -1,3 +1,8 @@
 * {
   box-sizing: border-box;
 }
+body {
+  background-color: #070b47;
+  color: white;
+  padding: 2% 0 0 2%;
+}

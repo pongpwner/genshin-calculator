@@ -423,7 +423,7 @@ class Weapon extends React.Component {
 
     this.handleChange(event);
     //assume weapon is not ascended
-    const { currentAscension, currentRadioButton } = this.state;
+    const { currentRadioButton } = this.state;
     switch (Number(value)) {
       case 0:
         this.setState({ currentAscension: 0 });
@@ -511,7 +511,7 @@ class Weapon extends React.Component {
 
     this.handleChange(event);
     //assume weapon is not ascended
-    const { desiredAscension, desiredRadioButton } = this.state;
+    const { desiredRadioButton } = this.state;
     switch (Number(value)) {
       case 0:
         this.setState({ desiredAscension: 0 });
@@ -601,22 +601,22 @@ class Weapon extends React.Component {
     this.handleChange(event);
     if (
       Number(this.state[event.target.getAttribute("data-currentAscension")]) +
-        Number(value) <
+        Number(value) ==
       7
     ) {
+      this.setState({ desiredRadioButton: 0 });
+    } else {
       this.setState({
         [event.target.getAttribute("data-ascension")]:
           Number(
             this.state[event.target.getAttribute("data-currentAscension")]
           ) + Number(value),
       });
-    } else {
-      this.setState({ desiredRadioButton: 0 });
     }
   };
   handleSubmit = (event) => {
     this.calculateDomainMaterial(
-      this.state.currensumCAscension,
+      this.state.sumCurrentAscension,
       this.state.sumDesiredAscension,
       this.state.domainMaterialGreen,
       this.state.domainMaterialBlue,
@@ -710,7 +710,7 @@ class Weapon extends React.Component {
     console.log(this.state);
     return (
       <div className="weapon">
-        <div>
+        <div className="input-container">
           <FormDropdown
             name="rarity"
             label="Weapon rarity"
@@ -718,20 +718,7 @@ class Weapon extends React.Component {
             value={rarity}
             handleChange={this.handleChange}
           />
-          <FormDropdown
-            name="currentAscension"
-            handleChange={this.handleChange}
-            label="current ascension"
-            value={currentAscension}
-            options={WEAPON.ascension}
-          />
-          <FormDropdown
-            name="desiredAscension"
-            handleChange={this.handleChange}
-            label="desired ascension"
-            value={desiredAscension}
-            options={WEAPON.ascension}
-          />
+
           <FormDropdown
             name="currentLevel"
             handleChange={this.handleCurrentLevel}
@@ -741,7 +728,7 @@ class Weapon extends React.Component {
           />
           <CustomRadioGroup
             options={CURRENT_ASCENSION_RADIO_BUTTONS}
-            label="Ascended?"
+            label="Ascended?:"
             handleChange={this.handleRadioButton}
             value={currentRadioButton}
             data-ascension="sumCurrentAscension"
@@ -757,31 +744,30 @@ class Weapon extends React.Component {
           />
           <CustomRadioGroup
             options={DESIRED_ASCENSION_RADIO_BUTTONS}
-            label="Ascended?"
+            label="Ascended?:"
             handleChange={this.handleRadioButton}
             value={desiredRadioButton}
             data-ascension="sumDesiredAscension"
             data-currentAscension="desiredAscension"
           ></CustomRadioGroup>
-
+          <div>domain material: </div>
           <div className="input-row">
-            <div>domain material: </div>
             <FormInput
-              label="Green"
+              label="green"
               name="domainMaterialGreen"
               type="text"
               value={domainMaterialGreen}
               onChange={this.handleChange}
             ></FormInput>
             <FormInput
-              label="Blue"
+              label="blue"
               name="domainMaterialBlue"
               type="text"
               value={domainMaterialBlue}
               onChange={this.handleChange}
             ></FormInput>
             <FormInput
-              label="Purple"
+              label="purple"
               name="domainMaterialPurple"
               type="text"
               value={domainMaterialPurple}
@@ -789,89 +775,92 @@ class Weapon extends React.Component {
             ></FormInput>
 
             <FormInput
-              label="Orange"
+              label="orange"
               name="domainMaterialOrange"
               type="text"
               value={domainMaterialOrange}
               onChange={this.handleChange}
             ></FormInput>
           </div>
+          <div>Elite Material:</div>
           <div className="input-row">
-            <div>Elite Material:</div>
             <FormInput
-              label="Green"
+              label="green"
               name="eliteMaterialGreen"
               type="text"
               value={eliteMaterialGreen}
               onChange={this.handleChange}
             ></FormInput>
             <FormInput
-              label="Blue"
+              label="blue"
               name="eliteMaterialBlue"
               type="text"
               value={eliteMaterialBlue}
               onChange={this.handleChange}
             ></FormInput>
             <FormInput
-              label="Purple"
+              label="purple"
               name="eliteMaterialPurple"
               type="text"
               value={eliteMaterialPurple}
               onChange={this.handleChange}
             ></FormInput>
           </div>
+          <div>Common Material:</div>
           <div className="input-row">
-            <div>Common Material:</div>
-
             <FormInput
-              label="White"
+              label="white"
               name="commonMaterialWhite"
               type="text"
               value={commonMaterialWhite}
               onChange={this.handleChange}
             ></FormInput>
             <FormInput
-              label="Green"
+              label="green"
               name="commonMaterialGreen"
               type="text"
               value={commonMaterialGreen}
               onChange={this.handleChange}
             ></FormInput>
             <FormInput
-              label="Blue"
+              label="blue"
               name="commonMaterialBlue"
               type="text"
               value={commonMaterialBlue}
               onChange={this.handleChange}
             ></FormInput>
           </div>
-          <FormInput
-            label="Mora"
-            name="mora"
-            type="text"
-            value={mora}
-            onChange={this.handleChange}
-          ></FormInput>
+          <div>Enhancement Ore</div>
           <div className="input-row">
             <FormInput
-              label="Mystic Enhancement Ore"
-              name="blueOre"
+              label="white"
+              name="whiteOre"
               type="text"
-              value={blueOre}
+              value={whiteOre}
               onChange={this.handleChange}
             ></FormInput>
             <FormInput
-              label="Fine Enhancement Ore"
+              label="green"
               name="greenOre"
               type="text"
               value={greenOre}
               onChange={this.handleChange}
             ></FormInput>
             <FormInput
-              label="Enhancement Ore"
-              name="whiteOre"
+              label="blue"
+              name="blueOre"
               type="text"
-              value={whiteOre}
+              value={blueOre}
+              onChange={this.handleChange}
+            ></FormInput>
+          </div>
+          <div>Mora:</div>
+          <div className="input-row">
+            <FormInput
+              label="Mora"
+              name="mora"
+              type="text"
+              value={mora}
               onChange={this.handleChange}
             ></FormInput>
           </div>
