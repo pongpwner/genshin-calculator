@@ -718,11 +718,7 @@ class Weapon extends React.Component {
             value={rarity}
             handleChange={this.handleChange}
           />
-<<<<<<< HEAD
 
-=======
-          
->>>>>>> 89ffaed8b39377d5fb0b6676707fc55adb8bf8a4
           <FormDropdown
             name="currentLevel"
             handleChange={this.handleCurrentLevel}
