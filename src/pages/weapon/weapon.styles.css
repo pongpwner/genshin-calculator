@@ -56,3 +56,19 @@ h3 {
 .material-info {
   margin: 1%;
 }
+
+.level-input-container{
+  background-color: #222222;
+  border-radius:25px;
+  justify-content: space-around;
+  padding:2%;
+  margin:1%;
+}
+
+.material-input-container{
+  background-color: #222222;
+  border-radius:25px;
+  justify-content: space-around;
+  padding:2%;
+  margin:1%;
+}

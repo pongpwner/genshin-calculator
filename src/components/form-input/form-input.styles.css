@@ -3,24 +3,31 @@
   margin: 1%;
   border-radius: 10px;
   display: flex;
+  
 }
 .white {
   background-color: white;
+  justify-content: center;
 }
 .green {
   background-color: green;
+  justify-content: center;
 }
 .blue {
   background-color: blue;
+  justify-content: center;
 }
 .purple {
   background-color: purple;
+  justify-content: center;
 }
 .orange {
   background-color: orange;
+  justify-content: center;
 }
 
 .form-input {
   font-size: 0.9em;
-  width: 100px;
+  width: 70%;
+  
 }

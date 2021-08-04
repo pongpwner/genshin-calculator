@@ -720,6 +720,7 @@ class Weapon extends React.Component {
               value={rarity}
               handleChange={this.handleChange}
             />
+            <div className='level-input-container'>
 
             <FormDropdown
               name="currentLevel"
@@ -736,7 +737,9 @@ class Weapon extends React.Component {
               data-ascension="sumCurrentAscension"
               data-currentAscension="currentAscension"
             ></CustomRadioGroup>
+            </div>
 
+            <div className='level-input-container'>
             <FormDropdown
               name="desiredLevel"
               handleChange={this.handleDesiredLevel}
@@ -752,6 +755,9 @@ class Weapon extends React.Component {
               data-ascension="sumDesiredAscension"
               data-currentAscension="desiredAscension"
             ></CustomRadioGroup>
+            </div>
+
+            <div className='material-input-container'>
             <div>domain material: </div>
             <div className="input-row">
               <FormInput
@@ -832,6 +838,8 @@ class Weapon extends React.Component {
                 onChange={this.handleChange}
               ></FormInput>
             </div>
+            </div>
+            <div className='material-input-container'>
             <div>Enhancement Ore</div>
             <div className="input-row">
               <FormInput
@@ -856,6 +864,8 @@ class Weapon extends React.Component {
                 onChange={this.handleChange}
               ></FormInput>
             </div>
+            </div>
+            <div className='material-input-container'>
             <div>Mora:</div>
             <div className="input-row">
               <FormInput
@@ -865,6 +875,7 @@ class Weapon extends React.Component {
                 value={mora}
                 onChange={this.handleChange}
               ></FormInput>
+            </div>
             </div>
             <CustomButton onClick={this.handleSubmit}>Submit</CustomButton>
           </div>
