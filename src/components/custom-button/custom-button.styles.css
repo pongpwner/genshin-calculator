@@ -4,5 +4,10 @@
     height:50px;
     color:white;
     background-color:#2582fa ;
-    border:none
+    border:none;
+   
+}
+.center{
+    align-self:center;
+    justify-content: center;
 }

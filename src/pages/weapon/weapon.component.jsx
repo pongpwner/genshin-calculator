@@ -877,7 +877,7 @@ class Weapon extends React.Component {
               ></FormInput>
             </div>
             </div>
-            <CustomButton onClick={this.handleSubmit}>Submit</CustomButton>
+            <CustomButton onClick={this.handleSubmit} center='center'>Submit</CustomButton>
           </div>
           <div className="main-content">
             <div className="material">
