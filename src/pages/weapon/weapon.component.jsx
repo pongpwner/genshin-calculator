@@ -10,6 +10,7 @@ import {
   CURRENT_ASCENSION_RADIO_BUTTONS,
   DESIRED_ASCENSION_RADIO_BUTTONS,
 } from "./component-arrays/ascension-radio-buttons";
+import ContentContainer from "../../components/content-container/content-container.component";
 
 class Weapon extends React.Component {
   constructor(props) {
@@ -60,6 +61,89 @@ class Weapon extends React.Component {
       desiredRadioButton: 0,
       sumCurrentAscension: 0,
       sumDesiredAscension: 6,
+      //experimenting with array objects that rely on state
+      // use a property to conditionally map dropdowninput or input with ternay operator 
+      contentContainer:[
+        {
+          //calculator container
+          id:1,
+        inputSection:[{
+         ////////////////////////section containers aka content-section
+          id:1,
+          sectionComponents:[{
+            //weapon rarity dropdown
+            type:'dropdown',
+            name:"rarity",
+            label:"Weapon rarity",
+            options:WEAPON.rarity,
+            value:'rarity', //access rarity with this.state[this.state.contentContainer.input[0].value]
+            handleChange: this.handleChange,
+          }
+        ]
+        },
+
+        {
+          //current level section
+          id:2,
+          sectionComponents:[{
+              type:'form-dropdown',
+              name:"currentLevel",
+              handleChange:this.handleCurrentLevel,
+              label:"current level",
+              value:'currentLevel',
+              options:'WEAPON[rarity].level'
+          },
+          {
+              type:'radio-buttons',
+              options:CURRENT_ASCENSION_RADIO_BUTTONS,
+              label:"Ascended?:",
+              handleChange:this.handleRadioButton,
+              value:'currentRadioButton',
+              dataAscension:"sumCurrentAscension",
+              dataCurrentAscension:"currentAscension"
+          
+          }]
+        },
+        // should be another object here for another aaa
+        {
+          //current level section
+          id:3,
+          sectionComponents:[{
+              type:'form-dropdown',
+              name:"currentLevel",
+              handleChange:this.handleCurrentLevel,
+              label:"current level",
+              value:'currentLevel',
+              options:'WEAPON[rarity].level'
+          },
+          {
+              type:'radio-buttons',
+              options:CURRENT_ASCENSION_RADIO_BUTTONS,
+              label:"Ascended?:",
+              handleChange:this.handleRadioButton,
+              value:'currentRadioButton',
+              dataAscension:"sumCurrentAscension",
+              dataCurrentAscension:"currentAscension"
+          
+          }]
+        },
+        
+      ]},
+
+      ////////////////
+      {
+        //result container
+        id:2,
+        resultSection:[
+          
+          {
+            id:1,
+            sectionComponents:[{}]
+          },
+        ]
+      }
+    
+    ]
     };
   }
 
@@ -706,6 +790,8 @@ class Weapon extends React.Component {
       blueOreNeeded,
       currentRadioButton,
       desiredRadioButton,
+      contentContainer
+      
     } = this.state;
     console.log(this.state);
     return (
@@ -713,6 +799,7 @@ class Weapon extends React.Component {
         <h1 className="title">Weapon Material Calculator</h1>
         <div className="content">
           <div className="input-container">
+            <div className='material-input-container'>
             <FormDropdown
               name="rarity"
               label="Weapon rarity"
@@ -720,6 +807,7 @@ class Weapon extends React.Component {
               value={rarity}
               handleChange={this.handleChange}
             />
+            </div>
             <div className='level-input-container'>
 
             <FormDropdown
@@ -877,7 +965,7 @@ class Weapon extends React.Component {
               ></FormInput>
             </div>
             </div>
-            <CustomButton onClick={this.handleSubmit} center='center'>Submit</CustomButton>
+            <CustomButton onClick={this.handleSubmit} center>Submit</CustomButton>
           </div>
           <div className="main-content">
             <div className="material">
@@ -936,6 +1024,8 @@ class Weapon extends React.Component {
             </div>
           </div>
         </div>
+
+        <ContentContainer content={contentContainer}></ContentContainer>
       </div>
     );
   }
