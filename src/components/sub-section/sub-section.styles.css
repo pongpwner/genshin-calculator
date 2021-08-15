@@ -1,0 +1,23 @@
+h2,
+h3 {
+  margin: 1%;
+}
+
+h3 {
+  width: 100%;
+}
+.material-title {
+  display: flex;
+  justify-content: center;
+}
+
+.material {
+  display: flex;
+  justify-content: space-around;
+  background-color: #222222;
+  border-radius: 25px;
+  margin-bottom: 1%;
+}
+.material-info {
+  margin: 1%;
+}

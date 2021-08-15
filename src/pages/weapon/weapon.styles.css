@@ -20,57 +20,7 @@ h3 {
 .title {
   align-self: center;
 }
-.material-title {
-  display: flex;
-  justify-content: center;
-}
+
 .content {
   display: flex;
-}
-.input-container {
-  background-color: #333333;
-  padding: 1%;
-  border-radius: 25px;
-  width: 40%;
-  margin: 0.5%;
-  display:flex;
-  flex-direction: column;
-}
-.input-row {
-  display: flex;
-  flex-direction: row;
-}
-.main-content {
-  background-color: #333333;
-  padding: 1%;
-  margin: 0.5%;
-  border-radius: 25px;
-  width: 60%;
-}
-
-.material {
-  display: flex;
-  justify-content: space-around;
-  background-color: #222222;
-  border-radius: 25px;
-  margin-bottom: 1%;
-}
-.material-info {
-  margin: 1%;
-}
-
-.level-input-container{
-  background-color: #222222;
-  border-radius:25px;
-  justify-content: space-around;
-  padding:2%;
-  margin:1%;
-}
-
-.material-input-container{
-  background-color: #222222;
-  border-radius:25px;
-  justify-content: space-around;
-  padding:2%;
-  margin:1%;
 }

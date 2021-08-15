@@ -10,11 +10,15 @@ import {
   CURRENT_ASCENSION_RADIO_BUTTONS,
   DESIRED_ASCENSION_RADIO_BUTTONS,
 } from "./component-arrays/ascension-radio-buttons";
+
 import ContentContainer from "../../components/content-container/content-container.component";
+import WeaponInput from "../../components/weapon-input/weapon-input.component";
+import MainSection from "../../components/main-section/main-section.component";
 
 class Weapon extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
       mora: 0,
       rarity: "threeStar",
@@ -61,89 +65,175 @@ class Weapon extends React.Component {
       desiredRadioButton: 0,
       sumCurrentAscension: 0,
       sumDesiredAscension: 6,
+
       //experimenting with array objects that rely on state
-      // use a property to conditionally map dropdowninput or input with ternay operator 
-      contentContainer:[
+      //type 1 materials without conversion, type 2 convertable materials
+      subsections: [
+        { label: "Mora Needed:", value: "moraNeeded", type: 1, id: 0 },
+        {
+          label: "Mystic Enhancement Ore Needed",
+          value: "blueOreNeeded",
+          type: 1,
+          id: 1,
+        },
+        {
+          mainHeader: "Domain Materials",
+          type: 2,
+          id: 2,
+          header1: "Materials Needed",
+          materialsNeeded: [
+            { label: "green:", value: "domainMaterialGreenNeeded" },
+            { label: "blue:", value: "domainMaterialBlueNeeded" },
+            { label: "purple:", value: "domainMaterialPurpleNeeded" },
+            { label: "orange:", value: "domainMaterialOrange" },
+          ],
+          header2: "Materials left",
+          materialsLeft: [
+            { label: "green:", value: "domainMaterialGreenRemaining" },
+            { label: "blue:", value: "domainMaterialBlueRemaining" },
+            { label: "purple:", value: "domainMaterialPurpleRemaining" },
+            { label: "orange:", value: "domainMaterialOrangeRemaining" },
+          ],
+        },
+        {
+          mainHeader: "Elite Materials",
+          type: 2,
+          id: 3,
+          header1: "Materials Needed",
+          materialsNeeded: [
+            { label: "green:", value: "eliteMaterialGreenNeeded" },
+            { label: "blue:", value: "eliteMaterialBlueNeeded" },
+            { label: "purple:", value: "eliteMaterialPurpleNeeded" },
+          ],
+          header2: "Materials left",
+          materialsLeft: [
+            { label: "green:", value: "eliteMaterialGreenRemaining" },
+            { label: "blue:", value: "eliteMaterialBlueRemaining" },
+            { label: "purple:", value: "eliteMaterialPurpleRemaining" },
+          ],
+        },
+        {
+          mainHeader: "Common Materials",
+          type: 2,
+          id: 4,
+          header1: "Materials Needed",
+          materialsNeeded: [
+            { label: "white:", value: "commonMaterialWhiteNeeded" },
+            { label: "green:", value: "commonMaterialGreenNeeded" },
+            { label: "blue:", value: "commonMaterialBlueNeeded" },
+          ],
+          header2: "Materials left",
+          materialsLeft: [
+            { label: "white:", value: "commonMaterialWhiteRemaining" },
+            { label: "green:", value: "commonMaterialGreenRemaining" },
+            { label: "blue:", value: "commonMaterialBlueRemaining" },
+          ],
+        },
+      ],
+
+      // use a property to conditionally map dropdowninput or input with ternay operator
+      contentContainer: [
         {
           //calculator container
-          id:1,
-        inputSection:[{
-         ////////////////////////section containers aka content-section
-          id:1,
-          sectionComponents:[{
-            //weapon rarity dropdown
-            type:'dropdown',
-            name:"rarity",
-            label:"Weapon rarity",
-            options:WEAPON.rarity,
-            value:'rarity', //access rarity with this.state[this.state.contentContainer.input[0].value]
-            handleChange: this.handleChange,
-          }
-        ]
+          id: 1,
+          sections: [
+            {
+              ////////////////////////section containers aka content-section
+              id: 1,
+              sectionComponents: [
+                {
+                  //weapon rarity dropdown
+                  componentType: "form-dropdown",
+                  pageType: "WEAPON",
+                  name: "rarity",
+                  label: "Weapon rarity",
+                  options: WEAPON.rarity,
+
+                  value: "rarity", //access rarity with this.state[this.state.contentContainer.input[0].value]
+                  handleChange: this.handleChange,
+                  //extra prop for conditional rendering
+                  rarityDropdown: true,
+                },
+              ],
+            },
+
+            {
+              //current level section
+              id: 2,
+              sectionComponents: [
+                {
+                  pageType: "WEAPON",
+                  componentType: "form-dropdown",
+                  name: "currentLevel",
+                  handleChange: this.handleCurrentLevel,
+                  label: "current level",
+                  value: "currentLevel",
+                  options: "WEAPON[rarity].level",
+                },
+                {
+                  pageType: "WEAPON",
+                  componentType: "radio-buttons",
+                  options: CURRENT_ASCENSION_RADIO_BUTTONS,
+                  label: "Ascended?:",
+                  handleChange: this.handleRadioButton,
+                  value: "currentRadioButton",
+                  dataAscension: "sumCurrentAscension",
+                  dataCurrentAscension: "currentAscension",
+                },
+              ],
+            },
+            // should be another object here for another aaa
+            {
+              //current level section
+              id: 3,
+              sectionComponents: [
+                {
+                  pageType: "WEAPON",
+                  componentType: "form-dropdown",
+                  name: "currentLevel",
+                  handleChange: this.handleCurrentLevel,
+                  label: "current level",
+                  value: 90,
+                  options: "WEAPON[rarity].level",
+                },
+                {
+                  pageType: "WEAPON",
+                  componentType: "radio-buttons",
+                  options: CURRENT_ASCENSION_RADIO_BUTTONS,
+                  label: "Ascended?:",
+                  handleChange: this.handleRadioButton,
+                  value: "currentRadioButton",
+                  dataAscension: "sumCurrentAscension",
+                  dataCurrentAscension: "currentAscension",
+                },
+              ],
+            },
+          ],
         },
 
+        ////////////////
         {
-          //current level section
-          id:2,
-          sectionComponents:[{
-              type:'form-dropdown',
-              name:"currentLevel",
-              handleChange:this.handleCurrentLevel,
-              label:"current level",
-              value:'currentLevel',
-              options:'WEAPON[rarity].level'
-          },
-          {
-              type:'radio-buttons',
-              options:CURRENT_ASCENSION_RADIO_BUTTONS,
-              label:"Ascended?:",
-              handleChange:this.handleRadioButton,
-              value:'currentRadioButton',
-              dataAscension:"sumCurrentAscension",
-              dataCurrentAscension:"currentAscension"
-          
-          }]
+          //result container
+          id: 2,
+          sections: [
+            {
+              id: 1,
+              sectionComponents: [
+                {
+                  //weapon rarity dropdown
+                  pageType: "WEAPON",
+                  componentType: "form-dropdown",
+                  name: "rarity",
+                  label: "Weapon rarity",
+                  options: WEAPON.rarity,
+                  value: "rarity", //access rarity with this.state[this.state.contentContainer.input[0].value]
+                  handleChange: this.handleChange,
+                },
+              ],
+            },
+          ],
         },
-        // should be another object here for another aaa
-        {
-          //current level section
-          id:3,
-          sectionComponents:[{
-              type:'form-dropdown',
-              name:"currentLevel",
-              handleChange:this.handleCurrentLevel,
-              label:"current level",
-              value:'currentLevel',
-              options:'WEAPON[rarity].level'
-          },
-          {
-              type:'radio-buttons',
-              options:CURRENT_ASCENSION_RADIO_BUTTONS,
-              label:"Ascended?:",
-              handleChange:this.handleRadioButton,
-              value:'currentRadioButton',
-              dataAscension:"sumCurrentAscension",
-              dataCurrentAscension:"currentAscension"
-          
-          }]
-        },
-        
-      ]},
-
-      ////////////////
-      {
-        //result container
-        id:2,
-        resultSection:[
-          
-          {
-            id:1,
-            sectionComponents:[{}]
-          },
-        ]
-      }
-    
-    ]
+      ],
     };
   }
 
@@ -790,242 +880,67 @@ class Weapon extends React.Component {
       blueOreNeeded,
       currentRadioButton,
       desiredRadioButton,
-      contentContainer
-      
+      contentContainer,
+      subsections,
     } = this.state;
     console.log(this.state);
     return (
       <div className="weapon">
         <h1 className="title">Weapon Material Calculator</h1>
         <div className="content">
-          <div className="input-container">
-            <div className='material-input-container'>
-            <FormDropdown
-              name="rarity"
-              label="Weapon rarity"
-              options={WEAPON.rarity}
-              value={rarity}
-              handleChange={this.handleChange}
-            />
-            </div>
-            <div className='level-input-container'>
-
-            <FormDropdown
-              name="currentLevel"
-              handleChange={this.handleCurrentLevel}
-              label="current level"
-              value={currentLevel}
-              options={WEAPON[rarity].level}
-            />
-            <CustomRadioGroup
-              options={CURRENT_ASCENSION_RADIO_BUTTONS}
-              label="Ascended?:"
-              handleChange={this.handleRadioButton}
-              value={currentRadioButton}
-              data-ascension="sumCurrentAscension"
-              data-currentAscension="currentAscension"
-            ></CustomRadioGroup>
-            </div>
-
-            <div className='level-input-container'>
-            <FormDropdown
-              name="desiredLevel"
-              handleChange={this.handleDesiredLevel}
-              label="desired level"
-              value={desiredLevel}
-              options={WEAPON[rarity].level}
-            />
-            <CustomRadioGroup
-              options={DESIRED_ASCENSION_RADIO_BUTTONS}
-              label="Ascended?:"
-              handleChange={this.handleRadioButton}
-              value={desiredRadioButton}
-              data-ascension="sumDesiredAscension"
-              data-currentAscension="desiredAscension"
-            ></CustomRadioGroup>
-            </div>
-
-            <div className='material-input-container'>
-            <div>domain material: </div>
-            <div className="input-row">
-              <FormInput
-                label="green"
-                name="domainMaterialGreen"
-                type="text"
-                value={domainMaterialGreen}
-                onChange={this.handleChange}
-              ></FormInput>
-              <FormInput
-                label="blue"
-                name="domainMaterialBlue"
-                type="text"
-                value={domainMaterialBlue}
-                onChange={this.handleChange}
-              ></FormInput>
-              <FormInput
-                label="purple"
-                name="domainMaterialPurple"
-                type="text"
-                value={domainMaterialPurple}
-                onChange={this.handleChange}
-              ></FormInput>
-
-              <FormInput
-                label="orange"
-                name="domainMaterialOrange"
-                type="text"
-                value={domainMaterialOrange}
-                onChange={this.handleChange}
-              ></FormInput>
-            </div>
-            <div>Elite Material:</div>
-            <div className="input-row">
-              <FormInput
-                label="green"
-                name="eliteMaterialGreen"
-                type="text"
-                value={eliteMaterialGreen}
-                onChange={this.handleChange}
-              ></FormInput>
-              <FormInput
-                label="blue"
-                name="eliteMaterialBlue"
-                type="text"
-                value={eliteMaterialBlue}
-                onChange={this.handleChange}
-              ></FormInput>
-              <FormInput
-                label="purple"
-                name="eliteMaterialPurple"
-                type="text"
-                value={eliteMaterialPurple}
-                onChange={this.handleChange}
-              ></FormInput>
-            </div>
-            <div>Common Material:</div>
-            <div className="input-row">
-              <FormInput
-                label="white"
-                name="commonMaterialWhite"
-                type="text"
-                value={commonMaterialWhite}
-                onChange={this.handleChange}
-              ></FormInput>
-              <FormInput
-                label="green"
-                name="commonMaterialGreen"
-                type="text"
-                value={commonMaterialGreen}
-                onChange={this.handleChange}
-              ></FormInput>
-              <FormInput
-                label="blue"
-                name="commonMaterialBlue"
-                type="text"
-                value={commonMaterialBlue}
-                onChange={this.handleChange}
-              ></FormInput>
-            </div>
-            </div>
-            <div className='material-input-container'>
-            <div>Enhancement Ore</div>
-            <div className="input-row">
-              <FormInput
-                label="white"
-                name="whiteOre"
-                type="text"
-                value={whiteOre}
-                onChange={this.handleChange}
-              ></FormInput>
-              <FormInput
-                label="green"
-                name="greenOre"
-                type="text"
-                value={greenOre}
-                onChange={this.handleChange}
-              ></FormInput>
-              <FormInput
-                label="blue"
-                name="blueOre"
-                type="text"
-                value={blueOre}
-                onChange={this.handleChange}
-              ></FormInput>
-            </div>
-            </div>
-            <div className='material-input-container'>
-            <div>Mora:</div>
-            <div className="input-row">
-              <FormInput
-                label="Mora"
-                name="mora"
-                type="text"
-                value={mora}
-                onChange={this.handleChange}
-              ></FormInput>
-            </div>
-            </div>
-            <CustomButton onClick={this.handleSubmit} center>Submit</CustomButton>
-          </div>
-          <div className="main-content">
-            <div className="material">
-              <div>Mora Needed : {moraNeeded}</div>
-            </div>
-            <div className="material">
-              <div>Mystic Enhancement Ore Needed: {blueOreNeeded}</div>
-            </div>
-            <h2 className="material-title">Domain Materials</h2>
-            <div className="material">
-              <div className="material-info">
-                <h3>what you need</h3>
-                <div>green:{domainMaterialGreenNeeded}</div>
-                <div>blue:{domainMaterialBlueNeeded}</div>
-                <div>purple:{domainMaterialPurpleNeeded}</div>
-                <div>orange:{domainMaterialOrangeNeeded}</div>
-              </div>
-              <div className="material-info">
-                <h3>what's left after conversion</h3>
-                <div>green:{domainMaterialGreenRemaining}</div>
-                <div>blue:{domainMaterialBlueRemaining}</div>
-                <div>purple:{domainMaterialPurpleRemaining}</div>
-                <div>orange:{domainMaterialOrangeRemaining}</div>
-              </div>
-            </div>
-            <h2 className="material-title">Elite Materials</h2>
-            <div className="material">
-              <div className="material-info">
-                <h3>what you need</h3>
-                <div>green:{eliteMaterialGreenNeeded}</div>
-                <div>blue:{eliteMaterialBlueNeeded}</div>
-                <div>purple:{eliteMaterialPurpleNeeded}</div>
-              </div>
-              <div className="material-info">
-                <h3>what's left after conversion</h3>
-                <div>green:{eliteMaterialGreenRemaining}</div>
-                <div>blue:{eliteMaterialBlueRemaining}</div>
-                <div>purple:{eliteMaterialPurpleRemaining}</div>
-              </div>
-            </div>
-
-            <h2 className="material-title">Common Materials</h2>
-            <div className="material">
-              <div className="material-info">
-                <h3>what you need</h3>
-                <div>white:{commonMaterialWhiteNeeded}</div>
-                <div>green:{commonMaterialGreenNeeded}</div>
-                <div>blue:{commonMaterialBlueNeeded}</div>
-              </div>
-              <div className="material-info">
-                <h3>what's left after conversion</h3>
-                <div>white:{commonMaterialWhiteRemaining}</div>
-                <div>green:{commonMaterialGreenRemaining}</div>
-                <div>blue:{commonMaterialBlueRemaining}</div>
-              </div>
-            </div>
-          </div>
+          <WeaponInput
+            rarity={rarity}
+            currentLevel={currentLevel}
+            currentRadioButton={currentRadioButton}
+            handleChange={this.handleChange}
+            handleRadioButton={this.handleRadioButton}
+            handleDesiredLevel={this.handleDesiredLevel}
+            desiredLevel={desiredLevel}
+            desiredRadioButton={desiredRadioButton}
+            domainMaterialGreen={domainMaterialGreen}
+            domainMaterialBlue={domainMaterialBlue}
+            domainMaterialPurple={domainMaterialPurple}
+            domainMaterialOrange={domainMaterialOrange}
+            eliteMaterialGreen={eliteMaterialGreen}
+            eliteMaterialBlue={eliteMaterialBlue}
+            eliteMaterialPurple={eliteMaterialPurple}
+            commonMaterialWhite={commonMaterialWhite}
+            commonMaterialGreen={commonMaterialGreen}
+            commonMaterialBlue={commonMaterialBlue}
+            whiteOre={whiteOre}
+            greenOre={greenOre}
+            blueOre={blueOre}
+            mora={mora}
+            handleSubmit={this.handleSubmit}
+            handleCurrentLevel={this.handleCurrentLevel}
+          />
+          <MainSection
+            moraNeeded={moraNeeded}
+            blueOreNeeded={blueOreNeeded}
+            domainMaterialGreenNeeded={domainMaterialGreenNeeded}
+            domainMaterialBlueNeeded={domainMaterialBlueNeeded}
+            domainMaterialPurpleNeeded={domainMaterialPurpleNeeded}
+            domainMaterialOrangeNeeded={domainMaterialOrangeNeeded}
+            domainMaterialOrangeRemaining={domainMaterialOrangeRemaining}
+            domainMaterialGreenRemaining={domainMaterialGreenRemaining}
+            domainMaterialBlueRemaining={domainMaterialBlueRemaining}
+            domainMaterialPurpleRemaining={domainMaterialPurpleRemaining}
+            eliteMaterialGreenNeeded={eliteMaterialGreenNeeded}
+            eliteMaterialBlueNeeded={eliteMaterialBlueNeeded}
+            eliteMaterialPurpleNeeded={eliteMaterialPurpleNeeded}
+            eliteMaterialGreenRemaining={eliteMaterialGreenRemaining}
+            eliteMaterialBlueRemaining={eliteMaterialBlueRemaining}
+            eliteMaterialPurpleRemaining={eliteMaterialPurpleRemaining}
+            commonMaterialWhiteNeeded={commonMaterialWhiteNeeded}
+            commonMaterialGreenNeeded={commonMaterialGreenNeeded}
+            commonMaterialBlueNeeded={commonMaterialBlueNeeded}
+            commonMaterialWhiteRemaining={commonMaterialWhiteRemaining}
+            commonMaterialGreenRemaining={commonMaterialGreenRemaining}
+            commonMaterialBlueRemaining={commonMaterialBlueRemaining}
+            subsections={subsections}
+            state={this.state}
+          />
         </div>
-
-        <ContentContainer content={contentContainer}></ContentContainer>
       </div>
     );
   }
