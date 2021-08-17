@@ -3,7 +3,6 @@ body {
 
   background-color: #111111;
   color: white;
-  padding: 2%;
 }
 h2,
 h3 {
@@ -16,6 +15,7 @@ h3 {
 .weapon {
   display: flex;
   flex-direction: column;
+  padding: 2%;
 }
 .title {
   align-self: center;

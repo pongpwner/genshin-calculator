@@ -33,7 +33,7 @@ const SubSection = ({
   <div className="sub-section">
     {console.log(state[subsection.value])}
     {subsection.type === 1 ? (
-      <div className="subsection">{`${subsection.label} ${
+      <div className="subsection material">{`${subsection.label} ${
         state[subsection.value]
       }`}</div>
     ) : null}

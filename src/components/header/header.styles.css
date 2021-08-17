@@ -1,0 +1,15 @@
+.header {
+  display: flex;
+  width: 100%;
+  padding: 0.5%;
+  position: absolute;
+  top: 0;
+  background-color: #045d80;
+  padding: 0.5% 2% 0.5% 2%;
+}
+
+.container {
+  width: 26%;
+  display: flex;
+  justify-content: space-between;
+}
