@@ -1,0 +1,26 @@
+body {
+  font-size: 1.4em;
+
+  background-color: #111111;
+  color: white;
+}
+h2,
+h3 {
+  margin: 1%;
+}
+
+h3 {
+  width: 100%;
+}
+.talent {
+  display: flex;
+  flex-direction: column;
+  padding: 2%;
+}
+.title {
+  align-self: center;
+}
+
+.content {
+  display: flex;
+}

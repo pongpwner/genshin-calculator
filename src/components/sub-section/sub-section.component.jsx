@@ -1,33 +1,10 @@
 import React from "react";
 
 import "./sub-section.styles.css";
-import WEAPON from "../../pages/weapon/weapon";
-import Weapon from "../../pages/weapon/weapon.component";
 
 const SubSection = ({
   subsection,
-  moraNeeded,
-  blueOreNeeded,
-  domainMaterialGreenNeeded,
-  domainMaterialBlueNeeded,
-  domainMaterialPurpleNeeded,
-  domainMaterialOrangeNeeded,
-  domainMaterialOrangeRemaining,
-  domainMaterialGreenRemaining,
-  domainMaterialBlueRemaining,
-  domainMaterialPurpleRemaining,
-  eliteMaterialGreenNeeded,
-  eliteMaterialBlueNeeded,
-  eliteMaterialPurpleNeeded,
-  eliteMaterialGreenRemaining,
-  eliteMaterialBlueRemaining,
-  eliteMaterialPurpleRemaining,
-  commonMaterialWhiteNeeded,
-  commonMaterialGreenNeeded,
-  commonMaterialBlueNeeded,
-  commonMaterialWhiteRemaining,
-  commonMaterialGreenRemaining,
-  commonMaterialBlueRemaining,
+
   state,
 }) => (
   <div className="sub-section">

@@ -13,6 +13,9 @@ import {
   selectAttackLv,
   selectSkillLv,
   selectBurstLv,
+  selectCurrentAttackLv,
+  selectCurrentSkillLv,
+  selectCurrentBurstLv,
   selectCommonMaterialWhite,
   selectCommonMaterialWhiteNeeded,
   selectCommonMaterialGreen,
@@ -26,22 +29,27 @@ import {
   selectPurpleTalentNeeded,
   selectCrown,
   selectCrownNeeded,
+  selectMora,
 } from "../../redux/talent/talent.selector";
-import { handleChange } from "../../redux/talent/talent.actions";
+import { handleChange, handleSubmit } from "../../redux/talent/talent.actions";
 
 const TalentInput = ({
   talentLv,
   attackLv,
   skillLv,
   burstLv,
+  currentAttackLv,
+  currentSkillLv,
+  currentBurstLv,
   greenTalent,
   blueTalent,
   purpleTalent,
 
-  selectGreenTalentNeeded,
-  selectBlueTalentNeeded,
-  selectPurpleTalentNeeded,
+  greenTalentNeeded,
+  blueTalentNeeded,
+  purpleTalentNeeded,
   moraNeeded,
+  mora,
   commonMaterialWhite,
   commonMaterialWhiteNeeded,
   commonMaterialGreen,
@@ -50,8 +58,9 @@ const TalentInput = ({
   commonMaterialBlueNeeded,
   bossMaterial,
   bossMaterialNeeded,
-  selectCrown,
-  selectCrownNeeded,
+  crown,
+  crownNeeded,
+  handleSubmit,
   handleChange,
 }) => {
   //   const handleChange = (event) => {
@@ -61,124 +70,152 @@ const TalentInput = ({
   console.log(greenTalent);
   return (
     <div className="talent-input">
-      <div className="material-input-container">
-        <div>Talent Books Needed</div>
-        <div className="input-row">
-          <FormDropdown
-            options={talentLv}
-            label="normal attack"
-            name="attackLv"
-            value={attackLv}
-            handleChange={(e) => handleChange(e.target)}
-          />
-          <FormDropdown
-            options={talentLv}
-            label="elemental skill"
-            name="skillLv"
-            value={skillLv}
-            handleChange={(e) => handleChange(e.target)}
-          />
-          <FormDropdown
-            options={talentLv}
-            label="elemental burst"
-            name="burstLv"
-            value={burstLv}
-            handleChange={(e) => handleChange(e.target)}
-          />
+      <div className="input-container">
+        <div className="material-input-container">
+          <div>Current Talent Level</div>
+          <div className="input-row">
+            <FormDropdown
+              options={talentLv}
+              label=" current normal attack"
+              name="currentAttackLv"
+              value={currentAttackLv}
+              handleChange={(e) => handleChange(e.target)}
+            />
+            <FormDropdown
+              options={talentLv}
+              label="current elemental skill"
+              name="currentSkillLv"
+              value={currentSkillLv}
+              handleChange={(e) => handleChange(e.target)}
+            />
+            <FormDropdown
+              options={talentLv}
+              label="current elemental burst"
+              name="currentBurstLv"
+              value={currentBurstLv}
+              handleChange={(e) => handleChange(e.target)}
+            />
+          </div>
         </div>
-      </div>
-      <div className="material-input-container">
-        <div>Talent Books</div>
-        <div className="input-row">
-          <FormInput
-            label="green"
-            name="greenTalent"
-            type="number"
-            value={greenTalent}
-            handleChange={(e) => handleChange(e.target)}
-          />
-          <FormInput
-            label="blue"
-            name="blueTalent"
-            type="number"
-            value={blueTalent}
-            handleChange={(e) => handleChange(e.target)}
-          />
-          <FormInput
-            label="purple"
-            name="purpleTalent"
-            type="number"
-            value={purpleTalent}
-            handleChange={(e) => handleChange(e.target)}
-          />
+        <div className="material-input-container">
+          <div>Desired Talent Level</div>
+          <div className="input-row">
+            <FormDropdown
+              options={talentLv}
+              label="normal attack"
+              name="attackLv"
+              value={attackLv}
+              handleChange={(e) => handleChange(e.target)}
+            />
+            <FormDropdown
+              options={talentLv}
+              label="elemental skill"
+              name="skillLv"
+              value={skillLv}
+              handleChange={(e) => handleChange(e.target)}
+            />
+            <FormDropdown
+              options={talentLv}
+              label="elemental burst"
+              name="burstLv"
+              value={burstLv}
+              handleChange={(e) => handleChange(e.target)}
+            />
+          </div>
         </div>
-      </div>
-      <div className="material-input-container">
-        <div>Common Materials</div>
-        <div className="input-row">
-          <FormInput
-            label="white"
-            name="commonMaterialWhite"
-            type="number"
-            value={commonMaterialWhite}
-            handleChange={(e) => handleChange(e.target)}
-          />
-          <FormInput
-            label="green"
-            name="commonMaterialGreen"
-            type="number"
-            value={commonMaterialGreen}
-            handleChange={(e) => handleChange(e.target)}
-          />
-          <FormInput
-            label="blue"
-            name="commonMaterialBlue"
-            type="number"
-            value={commonMaterialBlue}
-            handleChange={(e) => handleChange(e.target)}
-          />
+        <div className="material-input-container">
+          <div>Talent Books</div>
+          <div className="input-row">
+            <FormInput
+              label="green"
+              name="greenTalent"
+              type="number"
+              value={greenTalent}
+              handleChange={(e) => handleChange(e.target)}
+            />
+            <FormInput
+              label="blue"
+              name="blueTalent"
+              type="number"
+              value={blueTalent}
+              handleChange={(e) => handleChange(e.target)}
+            />
+            <FormInput
+              label="purple"
+              name="purpleTalent"
+              type="number"
+              value={purpleTalent}
+              handleChange={(e) => handleChange(e.target)}
+            />
+          </div>
         </div>
-      </div>
-      <div className="material-input-container">
-        <div>Boss Material</div>
-        <div className="input-row">
-          <FormInput
-            label="orange"
-            name="bossMaterial"
-            type="number"
-            value={bossMaterial}
-            handleChange={(e) => handleChange(e.target)}
-          />
+        <div className="material-input-container">
+          <div>Common Materials</div>
+          <div className="input-row">
+            <FormInput
+              label="white"
+              name="commonMaterialWhite"
+              type="number"
+              value={commonMaterialWhite}
+              handleChange={(e) => handleChange(e.target)}
+            />
+            <FormInput
+              label="green"
+              name="commonMaterialGreen"
+              type="number"
+              value={commonMaterialGreen}
+              handleChange={(e) => handleChange(e.target)}
+            />
+            <FormInput
+              label="blue"
+              name="commonMaterialBlue"
+              type="number"
+              value={commonMaterialBlue}
+              handleChange={(e) => handleChange(e.target)}
+            />
+          </div>
         </div>
-      </div>
-      <div className="material-input-container">
-        <div>Crown</div>
-        <div className="input-row">
-          <FormInput
-            label="orange"
-            name="crown"
-            type="number"
-            value={bossMaterial}
-            handleChange={(e) => handleChange(e.target)}
-          />
+        <div className="material-input-container">
+          <div>Boss Material</div>
+          <div className="input-row">
+            <FormInput
+              label="orange"
+              name="bossMaterial"
+              type="number"
+              value={bossMaterial}
+              handleChange={(e) => handleChange(e.target)}
+            />
+          </div>
         </div>
-      </div>
+        <div className="material-input-container">
+          <div>Crown</div>
+          <div className="input-row">
+            <FormInput
+              label="orange"
+              name="crown"
+              type="number"
+              value={crown}
+              handleChange={(e) => handleChange(e.target)}
+            />
+          </div>
+        </div>
 
-      <div className="material-input-container">
-        <div>Mora</div>
-        <div className="input-row">
-          <FormInput
-            label="mora needed"
-            name="moraNeeded"
-            type="number"
-            value={moraNeeded}
-            handleChange={(e) => handleChange(e.target)}
-          />
+        <div className="material-input-container">
+          <div>Mora</div>
+          <div className="input-row">
+            <FormInput
+              label="mora needed"
+              name="mora"
+              type="number"
+              value={mora}
+              handleChange={(e) => handleChange(e.target)}
+            />
+          </div>
         </div>
+        <CustomButton onClick={handleSubmit} center>
+          Submit
+        </CustomButton>
       </div>
-      <CustomButton onClick={() => console.log("a")} center>
-        Submit
-      </CustomButton>
     </div>
   );
 };
@@ -194,6 +231,9 @@ const mapStateToProps = (state) => ({
   atkLv: selectAttackLv(state),
   skillLv: selectSkillLv(state),
   burstLv: selectBurstLv(state),
+  currentAtkLv: selectCurrentAttackLv(state),
+  currentSkillLv: selectCurrentSkillLv(state),
+  currentBurstLv: selectCurrentBurstLv(state),
   commonMaterialWhite: selectCommonMaterialWhite(state),
   commonMaterialWhiteNeeded: selectCommonMaterialWhiteNeeded(state),
   commonMaterialGreen: selectCommonMaterialGreen(state),
@@ -204,8 +244,10 @@ const mapStateToProps = (state) => ({
   bossMaterialNeeded: selectBossMaterialNeeded(state),
   crown: selectCrown(state),
   crownNeeded: selectCrownNeeded(state),
+  mora: selectMora(state),
 });
 const mapDispatchToProps = (dispatch) => ({
   handleChange: (change) => dispatch(handleChange(change)),
+  handleSubmit: (event) => dispatch(handleSubmit(event)),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(TalentInput);

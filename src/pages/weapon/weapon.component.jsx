@@ -85,7 +85,7 @@ class Weapon extends React.Component {
             { label: "green:", value: "domainMaterialGreenNeeded" },
             { label: "blue:", value: "domainMaterialBlueNeeded" },
             { label: "purple:", value: "domainMaterialPurpleNeeded" },
-            { label: "orange:", value: "domainMaterialOrange" },
+            { label: "orange:", value: "domainMaterialOrangeNeeded" },
           ],
           header2: "Materials left",
           materialsLeft: [
@@ -253,7 +253,7 @@ class Weapon extends React.Component {
     let nPurple = 0;
     let nOrange = 0;
     // over flow
-    let totalOverFlow;
+
     let oGreen = 0;
     let oBlue = 0;
     let oPurple = 0;
@@ -308,12 +308,6 @@ class Weapon extends React.Component {
     } else {
       uOrange = nOrange - tOrange;
     }
-    //calculate total over flow/ not needed
-    totalOverFlow =
-      oGreen * WEAPON_MATERIALS.domainMaterial.green +
-      oBlue * WEAPON_MATERIALS.domainMaterial.blue +
-      oPurple * WEAPON_MATERIALS.domainMaterial.purple +
-      oOrange * WEAPON_MATERIALS.domainMaterial.orange;
 
     // calculate what materials can be converted
     //can't convert green
@@ -342,7 +336,8 @@ class Weapon extends React.Component {
     rGreen = oGreen % 3;
     rBlue = pBlue % 3;
     rPurple = pPurple % 3;
-    rOrange = Math.floor(pOrange / 3) + (pOrange % 3);
+
+    rOrange = pOrange;
 
     this.setState({
       domainMaterialOrangeNeeded: mOrange,
@@ -363,7 +358,7 @@ class Weapon extends React.Component {
     let nBlue = 0;
     let nPurple = 0;
     // over flow
-    let totalOverFlow;
+
     let oGreen = 0;
     let oBlue = 0;
     let oPurple = 0;
@@ -410,12 +405,6 @@ class Weapon extends React.Component {
       uPurple = nPurple - tPurple;
     }
 
-    //calculate total over flow/ not needed
-    totalOverFlow =
-      oGreen * WEAPON_MATERIALS.eliteMaterial.green +
-      oBlue * WEAPON_MATERIALS.eliteMaterial.blue +
-      oPurple * WEAPON_MATERIALS.eliteMaterial.purple;
-
     // calculate what materials can be converted
     //can't convert green
     mGreen = Math.abs(0 - uGreen);
@@ -436,7 +425,7 @@ class Weapon extends React.Component {
     //calculate remainders
     rGreen = oGreen % 3;
     rBlue = pBlue % 3;
-    rPurple = Math.floor(pPurple / 3) + (pPurple % 3);
+    rPurple = pPurple;
 
     this.setState({
       eliteMaterialPurpleNeeded: mPurple,
@@ -457,7 +446,7 @@ class Weapon extends React.Component {
     let nBlue = 0;
 
     // over flow
-    let totalOverFlow;
+
     let oWhite = 0;
     let oGreen = 0;
     let oBlue = 0;
@@ -505,14 +494,6 @@ class Weapon extends React.Component {
     } else {
       uBlue = nBlue - tBlue;
     }
-    console.log("nnnnnnnnnnnnnn" + nWhite);
-    console.log("uuuuuuuuuuuuuuuuuwhite" + uWhite);
-
-    //calculate total over flow/ not needed
-    totalOverFlow =
-      oWhite * WEAPON_MATERIALS.commonMaterial.white +
-      oBlue * WEAPON_MATERIALS.commonMaterial.blue +
-      oGreen * WEAPON_MATERIALS.commonMaterial.green;
 
     // calculate what materials can be converted
     //can't convert green
@@ -534,10 +515,8 @@ class Weapon extends React.Component {
     //calculate remainders
     rWhite = oWhite % 3;
     rGreen = pGreen % 3;
-    rBlue = Math.floor(pBlue / 3) + (pBlue % 3);
+    rBlue = pBlue;
 
-    console.log("uuuuuuuuuuuuuuuuuwhite" + uWhite);
-    console.log("mmmmmmmmmmmmwhite" + mWhite);
     this.setState({
       commonMaterialWhiteNeeded: mWhite,
       commonMaterialBlueNeeded: mBlue,
@@ -914,32 +893,7 @@ class Weapon extends React.Component {
             handleSubmit={this.handleSubmit}
             handleCurrentLevel={this.handleCurrentLevel}
           />
-          <MainSection
-            moraNeeded={moraNeeded}
-            blueOreNeeded={blueOreNeeded}
-            domainMaterialGreenNeeded={domainMaterialGreenNeeded}
-            domainMaterialBlueNeeded={domainMaterialBlueNeeded}
-            domainMaterialPurpleNeeded={domainMaterialPurpleNeeded}
-            domainMaterialOrangeNeeded={domainMaterialOrangeNeeded}
-            domainMaterialOrangeRemaining={domainMaterialOrangeRemaining}
-            domainMaterialGreenRemaining={domainMaterialGreenRemaining}
-            domainMaterialBlueRemaining={domainMaterialBlueRemaining}
-            domainMaterialPurpleRemaining={domainMaterialPurpleRemaining}
-            eliteMaterialGreenNeeded={eliteMaterialGreenNeeded}
-            eliteMaterialBlueNeeded={eliteMaterialBlueNeeded}
-            eliteMaterialPurpleNeeded={eliteMaterialPurpleNeeded}
-            eliteMaterialGreenRemaining={eliteMaterialGreenRemaining}
-            eliteMaterialBlueRemaining={eliteMaterialBlueRemaining}
-            eliteMaterialPurpleRemaining={eliteMaterialPurpleRemaining}
-            commonMaterialWhiteNeeded={commonMaterialWhiteNeeded}
-            commonMaterialGreenNeeded={commonMaterialGreenNeeded}
-            commonMaterialBlueNeeded={commonMaterialBlueNeeded}
-            commonMaterialWhiteRemaining={commonMaterialWhiteRemaining}
-            commonMaterialGreenRemaining={commonMaterialGreenRemaining}
-            commonMaterialBlueRemaining={commonMaterialBlueRemaining}
-            subsections={subsections}
-            state={this.state}
-          />
+          <MainSection subsections={subsections} state={this.state} />
         </div>
       </div>
     );

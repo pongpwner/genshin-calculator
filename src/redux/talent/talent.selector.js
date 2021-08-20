@@ -1,6 +1,6 @@
 import { createSelector } from "reselect";
 
-const selectTalent = (state) => state.talent;
+export const selectTalent = (state) => state.talent;
 
 export const selectGreenTalent = createSelector(
   [selectTalent],
@@ -48,6 +48,18 @@ export const selectBurstLv = createSelector(
   [selectTalent],
   (talent) => talent.burstLv
 );
+export const selectCurrentAttackLv = createSelector(
+  [selectTalent],
+  (talent) => talent.currentAttackLv
+);
+export const selectCurrentSkillLv = createSelector(
+  [selectTalent],
+  (talent) => talent.currentSkillLv
+);
+export const selectCurrentBurstLv = createSelector(
+  [selectTalent],
+  (talent) => talent.currentBurstLv
+);
 export const selectCommonMaterialWhite = createSelector(
   [selectTalent],
   (talent) => talent.commonMaterialWhite
@@ -87,4 +99,12 @@ export const selectCrown = createSelector(
 export const selectCrownNeeded = createSelector(
   [selectTalent],
   (talent) => talent.crownNeeded
+);
+export const selectMora = createSelector(
+  [selectTalent],
+  (talent) => talent.mora
+);
+export const selectSubsections = createSelector(
+  [selectTalent],
+  (talent) => talent.subsections
 );

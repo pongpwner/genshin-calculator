@@ -89,21 +89,21 @@ const WeaponInput = ({
           <FormInput
             label="green"
             name="domainMaterialGreen"
-            type="text"
+            type="number"
             value={domainMaterialGreen}
             onChange={handleChange}
           ></FormInput>
           <FormInput
             label="blue"
             name="domainMaterialBlue"
-            type="text"
+            type="number"
             value={domainMaterialBlue}
             onChange={handleChange}
           ></FormInput>
           <FormInput
             label="purple"
             name="domainMaterialPurple"
-            type="text"
+            type="number"
             value={domainMaterialPurple}
             onChange={handleChange}
           ></FormInput>
@@ -111,7 +111,7 @@ const WeaponInput = ({
           <FormInput
             label="orange"
             name="domainMaterialOrange"
-            type="text"
+            type="number"
             value={domainMaterialOrange}
             onChange={handleChange}
           ></FormInput>
@@ -121,21 +121,21 @@ const WeaponInput = ({
           <FormInput
             label="green"
             name="eliteMaterialGreen"
-            type="text"
+            type="number"
             value={eliteMaterialGreen}
             onChange={handleChange}
           ></FormInput>
           <FormInput
             label="blue"
             name="eliteMaterialBlue"
-            type="text"
+            type="number"
             value={eliteMaterialBlue}
             onChange={handleChange}
           ></FormInput>
           <FormInput
             label="purple"
             name="eliteMaterialPurple"
-            type="text"
+            type="number"
             value={eliteMaterialPurple}
             onChange={handleChange}
           ></FormInput>
@@ -145,21 +145,21 @@ const WeaponInput = ({
           <FormInput
             label="white"
             name="commonMaterialWhite"
-            type="text"
+            type="number"
             value={commonMaterialWhite}
             onChange={handleChange}
           ></FormInput>
           <FormInput
             label="green"
             name="commonMaterialGreen"
-            type="text"
+            type="number"
             value={commonMaterialGreen}
             onChange={handleChange}
           ></FormInput>
           <FormInput
             label="blue"
             name="commonMaterialBlue"
-            type="text"
+            type="number"
             value={commonMaterialBlue}
             onChange={handleChange}
           ></FormInput>
@@ -171,21 +171,21 @@ const WeaponInput = ({
           <FormInput
             label="white"
             name="whiteOre"
-            type="text"
+            type="number"
             value={whiteOre}
             onChange={handleChange}
           ></FormInput>
           <FormInput
             label="green"
             name="greenOre"
-            type="text"
+            type="number"
             value={greenOre}
             onChange={handleChange}
           ></FormInput>
           <FormInput
             label="blue"
             name="blueOre"
-            type="text"
+            type="number"
             value={blueOre}
             onChange={handleChange}
           ></FormInput>
@@ -197,7 +197,7 @@ const WeaponInput = ({
           <FormInput
             label="Mora"
             name="mora"
-            type="text"
+            type="number"
             value={mora}
             onChange={handleChange}
           ></FormInput>
