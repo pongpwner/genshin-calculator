@@ -54,7 +54,7 @@ const TALENT_DATA = {
       greenTalent: 0,
       blueTalent: 6,
       purpleTalent: 0,
-      ccommonMaterialWhite: 0,
+      commonMaterialWhite: 0,
       commonMaterialGreen: 6,
       commonMaterialBlue: 0,
       bossMaterial: 0,
