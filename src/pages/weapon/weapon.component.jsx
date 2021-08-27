@@ -23,7 +23,7 @@ class Weapon extends React.Component {
       mora: 0,
       rarity: "threeStar",
       currentLevel: 0,
-      desiredLevel: 90,
+      desiredLevel: 7,
       domainMaterialOrange: 0,
       domainMaterialPurple: 0,
       domainMaterialBlue: 0,
@@ -476,7 +476,6 @@ class Weapon extends React.Component {
       nGreen += WEAPON[rarity].ascension[i].commonCost.green;
       nBlue += WEAPON[rarity].ascension[i].commonCost.blue;
       nWhite += WEAPON[rarity].ascension[i].commonCost.white;
-      console.log(WEAPON[rarity].ascension[i].commonCost.white);
     }
     //calculate overflow and underflow
     if (nWhite - tWhite < 0) {
@@ -530,7 +529,7 @@ class Weapon extends React.Component {
   }
   calculateMora(startA, endA, startL, endL, mora, rarity) {
     let totalMora = 0;
-    for (let i = Number(startL / 10) + 1; i < endL / 10 - 1; i++) {
+    for (let i = Number(startL) + 1; i < Number(endL) + 1; i++) {
       console.log(i);
       console.log(totalMora);
       totalMora += WEAPON[rarity].level[i].mora;
@@ -553,8 +552,14 @@ class Weapon extends React.Component {
     let totalXPNeeded = 0;
     let xpNeeded = 0;
     let blueOreNeeded = 0;
-    for (let i = Number(startL / 10) + 1; i < endL / 10 - 1; i++) {
+    for (let i = Number(startL) + 1; i < Number(endL) + 1; i++) {
+      // if (startL == 7) {
+      //   console.log(startL);
+      //   break;
+      // }
       totalXPNeeded += WEAPON[rarity].level[i].exp;
+      console.log(WEAPON[rarity].level[i].exp);
+      console.log(startL);
     }
     if (totalXPNeeded - totalXP <= 0) {
       xpNeeded = 0;
@@ -582,7 +587,7 @@ class Weapon extends React.Component {
         this.setState({ currentAscension: 0 });
         this.setState({ sumCurrentAscension: 0 });
         break;
-      case 20:
+      case 1:
         if (currentRadioButton == 0) {
           this.setState({ currentAscension: 0 });
           this.setState({ sumCurrentAscension: 0 });
@@ -594,7 +599,7 @@ class Weapon extends React.Component {
         }
 
         break;
-      case 40:
+      case 2:
         if (currentRadioButton == 0) {
           this.setState({ currentAscension: 1 });
           this.setState({ sumCurrentAscension: 1 });
@@ -605,7 +610,7 @@ class Weapon extends React.Component {
           });
         }
         break;
-      case 50:
+      case 3:
         if (currentRadioButton == 0) {
           this.setState({ currentAscension: 2 });
           this.setState({ sumCurrentAscension: 2 });
@@ -616,7 +621,7 @@ class Weapon extends React.Component {
           });
         }
         break;
-      case 60:
+      case 4:
         if (currentRadioButton == 0) {
           this.setState({ currentAscension: 3 });
           this.setState({ sumCurrentAscension: 3 });
@@ -627,7 +632,7 @@ class Weapon extends React.Component {
           });
         }
         break;
-      case 70:
+      case 5:
         if (currentRadioButton == 0) {
           this.setState({ currentAscension: 4 });
           this.setState({ sumCurrentAscension: 4 });
@@ -638,7 +643,7 @@ class Weapon extends React.Component {
           });
         }
         break;
-      case 80:
+      case 6:
         if (currentRadioButton == 0) {
           this.setState({ currentAscension: 5 });
           this.setState({ sumCurrentAscension: 5 });
@@ -649,7 +654,7 @@ class Weapon extends React.Component {
           });
         }
         break;
-      case 90:
+      case 7:
         this.setState({ currentAscension: 6 });
         this.setState({ sumCurrentAscension: 6 });
         break;
@@ -670,7 +675,7 @@ class Weapon extends React.Component {
         this.setState({ desiredAscension: 0 });
         this.setState({ sumDesiredAscension: 0 });
         break;
-      case 20:
+      case 1:
         if (desiredRadioButton == 0) {
           this.setState({ desiredAscension: 0 });
           this.setState({ sumDesiredAscension: 0 });
@@ -682,7 +687,7 @@ class Weapon extends React.Component {
         }
 
         break;
-      case 40:
+      case 2:
         if (desiredRadioButton == 0) {
           this.setState({ desiredAscension: 1 });
           this.setState({ sumDesiredAscension: 1 });
@@ -693,7 +698,7 @@ class Weapon extends React.Component {
           });
         }
         break;
-      case 50:
+      case 3:
         if (desiredRadioButton == 0) {
           this.setState({ desiredAscension: 2 });
           this.setState({ sumDesiredAscension: 2 });
@@ -704,7 +709,7 @@ class Weapon extends React.Component {
           });
         }
         break;
-      case 60:
+      case 4:
         if (desiredRadioButton == 0) {
           this.setState({ desiredAscension: 3 });
           this.setState({ sumDesiredAscension: 3 });
@@ -715,7 +720,7 @@ class Weapon extends React.Component {
           });
         }
         break;
-      case 70:
+      case 5:
         if (desiredRadioButton == 0) {
           this.setState({ desiredAscension: 4 });
           this.setState({ sumDesiredAscension: 4 });
@@ -726,7 +731,7 @@ class Weapon extends React.Component {
           });
         }
         break;
-      case 80:
+      case 6:
         if (desiredRadioButton == 0) {
           this.setState({ desiredAscension: 5 });
           this.setState({ sumDesiredAscension: 5 });
@@ -737,7 +742,7 @@ class Weapon extends React.Component {
           });
         }
         break;
-      case 90:
+      case 7:
         this.setState({ desiredAscension: 6 });
         this.setState({ sumDesiredAscension: 6 });
         break;

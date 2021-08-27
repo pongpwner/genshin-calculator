@@ -107,23 +107,21 @@ const talentReducer = (state = INITIAL_STATE, action) => {
         currentAttackLv,
         currentSkillLv,
         currentBurstLv,
-        talentLv,
+
         attackLv,
         skillLv,
         burstLv,
         greenTalent,
         blueTalent,
         purpleTalent,
-        greenTalentNeeded,
-        blueTalentNeeded,
-        purpleTalentNeeded,
+
         talentCost,
         mora,
-        moraNeeded,
+
         bossMaterial,
-        bossMaterialNeeded,
+
         crown,
-        crownNeeded,
+
         commonMaterialWhite,
         commonMaterialGreen,
         commonMaterialBlue,

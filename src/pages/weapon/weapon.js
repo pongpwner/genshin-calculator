@@ -30,7 +30,7 @@ const WEAPON = {
         domainCost: { green: 0, blue: 0, purple: 0, orange: 0 },
         eliteCost: { green: 0, blue: 0, purple: 0 },
         commonCost: { white: 0, green: 0, blue: 0 },
-       
+
         mora: 0,
       },
       {
@@ -38,7 +38,7 @@ const WEAPON = {
         domainCost: { green: 2, blue: 0, purple: 0, orange: 0 },
         eliteCost: { green: 2, blue: 0, purple: 0 },
         commonCost: { white: 1, green: 0, blue: 0 },
-        
+
         mora: 5000,
       },
       {
@@ -46,7 +46,7 @@ const WEAPON = {
         domainCost: { green: 0, blue: 2, purple: 0, orange: 0 },
         eliteCost: { green: 8, blue: 0, purple: 0 },
         commonCost: { white: 5, green: 0, blue: 0 },
-        
+
         mora: 10000,
       },
       {
@@ -54,7 +54,7 @@ const WEAPON = {
         domainCost: { green: 0, blue: 4, purple: 0, orange: 0 },
         eliteCost: { green: 0, blue: 4, purple: 0 },
         commonCost: { white: 0, green: 4, blue: 0 },
-       
+
         mora: 15000,
       },
       {
@@ -62,7 +62,7 @@ const WEAPON = {
         domainCost: { green: 0, blue: 0, purple: 2, orange: 0 },
         eliteCost: { green: 0, blue: 8, purple: 0 },
         commonCost: { white: 0, green: 6, blue: 0 },
-        
+
         mora: 20000,
       },
       {
@@ -77,7 +77,7 @@ const WEAPON = {
         domainCost: { green: 0, blue: 0, purple: 0, orange: 3 },
         eliteCost: { green: 0, blue: 0, purple: 12 },
         commonCost: { white: 0, green: 0, blue: 8 },
-        
+
         mora: 30000,
       },
     ],
@@ -95,7 +95,7 @@ const WEAPON = {
         exp: 53475,
         mora: 5360,
         ascension: 0,
-        value: 20,
+        value: 1,
         label: "20",
       },
       {
@@ -103,7 +103,7 @@ const WEAPON = {
         exp: 274000,
         mora: 27400,
         ascension: 1,
-        value: 40,
+        value: 2,
         label: "40",
       },
       {
@@ -111,7 +111,7 @@ const WEAPON = {
         exp: 276350,
         mora: 27640,
         ascension: 2,
-        value: 50,
+        value: 3,
         label: "50",
       },
       {
@@ -119,7 +119,7 @@ const WEAPON = {
         exp: 408150,
         mora: 40820,
         ascension: 3,
-        value: 60,
+        value: 4,
         label: "60",
       },
       {
@@ -127,7 +127,7 @@ const WEAPON = {
         exp: 571625,
         mora: 57180,
         ascension: 4,
-        value: 70,
+        value: 5,
         label: "70",
       },
       {
@@ -135,7 +135,7 @@ const WEAPON = {
         exp: 770125,
         mora: 77020,
         ascension: 5,
-        value: 80,
+        value: 6,
         label: "80",
       },
       {
@@ -143,7 +143,7 @@ const WEAPON = {
         exp: 1634475,
         mora: 163460,
         ascension: 6,
-        value: 90,
+        value: 7,
         label: "90",
       },
     ],
@@ -212,36 +212,50 @@ const WEAPON = {
         lv: 20,
         exp: 81000,
         mora: 8100,
+        value: 1,
+        label: "20",
       },
       {
         lv: 40,
         exp: 415125,
         mora: 41520,
+        value: 2,
+        label: "40",
       },
       {
         lv: 50,
         exp: 418725,
         mora: 41880,
+        value: 3,
+        label: "50",
       },
       {
         lv: 60,
         exp: 618400,
         mora: 61840,
+        value: 4,
+        label: "60",
       },
       {
         lv: 70,
         exp: 866050,
         mora: 86620,
+        value: 5,
+        label: "70",
       },
       {
         lv: 80,
         exp: 1166875,
         mora: 116700,
+        value: 6,
+        label: "80",
       },
       {
         lv: 90,
         exp: 2476475,
         mora: 247660,
+        value: 7,
+        label: "90",
       },
     ],
   },
@@ -309,36 +323,50 @@ const WEAPON = {
         lv: 20,
         exp: 121550,
         mora: 12160,
+        value: "1",
+        label: "20",
       },
       {
         lv: 40,
         exp: 622800,
         mora: 62280,
+        value: "2",
+        label: "40",
       },
       {
         lv: 50,
         exp: 628150,
         mora: 62820,
+        value: "3",
+        label: "50",
       },
       {
         lv: 60,
         exp: 927675,
         mora: 92780,
+        value: "4",
+        label: "60",
       },
       {
         lv: 70,
         exp: 1299125,
         mora: 129920,
+        value: "5",
+        label: "70",
       },
       {
         lv: 80,
         exp: 1750375,
         mora: 175040,
+        value: "6",
+        label: "80",
       },
       {
         lv: 90,
         exp: 3714775,
         mora: 371480,
+        value: "7",
+        label: "90",
       },
     ],
   },

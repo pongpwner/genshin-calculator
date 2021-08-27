@@ -8,7 +8,7 @@ const SubSection = ({
   state,
 }) => (
   <div className="sub-section">
-    {console.log(state[subsection.value])}
+    {/*console.log(state)*/}
     {subsection.type === 1 ? (
       <div className="subsection material">{`${subsection.label} ${
         state[subsection.value]
@@ -33,21 +33,7 @@ const SubSection = ({
         </div>
       </div>
     ) : null}
-
-    {/* {() => {
-      console.log(subsection.type);
-      if (subsection.type === 1) {
-        return (
-          <div className="subsection">{`${subsection.label} ${subsection.value}`}</div>
-        );
-      } else {
-        return <div>d</div>;
-      }
-    }} */}
   </div>
 );
 
-{
-  /* */
-}
 export default SubSection;
