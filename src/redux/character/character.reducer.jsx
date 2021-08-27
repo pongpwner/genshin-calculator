@@ -1,7 +1,7 @@
 import { CharacterActionTypes } from "./character.types";
 import CHARACTER_DATA from "../../pages/character/character.data";
 const INITIAL_STATE = {
-  mora: 0,
+  moraC: 0,
   moraNeeded: 0,
   gemGreen: 0,
   gemBlue: 0,
@@ -15,30 +15,30 @@ const INITIAL_STATE = {
   gemBlueRemaining: 0,
   gemPurpleRemaining: 0,
   gemOrangeRemaining: 0,
-  commonMaterialWhite: 0,
-  commonMaterialGreen: 0,
-  commonMaterialBlue: 0,
+  commonMaterialWhiteC: 0,
+  commonMaterialGreenC: 0,
+  commonMaterialBlueC: 0,
   commonMaterialWhiteNeeded: 0,
   commonMaterialGreenNeeded: 0,
   commonMaterialBlueNeeded: 0,
   commonMaterialWhiteRemaining: 0,
   commonMaterialGreenRemaining: 0,
   commonMaterialBlueRemaining: 0,
-  bossMaterial: 0,
+  bossMaterialC: 0,
   bossMaterialNeeded: 0,
   bossMaterialRemaining: 0,
-  localSpecialty: 0,
+  localSpecialtyC: 0,
   localSpecialtyNeeded: 0,
   localSpecialtyRemaining: 0,
   heroWitGreen: 0,
   heroWitBlue: 0,
   heroWitPurple: 0,
-  heroWitGreenNeeded: 0,
-  heroWitBlueNeeded: 0,
-  heroWitPurpleNeeded: 0,
-  heroWitGreenRemaining: 0,
-  heroWitBlueRemaining: 0,
-  heroWitPurpleRemaining: 0,
+  expGreenNeeded: 0,
+  expBlueNeeded: 0,
+  expPurpleNeeded: 0,
+  expGreenRemaining: 0,
+  expBlueRemaining: 0,
+  expPurpleRemaining: 0,
   currentLevel: 0,
   desiredLevel: 0,
   currentAscension: 0,
@@ -121,15 +121,15 @@ const INITIAL_STATE = {
       id: 4,
       header1: "Exp Needed",
       materialsNeeded: [
-        { label: "green:", value: "heroWitGreenNeeded" },
-        { label: "blue:", value: "heroWitBlueNeeded" },
-        { label: "purple:", value: "heroWitPurpleNeeded" },
+        { label: "green:", value: "expGreenNeeded" },
+        { label: "blue:", value: "expBlueNeeded" },
+        { label: "purple:", value: "expPurpleNeeded" },
       ],
       header2: "Materials left",
       materialsLeft: [
-        { label: "green:", value: "heroWitGreenRemaining" },
-        { label: "blue:", value: "heroWitBlueRemaining" },
-        { label: "purple:", value: "heroWitPurpleRemaining" },
+        { label: "green:", value: "expGreenRemaining" },
+        { label: "blue:", value: "expBlueRemaining" },
+        { label: "purple:", value: "expPurpleRemaining" },
       ],
     },
     {
@@ -456,15 +456,15 @@ const characterReducer = (state = INITIAL_STATE, action) => {
         gemBlue,
         gemPurple,
         gemOrange,
-        commonMaterialWhite,
-        commonMaterialGreen,
-        commonMaterialBlue,
-        mora,
-        localSpecialty,
+        commonMaterialWhiteC,
+        commonMaterialGreenC,
+        commonMaterialBlueC,
+        moraC,
+        localSpecialtyC,
         heroWitGreen,
         heroWitBlue,
         heroWitPurple,
-        bossMaterial,
+        bossMaterialC,
         currentLevel,
         desiredLevel,
         currentAscension,
@@ -611,30 +611,30 @@ const characterReducer = (state = INITIAL_STATE, action) => {
         uGemOrange = nGemOrange - gemOrange;
       }
 
-      if (nCWhite - commonMaterialWhite < 0) {
-        oCWhite = Math.abs(nCWhite - commonMaterialWhite);
+      if (nCWhite - commonMaterialWhiteC < 0) {
+        oCWhite = Math.abs(nCWhite - commonMaterialWhiteC);
       } else {
-        uCWhite = nCWhite - commonMaterialWhite;
+        uCWhite = nCWhite - commonMaterialWhiteC;
       }
-      if (nCGreen - commonMaterialGreen < 0) {
-        oCGreen = Math.abs(nCGreen - commonMaterialGreen);
+      if (nCGreen - commonMaterialGreenC < 0) {
+        oCGreen = Math.abs(nCGreen - commonMaterialGreenC);
       } else {
-        uCGreen = nCGreen - commonMaterialGreen;
+        uCGreen = nCGreen - commonMaterialGreenC;
       }
-      if (nCBlue - commonMaterialBlue < 0) {
-        oCBlue = Math.abs(nCBlue - commonMaterialBlue);
+      if (nCBlue - commonMaterialBlueC < 0) {
+        oCBlue = Math.abs(nCBlue - commonMaterialBlueC);
       } else {
-        uCBlue = nCBlue - commonMaterialBlue;
+        uCBlue = nCBlue - commonMaterialBlueC;
       }
-      if (nSpecialty - localSpecialty < 0) {
-        oSpecialty = Math.abs(nSpecialty - localSpecialty);
+      if (nSpecialty - localSpecialtyC < 0) {
+        oSpecialty = Math.abs(nSpecialty - localSpecialtyC);
       } else {
-        uSpecialty = nSpecialty - localSpecialty;
+        uSpecialty = nSpecialty - localSpecialtyC;
       }
-      if (nBoss - bossMaterial < 0) {
-        oBoss = Math.abs(nBoss - bossMaterial);
+      if (nBoss - bossMaterialC < 0) {
+        oBoss = Math.abs(nBoss - bossMaterialC);
       } else {
-        uBoss = nBoss - bossMaterial;
+        uBoss = nBoss - bossMaterialC;
       }
       if (nExpGreen - heroWitGreen < 0) {
         oExpGreen = Math.abs(nExpGreen - heroWitGreen);
@@ -725,9 +725,9 @@ const characterReducer = (state = INITIAL_STATE, action) => {
       rCGreen = pCGreen % 3;
       rCBlue = pCBlue;
       // final mora
-      nMora = nMora - mora;
-      nBoss = nBoss - bossMaterial;
-      nSpecialty = nSpecialty - localSpecialty;
+      nMora = nMora - moraC;
+      nBoss = nBoss - bossMaterialC;
+      nSpecialty = nSpecialty - localSpecialtyC;
 
       return {
         ...state,

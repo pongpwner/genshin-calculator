@@ -10,7 +10,7 @@ import {
 
 const Character = ({ subsections, state }) => (
   <div className="character">
-    <h1>Character Calculator</h1>
+    <h1 className="title">Character Calculator</h1>
     <div className="content">
       <CharacterInput />
       <MainSection subsections={subsections} state={state} />

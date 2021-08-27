@@ -141,21 +141,21 @@ const CharacterInput = ({
         <div className="input-row">
           <FormInput
             label="white"
-            name="commonMaterialWhite"
+            name="commonMaterialWhiteC"
             type="number"
             value={commonMaterialWhite}
             handleChange={(e) => handleChange(e.target)}
           ></FormInput>
           <FormInput
             label="green"
-            name="commonMaterialGreen"
+            name="commonMaterialGreenC"
             type="number"
             value={commonMaterialGreen}
             handleChange={(e) => handleChange(e.target)}
           ></FormInput>
           <FormInput
             label="blue"
-            name="commonMaterialBlue"
+            name="commonMaterialBlueC"
             type="number"
             value={commonMaterialBlue}
             handleChange={(e) => handleChange(e.target)}
@@ -194,7 +194,7 @@ const CharacterInput = ({
         <div className="input-row">
           <FormInput
             label="purple"
-            name="bossMaterial"
+            name="bossMaterialC"
             type="number"
             value={bossMaterial}
             handleChange={(e) => handleChange(e.target)}
@@ -207,7 +207,7 @@ const CharacterInput = ({
         <div className="input-row">
           <FormInput
             label="white"
-            name="localSpecialty"
+            name="localSpecialtyC"
             type="number"
             value={localSpecialty}
             handleChange={(e) => handleChange(e.target)}
@@ -220,7 +220,7 @@ const CharacterInput = ({
         <div className="input-row">
           <FormInput
             label="white"
-            name="mora"
+            name="moraC"
             type="number"
             value={mora}
             handleChange={(e) => handleChange(e.target)}

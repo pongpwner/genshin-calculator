@@ -48,29 +48,29 @@ export const selectGemOrange = createSelector(
 );
 export const selectCommonMaterialWhite = createSelector(
   [selectCharacter],
-  (character) => character.commonMaterialWhite
+  (character) => character.commonMaterialWhiteC
 );
 export const selectCommonMaterialGreen = createSelector(
   [selectCharacter],
-  (character) => character.commonMaterialGreen
+  (character) => character.commonMaterialGreenC
 );
 export const selectCommonMaterialBlue = createSelector(
   [selectCharacter],
-  (character) => character.commonMaterialBlue
+  (character) => character.commonMaterialBlueC
 );
 export const selectBossMaterial = createSelector(
   [selectCharacter],
-  (character) => character.bossMaterial
+  (character) => character.bossMaterialC
 );
 
 export const selectLocalSpecialty = createSelector(
   [selectCharacter],
-  (character) => character.localSpecialty
+  (character) => character.localSpecialtyC
 );
 
 export const selectMora = createSelector(
   [selectCharacter],
-  (character) => character.mora
+  (character) => character.moraC
 );
 
 export const selectHeroWitGreen = createSelector(
