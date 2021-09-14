@@ -3,31 +3,29 @@
   margin: 1%;
   border-radius: 10px;
   display: flex;
-  
 }
 .white {
-  background-color: white;
+  background-color: #89898b;
   justify-content: center;
 }
 .green {
-  background-color: green;
+  background-color: #548a72;
   justify-content: center;
 }
 .blue {
-  background-color: blue;
   justify-content: center;
+  background-color: #4c7fa1;
 }
 .purple {
-  background-color: purple;
+  background-color: #a07db6;
   justify-content: center;
 }
 .orange {
-  background-color: orange;
+  background-color: #c88635;
   justify-content: center;
 }
 
 .form-input {
   font-size: 0.9em;
   width: 70%;
-  
 }

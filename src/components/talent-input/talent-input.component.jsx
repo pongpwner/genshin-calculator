@@ -76,21 +76,21 @@ const TalentInput = ({
           <div className="input-row">
             <FormDropdown
               options={talentLv}
-              label=" current normal attack"
+              label=" normal attack"
               name="currentAttackLv"
               value={currentAttackLv}
               handleChange={(e) => handleChange(e.target)}
             />
             <FormDropdown
               options={talentLv}
-              label="current elemental skill"
+              label="elemental skill"
               name="currentSkillLv"
               value={currentSkillLv}
               handleChange={(e) => handleChange(e.target)}
             />
             <FormDropdown
               options={talentLv}
-              label="current elemental burst"
+              label="elemental burst"
               name="currentBurstLv"
               value={currentBurstLv}
               handleChange={(e) => handleChange(e.target)}
@@ -124,7 +124,14 @@ const TalentInput = ({
           </div>
         </div>
         <div className="material-input-container">
-          <div>Talent Books</div>
+          <a
+            className="info-link"
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://genshin.honeyhunterworld.com/db/item/talent-level-up-material/?lang=EN"
+          >
+            Talent Books
+          </a>
           <div className="input-row">
             <FormInput
               label="green"
@@ -150,7 +157,14 @@ const TalentInput = ({
           </div>
         </div>
         <div className="material-input-container">
-          <div>Common Materials</div>
+          <a
+            className="info-link"
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://genshin.honeyhunterworld.com/db/item/character-ascension-material-secondary-material/?lang=EN"
+          >
+            Common Material
+          </a>
           <div className="input-row">
             <FormInput
               label="white"
@@ -176,7 +190,14 @@ const TalentInput = ({
           </div>
         </div>
         <div className="material-input-container">
-          <div>Boss Material</div>
+          <a
+            className="info-link"
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://genshin.honeyhunterworld.com/db/item/talent-level-up-material/?lang=EN"
+          >
+            Boss Material
+          </a>
           <div className="input-row">
             <FormInput
               label="orange"
@@ -188,7 +209,14 @@ const TalentInput = ({
           </div>
         </div>
         <div className="material-input-container">
-          <div>Crown</div>
+          <a
+            className="info-link"
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://genshin.honeyhunterworld.com/db/item/talent-level-up-material/?lang=EN"
+          >
+            Crown
+          </a>
           <div className="input-row">
             <FormInput
               label="orange"
@@ -201,7 +229,14 @@ const TalentInput = ({
         </div>
 
         <div className="material-input-container">
-          <div>Mora</div>
+          <a
+            className="info-link"
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://genshin.honeyhunterworld.com/db/item/i_2001/?lang=EN"
+          >
+            Mora
+          </a>
           <div className="input-row">
             <FormInput
               label="mora needed"

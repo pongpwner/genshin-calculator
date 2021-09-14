@@ -41,7 +41,7 @@ const WeaponInput = ({
       <div className="material-input-container">
         <FormDropdown
           name="rarity"
-          label="Weapon rarity"
+          label="Weapon Rarity"
           options={WEAPON.rarity}
           value={rarity}
           handleChange={handleChange}
@@ -51,7 +51,7 @@ const WeaponInput = ({
         <FormDropdown
           name="currentLevel"
           handleChange={handleCurrentLevel}
-          label="current level"
+          label="Current Level"
           value={currentLevel}
           options={WEAPON[rarity].level}
         />
@@ -69,7 +69,7 @@ const WeaponInput = ({
         <FormDropdown
           name="desiredLevel"
           handleChange={handleDesiredLevel}
-          label="desired level"
+          label="Desired Level"
           value={desiredLevel}
           options={WEAPON[rarity].level}
         />
@@ -84,7 +84,14 @@ const WeaponInput = ({
       </div>
 
       <div className="material-input-container">
-        <div>domain material: </div>
+        <a
+          className="info-link"
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://genshin.honeyhunterworld.com/db/item/weapon-ascension-material-primary/?lang=EN"
+        >
+          Domain Material
+        </a>
         <div className="input-row">
           <FormInput
             label="green"
@@ -116,7 +123,14 @@ const WeaponInput = ({
             onChange={handleChange}
           ></FormInput>
         </div>
-        <div>Elite Material:</div>
+        <a
+          className="info-link"
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://genshin.honeyhunterworld.com/db/item/weapon-ascension-material-secondary-material/?lang=EN"
+        >
+          Elite Material
+        </a>
         <div className="input-row">
           <FormInput
             label="green"
@@ -140,7 +154,14 @@ const WeaponInput = ({
             onChange={handleChange}
           ></FormInput>
         </div>
-        <div>Common Material:</div>
+        <a
+          className="info-link"
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://genshin.honeyhunterworld.com/db/item/character-ascension-material-secondary-material/?lang=EN"
+        >
+          Common Material
+        </a>
         <div className="input-row">
           <FormInput
             label="white"
@@ -166,7 +187,14 @@ const WeaponInput = ({
         </div>
       </div>
       <div className="material-input-container">
-        <div>Enhancement Ore</div>
+        <a
+          className="info-link"
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://genshin.honeyhunterworld.com/db/item/weapon-exp-material/?lang=EN"
+        >
+          Common Material
+        </a>
         <div className="input-row">
           <FormInput
             label="white"
@@ -192,7 +220,14 @@ const WeaponInput = ({
         </div>
       </div>
       <div className="material-input-container">
-        <div>Mora:</div>
+        <a
+          className="info-link"
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://genshin.honeyhunterworld.com/db/item/i_2001/?lang=EN"
+        >
+          Mora
+        </a>
         <div className="input-row">
           <FormInput
             label="Mora"

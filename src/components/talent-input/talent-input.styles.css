@@ -26,3 +26,10 @@
   padding: 2%;
   margin: 1%;
 }
+.info-link {
+  color: white;
+  text-decoration: none;
+}
+.info-link:hover {
+  color: blue;
+}

@@ -62,48 +62,51 @@ const CharacterInput = ({
 }) => (
   <div className="character-input">
     <div className="input-container">
-      <div className="material-input-container">
-        <div>Current Character Level</div>
-        <div className="input-row">
-          <FormDropdown
-            name="currentLevel"
-            label="current level"
-            options={dropdown.levels}
-            value={currentLevel}
-            handleChange={(e) => handleCurrentLevel(e)}
-          />
-          <CustomRadioGroup
-            options={radioButtonOptions.current}
-            label="Ascended?:"
-            handleChange={(e) => handleRadioButton(e)}
-            value={currentRadioButton}
-            data-ascension="sumCurrentAscension"
-            data-currentAscension="currentAscension"
-          ></CustomRadioGroup>
-        </div>
+      <div className="level-input-container">
+        <FormDropdown
+          name="currentLevel"
+          label="Current Level"
+          options={dropdown.levels}
+          value={currentLevel}
+          handleChange={(e) => handleCurrentLevel(e)}
+        />
+        <CustomRadioGroup
+          options={radioButtonOptions.current}
+          label="Ascended?:"
+          handleChange={(e) => handleRadioButton(e)}
+          value={currentRadioButton}
+          data-ascension="sumCurrentAscension"
+          data-currentAscension="currentAscension"
+        ></CustomRadioGroup>
       </div>
-      <div className="material-input-container">
-        <div>Desired Character Level</div>
-        <div className="input-row">
-          <FormDropdown
-            name="desiredLevel"
-            label="desired level"
-            options={dropdown.levels}
-            value={desiredLevel}
-            handleChange={(e) => handleDesiredLevel(e)}
-          />
-          <CustomRadioGroup
-            options={radioButtonOptions.desired}
-            label="Ascended?:"
-            handleChange={(e) => handleRadioButton(e)}
-            value={desiredRadioButton}
-            data-ascension="sumDesiredAscension"
-            data-currentAscension="desiredAscension"
-          ></CustomRadioGroup>
-        </div>
+
+      <div className="level-input-container">
+        <FormDropdown
+          name="desiredLevel"
+          label="Desired Level"
+          options={dropdown.levels}
+          value={desiredLevel}
+          handleChange={(e) => handleDesiredLevel(e)}
+        />
+        <CustomRadioGroup
+          options={radioButtonOptions.desired}
+          label="Ascended?:"
+          handleChange={(e) => handleRadioButton(e)}
+          value={desiredRadioButton}
+          data-ascension="sumDesiredAscension"
+          data-currentAscension="desiredAscension"
+        ></CustomRadioGroup>
       </div>
+
       <div className="material-input-container">
-        <div>Gemstones</div>
+        <a
+          className="info-link"
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://genshin.honeyhunterworld.com/db/item/character-ascension-material-jewel/?lang=EN"
+        >
+          Jewels
+        </a>
         <div className="input-row">
           <FormInput
             label="green"
@@ -137,7 +140,14 @@ const CharacterInput = ({
       </div>
 
       <div className="material-input-container">
-        <div>Common Material</div>
+        <a
+          className="info-link"
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://genshin.honeyhunterworld.com/db/item/character-ascension-material-secondary-material/?lang=EN"
+        >
+          Common Material
+        </a>
         <div className="input-row">
           <FormInput
             label="white"
@@ -163,7 +173,14 @@ const CharacterInput = ({
         </div>
       </div>
       <div className="material-input-container">
-        <div>EXP</div>
+        <a
+          className="info-link"
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://genshin.honeyhunterworld.com/db/item/character-exp-material/?lang=EN"
+        >
+          EXP
+        </a>
         <div className="input-row">
           <FormInput
             label="green"
@@ -190,7 +207,14 @@ const CharacterInput = ({
       </div>
 
       <div className="material-input-container">
-        <div>Boss Material</div>
+        <a
+          className="info-link"
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://genshin.honeyhunterworld.com/db/item/character-ascension-material-elemental-stone/?lang=EN"
+        >
+          Boss Material
+        </a>
         <div className="input-row">
           <FormInput
             label="purple"
@@ -203,7 +227,14 @@ const CharacterInput = ({
       </div>
 
       <div className="material-input-container">
-        <div>Local Specialty</div>
+        <a
+          className="info-link"
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://genshin.honeyhunterworld.com/db/item/character-ascension-material-local-material/?lang=EN"
+        >
+          Local Specialty
+        </a>
         <div className="input-row">
           <FormInput
             label="white"
@@ -216,10 +247,17 @@ const CharacterInput = ({
       </div>
 
       <div className="material-input-container">
-        <div>Mora</div>
+        <a
+          className="info-link"
+          target="_blank"
+          rel="noopener noreferrer"
+          href="https://genshin.honeyhunterworld.com/db/item/i_2001/?lang=EN"
+        >
+          Mora
+        </a>
         <div className="input-row">
           <FormInput
-            label="white"
+            label=""
             name="moraC"
             type="number"
             value={mora}
