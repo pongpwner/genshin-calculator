@@ -1,0 +1,9 @@
+.home-page {
+  padding-top: 50px;
+}
+.picture-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
