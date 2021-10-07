@@ -4,6 +4,7 @@ import Header from "./components/header/header.component";
 import Talent from "./pages/talent/talent.component";
 import Character from "./pages/character/character.component";
 import HomePage from "./pages/home-page/home-page.component";
+import CVBasePower from "./pages/cv-base-power/cv-base-power.component";
 import { Switch, Route } from "react-router-dom";
 
 function App() {
@@ -23,6 +24,9 @@ function App() {
         </Route>
         <Route path="/character" component={Character}>
           <Character />
+        </Route>
+        <Route path="/cv-base-power" componet={CVBasePower}>
+          <CVBasePower />
         </Route>
       </Switch>
     </div>

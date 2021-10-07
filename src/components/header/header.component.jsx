@@ -12,6 +12,7 @@ const Header = () => (
       <Link to="/weapon">Weapon</Link>
       <Link to="/character">Character</Link>
       <Link to="/talent">Talent</Link>
+      <Link to="cv-base-power">Crit Value and Base Power</Link>
     </div>
   </div>
 );

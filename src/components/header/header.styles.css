@@ -1,6 +1,6 @@
 .header {
   display: flex;
-  width: 100%;
+  width: 100vw;
   padding: 0.5%;
   position: absolute;
   top: 0;
@@ -9,7 +9,7 @@
 }
 
 .container {
-  width: 26%;
+  width: 50%;
   display: flex;
   justify-content: space-between;
 }
