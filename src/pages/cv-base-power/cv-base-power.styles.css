@@ -1,0 +1,7 @@
+.cv-base-power {
+  margin: 3%;
+}
+
+.cv-base-power .section {
+  display: flex;
+}
