@@ -8,7 +8,7 @@ export const selectDropdown = createSelector(
 );
 export const selectCurrentLevel = createSelector(
   [selectCharacter],
-  (character) => character.selectCurrentLevel
+  (character) => character.currentLevel
 );
 export const selectDesiredLevel = createSelector(
   [selectCharacter],
