@@ -126,7 +126,7 @@ class CVBasePower extends React.Component {
             </div>
           </div>
 
-          <h1>power level </h1>
+          <h1>character power level </h1>
           <div className="main-section">
             <h2> power level 1 </h2>
             <div className="section">
