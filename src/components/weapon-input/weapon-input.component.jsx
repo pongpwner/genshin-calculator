@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./weapon-input.styles.css";
 import FormDropdown from "../form-dropdown/form-dropdown.component";
 import CustomButton from "../custom-button/custom-button.component";
@@ -35,214 +35,235 @@ const WeaponInput = ({
   mora,
   handleSubmit,
   handleCurrentLevel,
-}) => (
-  <div className="weapon-input">
-    <div className="input-container">
-      <div className="material-input-container">
-        <FormDropdown
-          name="rarity"
-          label="Weapon Rarity"
-          options={WEAPON.rarity}
-          value={rarity}
-          handleChange={handleChange}
-        />
-      </div>
-      <div className="level-input-container">
-        <FormDropdown
-          name="currentLevel"
-          handleChange={handleCurrentLevel}
-          label="Current Level"
-          value={currentLevel}
-          options={WEAPON[rarity].level}
-        />
-        <CustomRadioGroup
-          options={CURRENT_ASCENSION_RADIO_BUTTONS}
-          label="Ascended?:"
-          handleChange={handleRadioButton}
-          value={currentRadioButton}
-          data-ascension="sumCurrentAscension"
-          data-currentAscension="currentAscension"
-        ></CustomRadioGroup>
-      </div>
+}) => {
+  useEffect(handleSubmit, [
+    rarity,
+    currentLevel,
+    currentRadioButton,
+    desiredLevel,
+    desiredRadioButton,
+    domainMaterialGreen,
+    domainMaterialBlue,
+    domainMaterialPurple,
+    domainMaterialOrange,
+    eliteMaterialGreen,
+    eliteMaterialBlue,
+    eliteMaterialPurple,
+    commonMaterialWhite,
+    commonMaterialGreen,
+    commonMaterialBlue,
+    whiteOre,
+    greenOre,
+    blueOre,
+    mora,
+    handleSubmit,
+  ]);
+  return (
+    <div className="weapon-input">
+      <div className="input-container">
+        <div className="material-input-container">
+          <FormDropdown
+            name="rarity"
+            label="Weapon Rarity"
+            options={WEAPON.rarity}
+            value={rarity}
+            handleChange={handleChange}
+          />
+        </div>
+        <div className="level-input-container">
+          <FormDropdown
+            name="currentLevel"
+            handleChange={handleCurrentLevel}
+            label="Current Level"
+            value={currentLevel}
+            options={WEAPON[rarity].level}
+          />
+          <CustomRadioGroup
+            options={CURRENT_ASCENSION_RADIO_BUTTONS}
+            label="Ascended?:"
+            handleChange={handleRadioButton}
+            value={currentRadioButton}
+            data-ascension="sumCurrentAscension"
+            data-currentAscension="currentAscension"
+          ></CustomRadioGroup>
+        </div>
 
-      <div className="level-input-container">
-        <FormDropdown
-          name="desiredLevel"
-          handleChange={handleDesiredLevel}
-          label="Desired Level"
-          value={desiredLevel}
-          options={WEAPON[rarity].level}
-        />
-        <CustomRadioGroup
-          options={DESIRED_ASCENSION_RADIO_BUTTONS}
-          label="Ascended?:"
-          handleChange={handleRadioButton}
-          value={desiredRadioButton}
-          data-ascension="sumDesiredAscension"
-          data-currentAscension="desiredAscension"
-        ></CustomRadioGroup>
-      </div>
+        <div className="level-input-container">
+          <FormDropdown
+            name="desiredLevel"
+            handleChange={handleDesiredLevel}
+            label="Desired Level"
+            value={desiredLevel}
+            options={WEAPON[rarity].level}
+          />
+          <CustomRadioGroup
+            options={DESIRED_ASCENSION_RADIO_BUTTONS}
+            label="Ascended?:"
+            handleChange={handleRadioButton}
+            value={desiredRadioButton}
+            data-ascension="sumDesiredAscension"
+            data-currentAscension="desiredAscension"
+          ></CustomRadioGroup>
+        </div>
 
-      <div className="material-input-container">
-        <a
-          className="info-link"
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://genshin.honeyhunterworld.com/db/item/weapon-ascension-material-primary/?lang=EN"
-        >
-          Domain Material
-        </a>
-        <div className="input-row">
-          <FormInput
-            label="green"
-            name="domainMaterialGreen"
-            type="number"
-            value={domainMaterialGreen}
-            onChange={handleChange}
-          ></FormInput>
-          <FormInput
-            label="blue"
-            name="domainMaterialBlue"
-            type="number"
-            value={domainMaterialBlue}
-            onChange={handleChange}
-          ></FormInput>
-          <FormInput
-            label="purple"
-            name="domainMaterialPurple"
-            type="number"
-            value={domainMaterialPurple}
-            onChange={handleChange}
-          ></FormInput>
+        <div className="material-input-container">
+          <a
+            className="info-link"
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://genshin.honeyhunterworld.com/db/item/weapon-ascension-material-primary/?lang=EN"
+          >
+            Domain Material
+          </a>
+          <div className="input-row">
+            <FormInput
+              label="green"
+              name="domainMaterialGreen"
+              type="number"
+              value={domainMaterialGreen}
+              onChange={handleChange}
+            ></FormInput>
+            <FormInput
+              label="blue"
+              name="domainMaterialBlue"
+              type="number"
+              value={domainMaterialBlue}
+              onChange={handleChange}
+            ></FormInput>
+            <FormInput
+              label="purple"
+              name="domainMaterialPurple"
+              type="number"
+              value={domainMaterialPurple}
+              onChange={handleChange}
+            ></FormInput>
 
-          <FormInput
-            label="orange"
-            name="domainMaterialOrange"
-            type="number"
-            value={domainMaterialOrange}
-            onChange={handleChange}
-          ></FormInput>
+            <FormInput
+              label="orange"
+              name="domainMaterialOrange"
+              type="number"
+              value={domainMaterialOrange}
+              onChange={handleChange}
+            ></FormInput>
+          </div>
+          <a
+            className="info-link"
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://genshin.honeyhunterworld.com/db/item/weapon-ascension-material-secondary-material/?lang=EN"
+          >
+            Weapon Material
+          </a>
+          <div className="input-row">
+            <FormInput
+              label="green"
+              name="eliteMaterialGreen"
+              type="number"
+              value={eliteMaterialGreen}
+              onChange={handleChange}
+            ></FormInput>
+            <FormInput
+              label="blue"
+              name="eliteMaterialBlue"
+              type="number"
+              value={eliteMaterialBlue}
+              onChange={handleChange}
+            ></FormInput>
+            <FormInput
+              label="purple"
+              name="eliteMaterialPurple"
+              type="number"
+              value={eliteMaterialPurple}
+              onChange={handleChange}
+            ></FormInput>
+          </div>
+          <a
+            className="info-link"
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://genshin.honeyhunterworld.com/db/item/character-ascension-material-secondary-material/?lang=EN"
+          >
+            Common Material
+          </a>
+          <div className="input-row">
+            <FormInput
+              label="white"
+              name="commonMaterialWhite"
+              type="number"
+              value={commonMaterialWhite}
+              onChange={handleChange}
+            ></FormInput>
+            <FormInput
+              label="green"
+              name="commonMaterialGreen"
+              type="number"
+              value={commonMaterialGreen}
+              onChange={handleChange}
+            ></FormInput>
+            <FormInput
+              label="blue"
+              name="commonMaterialBlue"
+              type="number"
+              value={commonMaterialBlue}
+              onChange={handleChange}
+            ></FormInput>
+          </div>
         </div>
-        <a
-          className="info-link"
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://genshin.honeyhunterworld.com/db/item/weapon-ascension-material-secondary-material/?lang=EN"
-        >
-          Elite Material
-        </a>
-        <div className="input-row">
-          <FormInput
-            label="green"
-            name="eliteMaterialGreen"
-            type="number"
-            value={eliteMaterialGreen}
-            onChange={handleChange}
-          ></FormInput>
-          <FormInput
-            label="blue"
-            name="eliteMaterialBlue"
-            type="number"
-            value={eliteMaterialBlue}
-            onChange={handleChange}
-          ></FormInput>
-          <FormInput
-            label="purple"
-            name="eliteMaterialPurple"
-            type="number"
-            value={eliteMaterialPurple}
-            onChange={handleChange}
-          ></FormInput>
+        <div className="material-input-container">
+          <a
+            className="info-link"
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://genshin.honeyhunterworld.com/db/item/weapon-exp-material/?lang=EN"
+          >
+            Enhancement Ore
+          </a>
+          <div className="input-row">
+            <FormInput
+              label="white"
+              name="whiteOre"
+              type="number"
+              value={whiteOre}
+              onChange={handleChange}
+            ></FormInput>
+            <FormInput
+              label="green"
+              name="greenOre"
+              type="number"
+              value={greenOre}
+              onChange={handleChange}
+            ></FormInput>
+            <FormInput
+              label="blue"
+              name="blueOre"
+              type="number"
+              value={blueOre}
+              onChange={handleChange}
+            ></FormInput>
+          </div>
         </div>
-        <a
-          className="info-link"
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://genshin.honeyhunterworld.com/db/item/character-ascension-material-secondary-material/?lang=EN"
-        >
-          Common Material
-        </a>
-        <div className="input-row">
-          <FormInput
-            label="white"
-            name="commonMaterialWhite"
-            type="number"
-            value={commonMaterialWhite}
-            onChange={handleChange}
-          ></FormInput>
-          <FormInput
-            label="green"
-            name="commonMaterialGreen"
-            type="number"
-            value={commonMaterialGreen}
-            onChange={handleChange}
-          ></FormInput>
-          <FormInput
-            label="blue"
-            name="commonMaterialBlue"
-            type="number"
-            value={commonMaterialBlue}
-            onChange={handleChange}
-          ></FormInput>
+        <div className="material-input-container">
+          <a
+            className="info-link"
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://genshin.honeyhunterworld.com/db/item/i_2001/?lang=EN"
+          >
+            Mora
+          </a>
+          <div className="input-row">
+            <FormInput
+              label="Mora"
+              name="mora"
+              type="number"
+              value={mora}
+              onChange={handleChange}
+            ></FormInput>
+          </div>
         </div>
       </div>
-      <div className="material-input-container">
-        <a
-          className="info-link"
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://genshin.honeyhunterworld.com/db/item/weapon-exp-material/?lang=EN"
-        >
-          Common Material
-        </a>
-        <div className="input-row">
-          <FormInput
-            label="white"
-            name="whiteOre"
-            type="number"
-            value={whiteOre}
-            onChange={handleChange}
-          ></FormInput>
-          <FormInput
-            label="green"
-            name="greenOre"
-            type="number"
-            value={greenOre}
-            onChange={handleChange}
-          ></FormInput>
-          <FormInput
-            label="blue"
-            name="blueOre"
-            type="number"
-            value={blueOre}
-            onChange={handleChange}
-          ></FormInput>
-        </div>
-      </div>
-      <div className="material-input-container">
-        <a
-          className="info-link"
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://genshin.honeyhunterworld.com/db/item/i_2001/?lang=EN"
-        >
-          Mora
-        </a>
-        <div className="input-row">
-          <FormInput
-            label="Mora"
-            name="mora"
-            type="number"
-            value={mora}
-            onChange={handleChange}
-          ></FormInput>
-        </div>
-      </div>
-      <CustomButton onClick={handleSubmit} center>
-        Submit
-      </CustomButton>
     </div>
-  </div>
-);
+  );
+};
 
 export default WeaponInput;

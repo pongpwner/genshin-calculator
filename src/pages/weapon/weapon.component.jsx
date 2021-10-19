@@ -20,27 +20,27 @@ class Weapon extends React.Component {
     super(props);
 
     this.state = {
-      mora: 0,
+      mora: "",
       rarity: "threeStar",
       currentLevel: 0,
       desiredLevel: 7,
-      domainMaterialOrange: 0,
-      domainMaterialPurple: 0,
-      domainMaterialBlue: 0,
-      domainMaterialGreen: 0,
-      eliteMaterialPurple: 0,
-      eliteMaterialBlue: 0,
-      eliteMaterialGreen: 0,
-      commonMaterialWhite: 0,
-      commonMaterialGreen: 0,
-      commonMaterialBlue: 0,
+      domainMaterialOrange: "",
+      domainMaterialPurple: "",
+      domainMaterialBlue: "",
+      domainMaterialGreen: "",
+      eliteMaterialPurple: "",
+      eliteMaterialBlue: "",
+      eliteMaterialGreen: "",
+      commonMaterialWhite: "",
+      commonMaterialGreen: "",
+      commonMaterialBlue: "",
       domainMaterialOrangeNeeded: 0,
       domainMaterialPurpleNeeded: 0,
       domainMaterialBlueNeeded: 0,
       domainMaterialGreenNeeded: 0,
-      eliteMaterialPurpleNeeded: 0,
-      eliteMaterialBlueNeeded: 0,
-      eliteMaterialGreenNeeded: 0,
+      eliteMaterialPurpleNeeded: "",
+      eliteMaterialBlueNeeded: "",
+      eliteMaterialGreenNeeded: "",
       commonMaterialWhiteNeeded: 0,
       commonMaterialGreenNeeded: 0,
       commonMaterialBlueNeeded: 0,
@@ -57,9 +57,9 @@ class Weapon extends React.Component {
       moraNeeded: 0,
       currentAscension: 0,
       desiredAscension: 6,
-      blueOre: 0,
-      greenOre: 0,
-      whiteOre: 0,
+      blueOre: "",
+      greenOre: "",
+      whiteOre: "",
       blueOreNeeded: 0,
       currentRadioButton: 0,
       desiredRadioButton: 0,
@@ -96,7 +96,7 @@ class Weapon extends React.Component {
           ],
         },
         {
-          mainHeader: "Elite Materials",
+          mainHeader: "Weapon Materials",
           type: 2,
           id: 3,
           header1: "Materials Needed",
@@ -817,6 +817,7 @@ class Weapon extends React.Component {
       this.state.rarity
     );
   };
+
   render() {
     const {
       domainMaterialOrange,

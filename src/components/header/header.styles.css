@@ -1,19 +1,29 @@
 .header {
   display: flex;
   width: 100vw;
-  padding: 0.5%;
   position: absolute;
+  justify-content: center;
   top: 0;
   background-color: #045d80;
-  padding: 0.5% 2% 0.5% 2%;
+  height: 60px;
 }
 
 .container {
-  width: 50%;
+  width: 70%;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+.container li {
+  padding: 1%;
 }
 a {
   text-decoration: none;
   color: white;
+}
+a:hover {
+  border-bottom: 2px solid white;
 }

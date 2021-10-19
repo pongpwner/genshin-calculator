@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import FormInput from "../form-input/form-input.component";
 import FormDropdown from "../form-dropdown/form-dropdown.component";
 import CustomButton from "../custom-button/custom-button.component";
@@ -44,30 +44,38 @@ const TalentInput = ({
   greenTalent,
   blueTalent,
   purpleTalent,
-
-  greenTalentNeeded,
-  blueTalentNeeded,
-  purpleTalentNeeded,
-  moraNeeded,
   mora,
   commonMaterialWhite,
-  commonMaterialWhiteNeeded,
   commonMaterialGreen,
-  commonMaterialGreenNeeded,
   commonMaterialBlue,
-  commonMaterialBlueNeeded,
   bossMaterial,
-  bossMaterialNeeded,
   crown,
-  crownNeeded,
   handleSubmit,
   handleChange,
 }) => {
-  //   const handleChange = (event) => {
-  //     const { name, value } = event.target;
-  //     this.setState({ [name]: value });
-  //   };
-  console.log(greenTalent);
+  useEffect(
+    handleSubmit,
+
+    [
+      attackLv,
+      skillLv,
+      burstLv,
+      currentAttackLv,
+      currentSkillLv,
+      currentBurstLv,
+      greenTalent,
+      blueTalent,
+      purpleTalent,
+      mora,
+      commonMaterialWhite,
+      commonMaterialGreen,
+      commonMaterialBlue,
+      bossMaterial,
+      crown,
+      handleSubmit,
+    ]
+  );
+  console.log(skillLv);
   return (
     <div className="talent-input">
       <div className="input-container">
@@ -247,9 +255,6 @@ const TalentInput = ({
             />
           </div>
         </div>
-        <CustomButton onClick={handleSubmit} center>
-          Submit
-        </CustomButton>
       </div>
     </div>
   );
@@ -263,10 +268,10 @@ const mapStateToProps = (state) => ({
   selectPurpleTalentNeeded: selectPurpleTalentNeeded(state),
   moraNeeded: selectMoraNeeded(state),
   talentLv: selectTalentLv(state),
-  atkLv: selectAttackLv(state),
+  attackLv: selectAttackLv(state),
   skillLv: selectSkillLv(state),
   burstLv: selectBurstLv(state),
-  currentAtkLv: selectCurrentAttackLv(state),
+  currentAttackLv: selectCurrentAttackLv(state),
   currentSkillLv: selectCurrentSkillLv(state),
   currentBurstLv: selectCurrentBurstLv(state),
   commonMaterialWhite: selectCommonMaterialWhite(state),

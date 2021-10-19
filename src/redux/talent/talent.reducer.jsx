@@ -1,5 +1,5 @@
 import { TalentActionTypes } from "./talent.types";
-import { submit } from "./talent.utils";
+
 import TALENT_DATA from "../../pages/talent/talent.data";
 const INITIAL_STATE = {
   currentAttackLv: 1,
@@ -9,7 +9,7 @@ const INITIAL_STATE = {
   skillLv: 1,
   burstLv: 1,
   moraNeeded: 0,
-  mora: 0,
+  mora: "",
   greenTalentNeeded: 0,
   blueTalentNeeded: 0,
   purpleTalentNeeded: 0,
@@ -23,14 +23,14 @@ const INITIAL_STATE = {
   commonMaterialGreenRemaining: 0,
   commonMaterialBlueRemaining: 0,
   bossMaterialNeeded: 0,
-  greenTalent: 0,
-  blueTalent: 0,
-  purpleTalent: 0,
-  commonMaterialWhite: 0,
-  commonMaterialGreen: 0,
-  commonMaterialBlue: 0,
-  bossMaterial: 0,
-  crown: 0,
+  greenTalent: "",
+  blueTalent: "",
+  purpleTalent: "",
+  commonMaterialWhite: "",
+  commonMaterialGreen: "",
+  commonMaterialBlue: "",
+  bossMaterial: "",
+  crown: "",
   crownNeeded: 0,
   talentLv: [
     { label: "1", value: 1 },
