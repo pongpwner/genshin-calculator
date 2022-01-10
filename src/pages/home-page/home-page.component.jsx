@@ -1,5 +1,5 @@
 import React from "react";
-import "./home-page.styles.css";
+import "./home-page.styles.scss";
 import picture from "../../images/characterAscension.PNG";
 
 const HomePage = () => (

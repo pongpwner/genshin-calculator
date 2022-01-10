@@ -1,0 +1,21 @@
+.home-page {
+  padding-top: 50px;
+
+  .picture-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    h1 {
+      text-align: center;
+      width: 95%;
+    }
+    .responsive {
+      width: 80%;
+      height: auto;
+      @media (max-width: 500px) {
+        width: 90%;
+      }
+    }
+  }
+}

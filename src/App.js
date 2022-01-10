@@ -1,4 +1,4 @@
-import "./App.css";
+import "./App.scss";
 import Weapon from "./pages/weapon/weapon.component";
 import Header from "./components/header/header.component";
 import Talent from "./pages/talent/talent.component";

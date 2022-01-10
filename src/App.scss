@@ -1,0 +1,24 @@
+* {
+  box-sizing: border-box;
+}
+body {
+  padding: 0;
+}
+.App {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.mobile {
+  display: none;
+  @media (max-width: 800px) {
+    display: flex;
+  }
+}
+
+.desktop {
+  display: none;
+  @media (min-width: 800px) {
+    display: flex;
+  }
+}
