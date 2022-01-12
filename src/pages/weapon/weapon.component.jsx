@@ -1,7 +1,7 @@
 import React from "react";
 import WEAPON from "./weapon";
 import WEAPON_MATERIALS from "../../constants/weaponMaterials";
-import "./weapon.styles.css";
+import "./weapon.styles.scss";
 import FormInput from "../../components/form-input/form-input.component";
 import FormDropdown from "../../components/form-dropdown/form-dropdown.component";
 import CustomButton from "../../components/custom-button/custom-button.component";

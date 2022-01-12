@@ -18,14 +18,27 @@
     @media (max-width: 1350px) {
       width: 75%;
     }
-  }
-  .main-section {
-    width: 75%;
-    background-color: #222222;
-    border-radius: 25px;
-    justify-content: space-around;
-    padding: 2%;
-    margin: 1%;
+    @media (max-width: 800px) {
+      width: 85%;
+    }
+    @media (max-width: 500px) {
+      width: 90%;
+    }
+
+    .main-section {
+      width: 75%;
+      background-color: #222222;
+      border-radius: 25px;
+      justify-content: space-around;
+      padding: 2%;
+      margin: 1%;
+      @media (max-width: 800px) {
+        width: 85%;
+      }
+      @media (max-width: 500px) {
+        width: 90%;
+      }
+    }
   }
 
   .section {

@@ -17,11 +17,13 @@ h3 {
   flex-direction: column;
   padding: 2%;
   margin-top: 60px;
+  .content {
+    display: flex;
+    @media (max-width: 1050px) {
+      flex-direction: column;
+    }
+  }
 }
 .title {
   align-self: center;
-}
-
-.content {
-  display: flex;
 }

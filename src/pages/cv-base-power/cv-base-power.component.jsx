@@ -78,7 +78,7 @@ class CVBasePower extends React.Component {
         <div className="content">
           <h1>artifact crit value </h1>
           <div className="main-section">
-            <h2>artifact crit value 1</h2>
+            <h2>crit value 1</h2>
             <div className="section">
               <div className="inputs">
                 <FormInputWithLabel
@@ -101,7 +101,7 @@ class CVBasePower extends React.Component {
                 crit value 1:<span className="result">{critValue}</span>
               </div>
             </div>
-            <h2>artifact crit value 2</h2>
+            <h2>crit value 2</h2>
             <div className="section">
               <div className="inputs">
                 <FormInputWithLabel

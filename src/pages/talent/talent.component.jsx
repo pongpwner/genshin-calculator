@@ -1,5 +1,5 @@
 import React from "react";
-import "./talent.styles.css";
+import "./talent.styles.scss";
 import TalentInput from "../../components/talent-input/talent-input.component";
 import MainSection from "../../components/main-section/main-section.component";
 import { connect } from "react-redux";
