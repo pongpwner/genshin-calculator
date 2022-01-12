@@ -1,5 +1,5 @@
 import react from "react";
-import "./character.styles.css";
+import "./character.styles.scss";
 import { connect } from "react-redux";
 import CharacterInput from "../../components/character-input/character-input.component";
 import MainSection from "../../components/main-section/main-section.component";

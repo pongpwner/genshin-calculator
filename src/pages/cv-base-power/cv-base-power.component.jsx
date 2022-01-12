@@ -1,5 +1,5 @@
 import React from "react";
-import "./cv-base-power.styles.css";
+import "./cv-base-power.styles.scss";
 import FormInputWithLabel from "../../components/form-input-with-label/form-input-with-label.component";
 
 class CVBasePower extends React.Component {

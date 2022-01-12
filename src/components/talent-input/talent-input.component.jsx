@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import FormInput from "../form-input/form-input.component";
 import FormDropdown from "../form-dropdown/form-dropdown.component";
 import CustomButton from "../custom-button/custom-button.component";
-import "./talent-input.styles.css";
+import "./talent-input.styles.scss";
 import { connect } from "react-redux";
 import {
   selectGreenTalent,

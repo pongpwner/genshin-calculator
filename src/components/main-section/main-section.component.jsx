@@ -1,5 +1,5 @@
 import React from "react";
-import "./main-section.styles.css";
+import "./main-section.styles.scss";
 import SubSection from "../sub-section/sub-section.component";
 
 const MainSection = ({
