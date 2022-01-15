@@ -1,8 +1,8 @@
 import React from "react";
-import "./form-input-with-label.styles.css";
+import "./form-input-with-label.styles.scss";
 
 const FormInputWithLabel = ({ type, name, value, label, handleChange }) => (
-  <div className="FormInputWithLabel">
+  <div className="form-input-with-label">
     <div className="form-input-label">{label}</div>
     <input
       className="form-input"

@@ -1,8 +1,19 @@
-.group {
-  padding: 1%;
-  margin: 1%;
+@import "../../colors.scss";
+.form-input-container {
   border-radius: 10px;
   display: flex;
+  max-width: 10ch;
+  gap: 0.5rem;
+
+  .form-input {
+    font-size: 1.5rem;
+    width: 70%;
+    max-width: 9ch;
+    min-width: 5ch;
+
+    border: none;
+    color: $text;
+  }
 }
 .white {
   background-color: #89898b;
@@ -23,9 +34,4 @@
 .orange {
   background-color: #c88635;
   justify-content: center;
-}
-
-.form-input {
-  font-size: 0.9em;
-  width: 70%;
 }

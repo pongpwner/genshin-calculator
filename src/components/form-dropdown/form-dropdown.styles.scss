@@ -1,0 +1,21 @@
+.form-dropdown {
+  .drop-down {
+    font-size: 1.5rem;
+    margin-left: 1%;
+  }
+  .dropdown-label {
+    width: 9ch;
+    margin-right: 0.5rem;
+  }
+
+  select {
+    &:hover {
+      cursor: pointer;
+    }
+    option {
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}

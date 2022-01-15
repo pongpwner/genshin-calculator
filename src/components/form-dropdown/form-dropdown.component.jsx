@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./form-dropdown.styles.css";
+import "./form-dropdown.styles.scss";
 //need to make the mapped optaions have a key
 const FormDropdown = ({
   label,
@@ -10,7 +10,7 @@ const FormDropdown = ({
   name,
   ...otherProps
 }) => (
-  <div className="group">
+  <div className="group form-dropdown">
     <label className="dropdown-label">{label}</label>
     <select
       className="drop-down"

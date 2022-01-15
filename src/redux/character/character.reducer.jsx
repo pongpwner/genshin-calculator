@@ -84,13 +84,13 @@ const INITIAL_STATE = {
     { label: "Mora Needed:", value: "moraNeeded", type: 1, id: 0 },
 
     {
-      label: "Boss Material Needed",
+      label: "Boss Material Needed:",
       value: "bossMaterialNeeded",
       type: 1,
       id: 1,
     },
     {
-      label: "Local Specialty",
+      label: "Local Specialty:",
       value: "localSpecialtyNeeded",
       type: 1,
       id: 2,

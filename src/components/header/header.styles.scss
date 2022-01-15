@@ -1,13 +1,13 @@
-$mobile-background: gray;
-$header-text-color: white;
-
+@import "../../colors.scss";
 .header {
+  $mobile-background: gray;
+  background-color: $accent;
   display: flex;
   width: 100vw;
   position: fixed;
   justify-content: center;
   top: 0;
-  background-color: #045d80;
+
   height: 60px;
   align-items: center;
   margin: 0;
@@ -28,7 +28,7 @@ $header-text-color: white;
       span {
         width: 25px;
         height: 3px;
-        background-color: $header-text-color;
+        background-color: white;
       }
     }
     .dropdown-container {
@@ -50,7 +50,7 @@ $header-text-color: white;
       button {
         background-color: rgba(0, 0, 0, 0);
         border: none;
-        color: $header-text-color;
+        color: $text;
         font-weight: 900;
         font-size: 1.25rem;
         padding-top: 1rem;
@@ -80,7 +80,7 @@ $header-text-color: white;
   }
 
   .container {
-    width: 70%;
+    width: clamp(90%, 70%, 70%);
     margin: 0;
     padding: 0;
     list-style-type: none;
@@ -88,15 +88,16 @@ $header-text-color: white;
     justify-content: space-between;
     align-items: center;
     li {
-      padding: 1%;
+      padding: 0;
     }
   }
 
   a {
     text-decoration: none;
-    color: $header-text-color;
+    color: $text;
+    padding: 0.5rem;
   }
   header a:hover {
-    border-bottom: 2px solid $header-text-color;
+    border-bottom: 2px solid $text;
   }
 }

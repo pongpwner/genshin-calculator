@@ -101,6 +101,8 @@ class CVBasePower extends React.Component {
                 crit value 1:<span className="result">{critValue}</span>
               </div>
             </div>
+          </div>
+          <div className="main-section">
             <h2>crit value 2</h2>
             <div className="section">
               <div className="inputs">
@@ -125,7 +127,8 @@ class CVBasePower extends React.Component {
               </div>
             </div>
           </div>
-
+        </div>
+        <div className="content">
           <h1>character power level </h1>
           <div className="main-section">
             <h2> power level 1 </h2>
@@ -166,7 +169,8 @@ class CVBasePower extends React.Component {
                 power level 1:<span className="result">{bp1}</span>
               </div>
             </div>
-
+          </div>
+          <div className="main-section">
             <h2>power level 2</h2>
 
             <div className="section">

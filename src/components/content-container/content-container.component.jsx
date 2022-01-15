@@ -1,5 +1,5 @@
 import React from "react";
-import "./content-container.styles.css";
+import "./content-container.styles.scss";
 import MainSection from "../main-section/main-section.component";
 
 const ContentContainer = ({ content, rarity, value }) => (

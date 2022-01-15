@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./sub-section.styles.css";
+import "./sub-section.styles.scss";
 
 const SubSection = ({
   subsection,

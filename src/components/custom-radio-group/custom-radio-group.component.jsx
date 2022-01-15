@@ -1,5 +1,5 @@
 import React from "react";
-import "./custom-radio-group.styles.css";
+import "./custom-radio-group.styles.scss";
 import CustomRadioButton from "../custom-radio-button/custom-radio-button.component";
 //might have to pass in weapon level state and ascesion state
 const CustomRadioGroup = ({
@@ -11,7 +11,7 @@ const CustomRadioGroup = ({
   ...otherProps
 }) => (
   <div className="custom-radio-group">
-    <label>{label}</label>
+    <label className="label">{label}</label>
     <div className="radio-buttons">
       {options.map((option) => (
         <CustomRadioButton

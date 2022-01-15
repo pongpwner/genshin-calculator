@@ -49,13 +49,13 @@ const INITIAL_STATE = {
   subsections: [
     { label: "Mora Needed:", value: "moraNeeded", type: 1, id: 0 },
     {
-      label: "Crown Needed",
+      label: "Crown Needed:",
       value: "crownNeeded",
       type: 1,
       id: 1,
     },
     {
-      label: "Boss Material Needed",
+      label: "Boss Material Needed:",
       value: "bossMaterialNeeded",
       type: 1,
       id: 1,

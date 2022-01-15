@@ -1,6 +1,6 @@
 import React from "react";
 
-import "./custom-radio-button.styles.css";
+import "./custom-radio-button.styles.scss";
 
 const CustomRadioButton = ({
   option,

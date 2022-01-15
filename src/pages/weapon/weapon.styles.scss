@@ -19,6 +19,8 @@ h3 {
   margin-top: 60px;
   .content {
     display: flex;
+    justify-content: center;
+    gap: 2rem;
     @media (max-width: 1050px) {
       flex-direction: column;
     }

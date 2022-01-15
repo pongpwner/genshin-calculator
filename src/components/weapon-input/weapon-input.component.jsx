@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import "./weapon-input.styles.css";
+import "./weapon-input.styles.scss";
 import FormDropdown from "../form-dropdown/form-dropdown.component";
 import CustomButton from "../custom-button/custom-button.component";
 import FormInput from "../form-input/form-input.component";
@@ -80,7 +80,7 @@ const WeaponInput = ({
           />
           <CustomRadioGroup
             options={CURRENT_ASCENSION_RADIO_BUTTONS}
-            label="Ascended?:"
+            label="Ascended?: "
             handleChange={handleRadioButton}
             value={currentRadioButton}
             data-ascension="sumCurrentAscension"
@@ -98,7 +98,7 @@ const WeaponInput = ({
           />
           <CustomRadioGroup
             options={DESIRED_ASCENSION_RADIO_BUTTONS}
-            label="Ascended?:"
+            label="Ascended?: "
             handleChange={handleRadioButton}
             value={desiredRadioButton}
             data-ascension="sumDesiredAscension"

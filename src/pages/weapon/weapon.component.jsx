@@ -71,7 +71,7 @@ class Weapon extends React.Component {
       subsections: [
         { label: "Mora Needed:", value: "moraNeeded", type: 1, id: 0 },
         {
-          label: "Mystic Enhancement Ore Needed",
+          label: "Mystic Enhancement Ore Needed:",
           value: "blueOreNeeded",
           type: 1,
           id: 1,
