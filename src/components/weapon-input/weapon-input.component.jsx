@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
+import { connect } from "react-redux";
 import "./weapon-input.styles.scss";
 import FormDropdown from "../form-dropdown/form-dropdown.component";
-import CustomButton from "../custom-button/custom-button.component";
 import FormInput from "../form-input/form-input.component";
 import CustomRadioGroup from "../custom-radio-group/custom-radio-group.component";
 import WEAPON from "../../pages/weapon/weapon";
@@ -10,6 +10,27 @@ import {
   CURRENT_ASCENSION_RADIO_BUTTONS,
   DESIRED_ASCENSION_RADIO_BUTTONS,
 } from "../../pages/weapon/component-arrays/ascension-radio-buttons";
+import {
+  selectBlueOre,
+  selectCommonMaterialBlue,
+  selectCommonMaterialGreen,
+  selectCommonMaterialWhite,
+  selectCurrentLevel,
+  selectCurrentRadioButton,
+  selectDesiredLevel,
+  selectDesiredRadioButton,
+  selectDomainMaterialBlue,
+  selectDomainMaterialGreen,
+  selectDomainMaterialOrange,
+  selectDomainMaterialPurple,
+  selectEliteMaterialBlue,
+  selectEliteMaterialGreen,
+  selectEliteMaterialPurple,
+  selectGreenOre,
+  selectMora,
+  selectRarity,
+  selectWhiteOre,
+} from "../../redux/weapon/weapon.selectors";
 const WeaponInput = ({
   rarity,
   currentLevel,
@@ -265,5 +286,29 @@ const WeaponInput = ({
     </div>
   );
 };
+
+const mapStateToProps = (state) => ({
+  rarity: selectRarity(state),
+  currentLevel: selectCurrentLevel(state),
+  currentRadioButton: selectCurrentRadioButton(state),
+  desiredLevel: selectDesiredLevel(state),
+  desiredRadioButton: selectDesiredRadioButton(state),
+  domainMaterialGreen: selectDomainMaterialGreen(state),
+  domainMaterialBlue: selectDomainMaterialBlue(state),
+  domainMaterialPurple: selectDomainMaterialPurple(state),
+  domainMaterialOrange: selectDomainMaterialOrange(state),
+  eliteMaterialGreen: selectEliteMaterialGreen(state),
+  eliteMaterialBlue: selectEliteMaterialBlue(state),
+  eliteMaterialPurple: selectEliteMaterialPurple(state),
+  commonMaterialWhite: selectCommonMaterialWhite(state),
+  commonMaterialGreen: selectCommonMaterialGreen(state),
+  commonMaterialBlue: selectCommonMaterialBlue(state),
+  whiteOre: selectWhiteOre(state),
+  greenOre: selectGreenOre(state),
+  blueOre: selectBlueOre(state),
+  mora: selectMora(state),
+});
+
+const mapDispatchToProps = (dispatch) => ({});
 
 export default WeaponInput;
