@@ -1,11 +1,6 @@
 import { WeaponActionTypes } from "./weapon.types.js";
-import { handleRadioButton } from "./weapon.utils";
 import WEAPON_MATERIALS from "../../constants/weaponMaterials";
 import WEAPON from "../../pages/weapon/weapon";
-import {
-  CURRENT_ASCENSION_RADIO_BUTTONS,
-  DESIRED_ASCENSION_RADIO_BUTTONS,
-} from "../../pages/weapon/component-arrays/ascension-radio-buttons";
 const INITIAL_STATE = {
   mora: "",
   rarity: "threeStar",
@@ -52,8 +47,7 @@ const INITIAL_STATE = {
   desiredRadioButton: 0,
   sumCurrentAscension: 0,
   sumDesiredAscension: 6,
-  //experimenting with array objects that rely on state
-  //type 1 materials without conversion, type 2 convertable materials
+
   subsections: [
     { label: "Mora Needed:", value: "moraNeeded", type: 1, id: 0 },
     {
@@ -124,27 +118,31 @@ const weaponReducer = (state = INITIAL_STATE, action) => {
       return { ...state, [action.payload.name]: action.payload.value };
     case WeaponActionTypes.HANDLE_RADIO_BUTTON:
       const { name, value } = action.payload.target;
-      console.log(action.payload.target.name);
-      console.log(action.payload.target.value);
-      //this.handleChange(event);
-      //state[action.payload.target.name] = Number(action.payload.target.value);
 
       if (
-        Number(
-          state[action.payload.target.getAttribute("data-currentAscension")]
-        ) +
-          Number(value) ==
-        7
+        (state.currentLevel === 0 || state.currentLevel === 7) &&
+        action.payload.target.getAttribute("data-currentAscension") ===
+          "currentAscension"
       ) {
         return {
           ...state,
-          [action.payload.target.name]: Number(action.payload.target.value),
+          [name]: Number(value),
+          currentRadioButton: 0,
+        };
+      } else if (
+        (state.desiredLevel === 0 || state.desiredLevel === 7) &&
+        action.payload.target.getAttribute("data-currentAscension") ===
+          "desiredAscension"
+      ) {
+        return {
+          ...state,
+          [name]: Number(value),
           desiredRadioButton: 0,
         };
       } else {
         return {
           ...state,
-          [action.payload.target.name]: Number(action.payload.target.value),
+          [name]: Number(value),
 
           [action.payload.target.getAttribute("data-ascension")]:
             Number(
@@ -163,10 +161,11 @@ const weaponReducer = (state = INITIAL_STATE, action) => {
             [action.payload.target.name]: Number(action.payload.target.value),
             currentAscension: 0,
             sumCurrentAscension: 0,
+            currentRadioButton: 0,
           };
 
         case 1:
-          if (state.currentRadioButton == 0) {
+          if (state.currentRadioButton === 0) {
             return {
               ...state,
               [action.payload.target.name]: Number(action.payload.target.value),
@@ -183,7 +182,7 @@ const weaponReducer = (state = INITIAL_STATE, action) => {
           }
 
         case 2:
-          if (state.currentRadioButton == 0) {
+          if (state.currentRadioButton === 0) {
             return {
               ...state,
               [action.payload.target.name]: Number(action.payload.target.value),
@@ -200,7 +199,7 @@ const weaponReducer = (state = INITIAL_STATE, action) => {
           }
 
         case 3:
-          if (state.currentRadioButton == 0) {
+          if (state.currentRadioButton === 0) {
             return {
               ...state,
               [action.payload.target.name]: Number(action.payload.target.value),
@@ -217,7 +216,7 @@ const weaponReducer = (state = INITIAL_STATE, action) => {
           }
 
         case 4:
-          if (state.currentRadioButton == 0) {
+          if (state.currentRadioButton === 0) {
             return {
               ...state,
               [action.payload.target.name]: Number(action.payload.target.value),
@@ -234,7 +233,7 @@ const weaponReducer = (state = INITIAL_STATE, action) => {
           }
 
         case 5:
-          if (state.currentRadioButton == 0) {
+          if (state.currentRadioButton === 0) {
             return {
               ...state,
               [action.payload.target.name]: Number(action.payload.target.value),
@@ -251,7 +250,7 @@ const weaponReducer = (state = INITIAL_STATE, action) => {
           }
 
         case 6:
-          if (state.currentRadioButton == 0) {
+          if (state.currentRadioButton === 0) {
             return {
               ...state,
               [action.payload.target.name]: Number(action.payload.target.value),
@@ -273,6 +272,7 @@ const weaponReducer = (state = INITIAL_STATE, action) => {
             [action.payload.target.name]: Number(action.payload.target.value),
             currentAscension: 6,
             sumCurrentAscension: 6,
+            currentRadioButton: 0,
           };
 
         default:
@@ -289,10 +289,11 @@ const weaponReducer = (state = INITIAL_STATE, action) => {
             [action.payload.target.name]: Number(action.payload.target.value),
             desiredAscension: 0,
             sumDesiredAscension: 0,
+            desiredRadioButton: 0,
           };
 
         case 1:
-          if (state.desiredRadioButton == 0) {
+          if (state.desiredRadioButton === 0) {
             return {
               ...state,
               [action.payload.target.name]: Number(action.payload.target.value),
@@ -309,7 +310,7 @@ const weaponReducer = (state = INITIAL_STATE, action) => {
           }
 
         case 2:
-          if (state.desiredRadioButton == 0) {
+          if (state.desiredRadioButton === 0) {
             return {
               ...state,
               [action.payload.target.name]: Number(action.payload.target.value),
@@ -326,7 +327,7 @@ const weaponReducer = (state = INITIAL_STATE, action) => {
           }
 
         case 3:
-          if (state.desiredRadioButton == 0) {
+          if (state.desiredRadioButton === 0) {
             return {
               ...state,
               [action.payload.target.name]: Number(action.payload.target.value),
@@ -343,7 +344,7 @@ const weaponReducer = (state = INITIAL_STATE, action) => {
           }
 
         case 4:
-          if (state.desiredRadioButton == 0) {
+          if (state.desiredRadioButton === 0) {
             return {
               ...state,
               [action.payload.target.name]: Number(action.payload.target.value),
@@ -360,7 +361,7 @@ const weaponReducer = (state = INITIAL_STATE, action) => {
           }
 
         case 5:
-          if (state.currentRadioButton == 0) {
+          if (state.currentRadioButton === 0) {
             return {
               ...state,
               [action.payload.target.name]: Number(action.payload.target.value),
@@ -377,7 +378,7 @@ const weaponReducer = (state = INITIAL_STATE, action) => {
           }
 
         case 6:
-          if (state.desiredRadioButton == 0) {
+          if (state.desiredRadioButton === 0) {
             return {
               ...state,
               [action.payload.target.name]: Number(action.payload.target.value),
@@ -399,6 +400,7 @@ const weaponReducer = (state = INITIAL_STATE, action) => {
             [action.payload.target.name]: Number(action.payload.target.value),
             desiredAscension: 6,
             sumDesiredAscension: 6,
+            desiredRadioButton: 0,
           };
 
         default:
@@ -693,8 +695,6 @@ const weaponReducer = (state = INITIAL_STATE, action) => {
         i < Number(desiredLevel) + 1;
         i++
       ) {
-        console.log(i);
-        console.log(totalMora);
         totalMora += WEAPON[rarity].level[i].mora;
       }
       for (
@@ -723,13 +723,7 @@ const weaponReducer = (state = INITIAL_STATE, action) => {
         i < Number(desiredLevel) + 1;
         i++
       ) {
-        // if (startL == 7) {
-        //   console.log(startL);
-        //   break;
-        // }
         totalXPNeeded += WEAPON[rarity].level[i].exp;
-        console.log(WEAPON[rarity].level[i].exp);
-        console.log(currentLevel);
       }
       if (totalXPNeeded - totalXP <= 0) {
         xpNeeded = 0;

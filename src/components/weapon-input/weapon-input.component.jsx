@@ -5,7 +5,6 @@ import FormDropdown from "../form-dropdown/form-dropdown.component";
 import FormInput from "../form-input/form-input.component";
 import CustomRadioGroup from "../custom-radio-group/custom-radio-group.component";
 import WEAPON from "../../pages/weapon/weapon";
-import WEAPON_MATERIALS from "../../constants/weaponMaterials";
 import {
   CURRENT_ASCENSION_RADIO_BUTTONS,
   DESIRED_ASCENSION_RADIO_BUTTONS,
@@ -281,7 +280,7 @@ const WeaponInput = ({
           </a>
           <div className="input-row">
             <FormInput
-              label="Mora"
+              label="blue"
               name="mora"
               type="number"
               value={mora}

@@ -4,9 +4,7 @@ import { Link } from "react-router-dom";
 
 const Header = () => {
   const [active, setActive] = useState(false);
-  function toggleMobileNav() {
-    setActive(!active);
-  }
+
   return (
     <header className="header">
       <nav className={`dropdown `}>

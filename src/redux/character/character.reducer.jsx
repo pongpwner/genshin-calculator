@@ -169,27 +169,31 @@ const characterReducer = (state = INITIAL_STATE, action) => {
 
     case CharacterActionTypes.HANDLE_RADIO_BUTTON:
       const { name, value } = action.payload.target;
-      console.log(action.payload.target.name);
-      console.log(action.payload.target.value);
-      //this.handleChange(event);
-      //state[action.payload.target.name] = Number(action.payload.target.value);
 
       if (
-        Number(
-          state[action.payload.target.getAttribute("data-currentAscension")]
-        ) +
-          Number(value) ==
-        7
+        (state.currentLevel === 0 || state.currentLevel === 7) &&
+        action.payload.target.getAttribute("data-currentAscension") ===
+          "currentAscension"
       ) {
         return {
           ...state,
-          [action.payload.target.name]: Number(action.payload.target.value),
-          desiredRadioButton: 0,
+          [name]: Number(value),
+          currentRadioButtonC: 0,
+        };
+      } else if (
+        (state.desiredLevel === 0 || state.desiredLevel === 7) &&
+        action.payload.target.getAttribute("data-currentAscension") ===
+          "desiredAscension"
+      ) {
+        return {
+          ...state,
+          [name]: Number(value),
+          desiredRadioButtonC: 0,
         };
       } else {
         return {
           ...state,
-          [action.payload.target.name]: Number(action.payload.target.value),
+          [name]: Number(value),
 
           [action.payload.target.getAttribute("data-ascension")]:
             Number(
@@ -208,10 +212,11 @@ const characterReducer = (state = INITIAL_STATE, action) => {
             [action.payload.target.name]: Number(action.payload.target.value),
             currentAscension: 0,
             sumCurrentAscension: 0,
+            currentRadioButtonC: 0,
           };
 
         case 1:
-          if (state.currentRadioButtonC == 0) {
+          if (state.currentRadioButtonC === 0) {
             return {
               ...state,
               [action.payload.target.name]: Number(action.payload.target.value),
@@ -228,7 +233,7 @@ const characterReducer = (state = INITIAL_STATE, action) => {
           }
 
         case 2:
-          if (state.currentRadioButtonC == 0) {
+          if (state.currentRadioButtonC === 0) {
             return {
               ...state,
               [action.payload.target.name]: Number(action.payload.target.value),
@@ -245,7 +250,7 @@ const characterReducer = (state = INITIAL_STATE, action) => {
           }
 
         case 3:
-          if (state.currentRadioButtonC == 0) {
+          if (state.currentRadioButtonC === 0) {
             return {
               ...state,
               [action.payload.target.name]: Number(action.payload.target.value),
@@ -262,7 +267,7 @@ const characterReducer = (state = INITIAL_STATE, action) => {
           }
 
         case 4:
-          if (state.currentRadioButtonC == 0) {
+          if (state.currentRadioButtonC === 0) {
             return {
               ...state,
               [action.payload.target.name]: Number(action.payload.target.value),
@@ -279,7 +284,7 @@ const characterReducer = (state = INITIAL_STATE, action) => {
           }
 
         case 5:
-          if (state.currentRadioButtonC == 0) {
+          if (state.currentRadioButtonC === 0) {
             return {
               ...state,
               [action.payload.target.name]: Number(action.payload.target.value),
@@ -296,7 +301,7 @@ const characterReducer = (state = INITIAL_STATE, action) => {
           }
 
         case 6:
-          if (state.currentRadioButtonC == 0) {
+          if (state.currentRadioButtonC === 0) {
             return {
               ...state,
               [action.payload.target.name]: Number(action.payload.target.value),
@@ -318,6 +323,7 @@ const characterReducer = (state = INITIAL_STATE, action) => {
             [action.payload.target.name]: Number(action.payload.target.value),
             currentAscension: 6,
             sumCurrentAscension: 6,
+            currentRadioButtonC: 0,
           };
 
         default:
@@ -334,10 +340,11 @@ const characterReducer = (state = INITIAL_STATE, action) => {
             [action.payload.target.name]: Number(action.payload.target.value),
             desiredAscension: 0,
             sumDesiredAscension: 0,
+            desiredRadioButtonC: 0,
           };
 
         case 1:
-          if (state.desiredRadioButtonC == 0) {
+          if (state.desiredRadioButtonC === 0) {
             return {
               ...state,
               [action.payload.target.name]: Number(action.payload.target.value),
@@ -354,7 +361,7 @@ const characterReducer = (state = INITIAL_STATE, action) => {
           }
 
         case 2:
-          if (state.desiredRadioButtonC == 0) {
+          if (state.desiredRadioButtonC === 0) {
             return {
               ...state,
               [action.payload.target.name]: Number(action.payload.target.value),
@@ -371,7 +378,7 @@ const characterReducer = (state = INITIAL_STATE, action) => {
           }
 
         case 3:
-          if (state.desiredRadioButtonC == 0) {
+          if (state.desiredRadioButtonC === 0) {
             return {
               ...state,
               [action.payload.target.name]: Number(action.payload.target.value),
@@ -388,7 +395,7 @@ const characterReducer = (state = INITIAL_STATE, action) => {
           }
 
         case 4:
-          if (state.desiredRadioButtonC == 0) {
+          if (state.desiredRadioButtonC === 0) {
             return {
               ...state,
               [action.payload.target.name]: Number(action.payload.target.value),
@@ -405,7 +412,7 @@ const characterReducer = (state = INITIAL_STATE, action) => {
           }
 
         case 5:
-          if (state.currentRadioButtonC == 0) {
+          if (state.currentRadioButtonC === 0) {
             return {
               ...state,
               [action.payload.target.name]: Number(action.payload.target.value),
@@ -422,7 +429,7 @@ const characterReducer = (state = INITIAL_STATE, action) => {
           }
 
         case 6:
-          if (state.desiredRadioButtonC == 0) {
+          if (state.desiredRadioButtonC === 0) {
             return {
               ...state,
               [action.payload.target.name]: Number(action.payload.target.value),
@@ -444,6 +451,7 @@ const characterReducer = (state = INITIAL_STATE, action) => {
             [action.payload.target.name]: Number(action.payload.target.value),
             desiredAscension: 6,
             sumDesiredAscension: 6,
+            desiredRadioButtonC: 0,
           };
 
         default:

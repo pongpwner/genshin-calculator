@@ -1,6 +1,5 @@
 import React, { useEffect } from "react";
 import "./character-input.styles.scss";
-import CustomButton from "../custom-button/custom-button.component";
 import FormDropdown from "../form-dropdown/form-dropdown.component";
 import FormInput from "../form-input/form-input.component";
 import CustomRadioGroup from "../custom-radio-group/custom-radio-group.component";
@@ -278,7 +277,7 @@ const CharacterInput = ({
           </a>
           <div className="input-row">
             <FormInput
-              label=""
+              label="blue"
               name="moraC"
               type="number"
               value={mora}

@@ -1,6 +1,4 @@
 import { createSelector } from "reselect";
-import WeaponInput from "../../components/weapon-input/weapon-input.component";
-
 export const selectWeapon = (state) => state.weapon;
 
 export const selectRarity = createSelector(

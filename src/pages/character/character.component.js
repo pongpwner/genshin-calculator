@@ -1,4 +1,3 @@
-import react from "react";
 import "./character.styles.scss";
 import { connect } from "react-redux";
 import CharacterInput from "../../components/character-input/character-input.component";

@@ -1,8 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import WEAPON from "./weapon";
 import "./weapon.styles.scss";
-
 import WeaponInput from "../../components/weapon-input/weapon-input.component";
 import MainSection from "../../components/main-section/main-section.component";
 import {
