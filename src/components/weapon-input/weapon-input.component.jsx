@@ -95,7 +95,7 @@ const WeaponInput = ({
             label="Weapon Rarity"
             options={WEAPON.rarity}
             value={rarity}
-            handleChange={handleChange}
+            handleChange={(e) => handleChange(e.target)}
           />
         </div>
         <div className="level-input-container">

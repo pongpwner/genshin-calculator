@@ -121,7 +121,7 @@ const INITIAL_STATE = {
 const weaponReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case WeaponActionTypes.HANDLE_CHANGE:
-      return { ...state, [action.payload.name]: Number(action.payload.value) };
+      return { ...state, [action.payload.name]: action.payload.value };
     case WeaponActionTypes.HANDLE_RADIO_BUTTON:
       const { name, value } = action.payload.target;
       console.log(action.payload.target.name);
