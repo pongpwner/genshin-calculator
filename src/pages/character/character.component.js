@@ -14,7 +14,6 @@ const Character = ({ subsections, state }) => (
     <div className="content">
       <CharacterInput />
       <MainSection subsections={subsections} state={state} />
-      {console.log(state)}
     </div>
   </div>
 );

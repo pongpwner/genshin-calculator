@@ -31,13 +31,17 @@ import {
   selectRarity,
   selectWhiteOre,
 } from "../../redux/weapon/weapon.selectors";
+import {
+  handleChange,
+  handleSubmit,
+  handleRadioButton,
+  handleCurrentLevel,
+  handleDesiredLevel,
+} from "../../redux/weapon/weapon.actions";
 const WeaponInput = ({
   rarity,
   currentLevel,
   currentRadioButton,
-  handleChange,
-  handleRadioButton,
-  handleDesiredLevel,
   desiredLevel,
   desiredRadioButton,
   domainMaterialGreen,
@@ -55,6 +59,9 @@ const WeaponInput = ({
   blueOre,
   mora,
   handleSubmit,
+  handleChange,
+  handleRadioButton,
+  handleDesiredLevel,
   handleCurrentLevel,
 }) => {
   useEffect(handleSubmit, [
@@ -94,7 +101,7 @@ const WeaponInput = ({
         <div className="level-input-container">
           <FormDropdown
             name="currentLevel"
-            handleChange={handleCurrentLevel}
+            handleChange={(e) => handleCurrentLevel(e)}
             label="Current Level"
             value={currentLevel}
             options={WEAPON[rarity].level}
@@ -102,7 +109,7 @@ const WeaponInput = ({
           <CustomRadioGroup
             options={CURRENT_ASCENSION_RADIO_BUTTONS}
             label="Ascended?: "
-            handleChange={handleRadioButton}
+            handleChange={(e) => handleRadioButton(e)}
             value={currentRadioButton}
             data-ascension="sumCurrentAscension"
             data-currentAscension="currentAscension"
@@ -112,7 +119,7 @@ const WeaponInput = ({
         <div className="level-input-container">
           <FormDropdown
             name="desiredLevel"
-            handleChange={handleDesiredLevel}
+            handleChange={(e) => handleDesiredLevel(e)}
             label="Desired Level"
             value={desiredLevel}
             options={WEAPON[rarity].level}
@@ -120,7 +127,7 @@ const WeaponInput = ({
           <CustomRadioGroup
             options={DESIRED_ASCENSION_RADIO_BUTTONS}
             label="Ascended?: "
-            handleChange={handleRadioButton}
+            handleChange={(e) => handleRadioButton(e)}
             value={desiredRadioButton}
             data-ascension="sumDesiredAscension"
             data-currentAscension="desiredAscension"
@@ -142,21 +149,21 @@ const WeaponInput = ({
               name="domainMaterialGreen"
               type="number"
               value={domainMaterialGreen}
-              onChange={handleChange}
+              onChange={(e) => handleChange(e.target)}
             ></FormInput>
             <FormInput
               label="blue"
               name="domainMaterialBlue"
               type="number"
               value={domainMaterialBlue}
-              onChange={handleChange}
+              onChange={(e) => handleChange(e.target)}
             ></FormInput>
             <FormInput
               label="purple"
               name="domainMaterialPurple"
               type="number"
               value={domainMaterialPurple}
-              onChange={handleChange}
+              onChange={(e) => handleChange(e.target)}
             ></FormInput>
 
             <FormInput
@@ -164,7 +171,7 @@ const WeaponInput = ({
               name="domainMaterialOrange"
               type="number"
               value={domainMaterialOrange}
-              onChange={handleChange}
+              onChange={(e) => handleChange(e.target)}
             ></FormInput>
           </div>
           <a
@@ -181,21 +188,21 @@ const WeaponInput = ({
               name="eliteMaterialGreen"
               type="number"
               value={eliteMaterialGreen}
-              onChange={handleChange}
+              onChange={(e) => handleChange(e.target)}
             ></FormInput>
             <FormInput
               label="blue"
               name="eliteMaterialBlue"
               type="number"
               value={eliteMaterialBlue}
-              onChange={handleChange}
+              onChange={(e) => handleChange(e.target)}
             ></FormInput>
             <FormInput
               label="purple"
               name="eliteMaterialPurple"
               type="number"
               value={eliteMaterialPurple}
-              onChange={handleChange}
+              onChange={(e) => handleChange(e.target)}
             ></FormInput>
           </div>
           <a
@@ -212,21 +219,21 @@ const WeaponInput = ({
               name="commonMaterialWhite"
               type="number"
               value={commonMaterialWhite}
-              onChange={handleChange}
+              onChange={(e) => handleChange(e.target)}
             ></FormInput>
             <FormInput
               label="green"
               name="commonMaterialGreen"
               type="number"
               value={commonMaterialGreen}
-              onChange={handleChange}
+              onChange={(e) => handleChange(e.target)}
             ></FormInput>
             <FormInput
               label="blue"
               name="commonMaterialBlue"
               type="number"
               value={commonMaterialBlue}
-              onChange={handleChange}
+              onChange={(e) => handleChange(e.target)}
             ></FormInput>
           </div>
         </div>
@@ -245,21 +252,21 @@ const WeaponInput = ({
               name="whiteOre"
               type="number"
               value={whiteOre}
-              onChange={handleChange}
+              onChange={(e) => handleChange(e.target)}
             ></FormInput>
             <FormInput
               label="green"
               name="greenOre"
               type="number"
               value={greenOre}
-              onChange={handleChange}
+              onChange={(e) => handleChange(e.target)}
             ></FormInput>
             <FormInput
               label="blue"
               name="blueOre"
               type="number"
               value={blueOre}
-              onChange={handleChange}
+              onChange={(e) => handleChange(e.target)}
             ></FormInput>
           </div>
         </div>
@@ -278,7 +285,7 @@ const WeaponInput = ({
               name="mora"
               type="number"
               value={mora}
-              onChange={handleChange}
+              onChange={(e) => handleChange(e.target)}
             ></FormInput>
           </div>
         </div>
@@ -309,6 +316,12 @@ const mapStateToProps = (state) => ({
   mora: selectMora(state),
 });
 
-const mapDispatchToProps = (dispatch) => ({});
+const mapDispatchToProps = (dispatch) => ({
+  handleChange: (change) => dispatch(handleChange(change)),
+  handleSubmit: (event) => dispatch(handleSubmit(event)),
+  handleCurrentLevel: (level) => dispatch(handleCurrentLevel(level)),
+  handleDesiredLevel: (level) => dispatch(handleDesiredLevel(level)),
+  handleRadioButton: (e) => dispatch(handleRadioButton(e)),
+});
 
-export default WeaponInput;
+export default connect(mapStateToProps, mapDispatchToProps)(WeaponInput);

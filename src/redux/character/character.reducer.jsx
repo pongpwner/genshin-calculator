@@ -321,7 +321,7 @@ const characterReducer = (state = INITIAL_STATE, action) => {
           };
 
         default:
-          return { state };
+          return { ...state };
       }
 
     case CharacterActionTypes.HANDLE_DESIRED_LEVEL:
@@ -447,7 +447,7 @@ const characterReducer = (state = INITIAL_STATE, action) => {
           };
 
         default:
-          return { state };
+          return { ...state };
       }
 
     case CharacterActionTypes.HANDLE_SUBMIT:
@@ -467,9 +467,7 @@ const characterReducer = (state = INITIAL_STATE, action) => {
         bossMaterialC,
         currentLevel,
         desiredLevel,
-        currentAscension,
         sumCurrentAscension,
-        desiredAscension,
         sumDesiredAscension,
         constants,
       } = state;

@@ -4,12 +4,21 @@ export const handleChange = (change) => ({
   payload: change,
 });
 
-export const handleSubmit = (submit) => ({
+export const handleSubmit = (event) => ({
   type: WeaponActionTypes.HANDLE_SUBMIT,
-  payload: submit,
+  payload: event,
 });
 
 export const handleRadioButton = (event) => ({
   type: WeaponActionTypes.HANDLE_RADIO_BUTTON,
   payload: event,
+});
+
+export const handleCurrentLevel = (level) => ({
+  type: WeaponActionTypes.HANDLE_CURRENT_LEVEL,
+  payload: level,
+});
+export const handleDesiredLevel = (level) => ({
+  type: WeaponActionTypes.HANDLE_DESIRED_LEVEL,
+  payload: level,
 });

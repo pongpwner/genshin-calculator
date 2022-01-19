@@ -2,6 +2,10 @@ import { WeaponActionTypes } from "./weapon.types.js";
 import { handleRadioButton } from "./weapon.utils";
 import WEAPON_MATERIALS from "../../constants/weaponMaterials";
 import WEAPON from "../../pages/weapon/weapon";
+import {
+  CURRENT_ASCENSION_RADIO_BUTTONS,
+  DESIRED_ASCENSION_RADIO_BUTTONS,
+} from "../../pages/weapon/component-arrays/ascension-radio-buttons";
 const INITIAL_STATE = {
   mora: "",
   rarity: "threeStar",
@@ -119,11 +123,287 @@ const weaponReducer = (state = INITIAL_STATE, action) => {
     case WeaponActionTypes.HANDLE_CHANGE:
       return { ...state, [action.payload.name]: Number(action.payload.value) };
     case WeaponActionTypes.HANDLE_RADIO_BUTTON:
-      return { ...state };
+      const { name, value } = action.payload.target;
+      console.log(action.payload.target.name);
+      console.log(action.payload.target.value);
+      //this.handleChange(event);
+      //state[action.payload.target.name] = Number(action.payload.target.value);
+
+      if (
+        Number(
+          state[action.payload.target.getAttribute("data-currentAscension")]
+        ) +
+          Number(value) ==
+        7
+      ) {
+        return {
+          ...state,
+          [action.payload.target.name]: Number(action.payload.target.value),
+          desiredRadioButton: 0,
+        };
+      } else {
+        return {
+          ...state,
+          [action.payload.target.name]: Number(action.payload.target.value),
+
+          [action.payload.target.getAttribute("data-ascension")]:
+            Number(
+              state[action.payload.target.getAttribute("data-currentAscension")]
+            ) + Number(value),
+        };
+      }
+
     case WeaponActionTypes.HANDLE_CURRENT_LEVEL:
-      return { ...state };
+      //assume weapon is not ascended
+
+      switch (Number(action.payload.target.value)) {
+        case 0:
+          return {
+            ...state,
+            [action.payload.target.name]: Number(action.payload.target.value),
+            currentAscension: 0,
+            sumCurrentAscension: 0,
+          };
+
+        case 1:
+          if (state.currentRadioButton == 0) {
+            return {
+              ...state,
+              [action.payload.target.name]: Number(action.payload.target.value),
+              currentAscension: 0,
+              sumCurrentAscension: 0,
+            };
+          } else {
+            return {
+              ...state,
+              [action.payload.target.name]: Number(action.payload.target.value),
+              currentAscension: 0,
+              sumCurrentAscension: 1,
+            };
+          }
+
+        case 2:
+          if (state.currentRadioButton == 0) {
+            return {
+              ...state,
+              [action.payload.target.name]: Number(action.payload.target.value),
+              currentAscension: 1,
+              sumCurrentAscension: 1,
+            };
+          } else {
+            return {
+              ...state,
+              [action.payload.target.name]: Number(action.payload.target.value),
+              currentAscension: 1,
+              sumCurrentAscension: 2,
+            };
+          }
+
+        case 3:
+          if (state.currentRadioButton == 0) {
+            return {
+              ...state,
+              [action.payload.target.name]: Number(action.payload.target.value),
+              currentAscension: 2,
+              sumCurrentAscension: 2,
+            };
+          } else {
+            return {
+              ...state,
+              [action.payload.target.name]: Number(action.payload.target.value),
+              currentAscension: 2,
+              sumCurrentAscension: 3,
+            };
+          }
+
+        case 4:
+          if (state.currentRadioButton == 0) {
+            return {
+              ...state,
+              [action.payload.target.name]: Number(action.payload.target.value),
+              currentAscension: 3,
+              sumCurrentAscension: 3,
+            };
+          } else {
+            return {
+              ...state,
+              [action.payload.target.name]: Number(action.payload.target.value),
+              currentAscension: 3,
+              sumCurrentAscension: 4,
+            };
+          }
+
+        case 5:
+          if (state.currentRadioButton == 0) {
+            return {
+              ...state,
+              [action.payload.target.name]: Number(action.payload.target.value),
+              currentAscension: 4,
+              sumCurrentAscension: 4,
+            };
+          } else {
+            return {
+              ...state,
+              [action.payload.target.name]: Number(action.payload.target.value),
+              currentAscension: 4,
+              sumCurrentAscension: 5,
+            };
+          }
+
+        case 6:
+          if (state.currentRadioButton == 0) {
+            return {
+              ...state,
+              [action.payload.target.name]: Number(action.payload.target.value),
+              currentAscension: 5,
+              sumCurrentAscension: 5,
+            };
+          } else {
+            return {
+              ...state,
+              [action.payload.target.name]: Number(action.payload.target.value),
+              currentAscension: 5,
+              sumCurrentAscension: 6,
+            };
+          }
+
+        case 7:
+          return {
+            ...state,
+            [action.payload.target.name]: Number(action.payload.target.value),
+            currentAscension: 6,
+            sumCurrentAscension: 6,
+          };
+
+        default:
+          return { state };
+      }
+
     case WeaponActionTypes.HANDLE_DESIRED_LEVEL:
-      return { ...state };
+      //assume character is not ascended
+
+      switch (Number(action.payload.target.value)) {
+        case 0:
+          return {
+            ...state,
+            [action.payload.target.name]: Number(action.payload.target.value),
+            desiredAscension: 0,
+            sumDesiredAscension: 0,
+          };
+
+        case 1:
+          if (state.desiredRadioButton == 0) {
+            return {
+              ...state,
+              [action.payload.target.name]: Number(action.payload.target.value),
+              desiredAscension: 0,
+              sumDesiredAscension: 0,
+            };
+          } else {
+            return {
+              ...state,
+              [action.payload.target.name]: Number(action.payload.target.value),
+              desiredAscension: 0,
+              sumDesiredAscension: 1,
+            };
+          }
+
+        case 2:
+          if (state.desiredRadioButton == 0) {
+            return {
+              ...state,
+              [action.payload.target.name]: Number(action.payload.target.value),
+              desiredAscension: 1,
+              sumDesiredAscension: 1,
+            };
+          } else {
+            return {
+              ...state,
+              [action.payload.target.name]: Number(action.payload.target.value),
+              desiredAscension: 1,
+              sumDesiredAscension: 2,
+            };
+          }
+
+        case 3:
+          if (state.desiredRadioButton == 0) {
+            return {
+              ...state,
+              [action.payload.target.name]: Number(action.payload.target.value),
+              desiredAscension: 2,
+              sumDesiredAscension: 2,
+            };
+          } else {
+            return {
+              ...state,
+              [action.payload.target.name]: Number(action.payload.target.value),
+              desiredAscension: 2,
+              sumDesiredAscension: 3,
+            };
+          }
+
+        case 4:
+          if (state.desiredRadioButton == 0) {
+            return {
+              ...state,
+              [action.payload.target.name]: Number(action.payload.target.value),
+              desiredAscension: 3,
+              sumDesiredAscension: 3,
+            };
+          } else {
+            return {
+              ...state,
+              [action.payload.target.name]: Number(action.payload.target.value),
+              desiredAscension: 3,
+              sumDesiredAscension: 4,
+            };
+          }
+
+        case 5:
+          if (state.currentRadioButton == 0) {
+            return {
+              ...state,
+              [action.payload.target.name]: Number(action.payload.target.value),
+              desiredAscension: 4,
+              sumDesiredAscension: 4,
+            };
+          } else {
+            return {
+              ...state,
+              [action.payload.target.name]: Number(action.payload.target.value),
+              desiredAscension: 4,
+              sumDesiredAscension: 5,
+            };
+          }
+
+        case 6:
+          if (state.desiredRadioButton == 0) {
+            return {
+              ...state,
+              [action.payload.target.name]: Number(action.payload.target.value),
+              desiredAscension: 5,
+              sumDesiredAscension: 5,
+            };
+          } else {
+            return {
+              ...state,
+              [action.payload.target.name]: Number(action.payload.target.value),
+              desiredAscension: 5,
+              sumDesiredAscension: 6,
+            };
+          }
+
+        case 7:
+          return {
+            ...state,
+            [action.payload.target.name]: Number(action.payload.target.value),
+            desiredAscension: 6,
+            sumDesiredAscension: 6,
+          };
+
+        default:
+          return { ...state };
+      }
 
     case WeaponActionTypes.HANDLE_SUBMIT:
       const {
