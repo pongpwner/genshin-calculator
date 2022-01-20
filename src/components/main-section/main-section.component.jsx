@@ -7,8 +7,6 @@ const MainSection = ({
 
   state,
 }) => {
-  console.log(subsections);
-  console.log(state);
   return (
     <div className="main-section">
       {subsections.map((subsection) => (

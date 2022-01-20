@@ -1,5 +1,4 @@
 import { TalentActionTypes } from "./talent.types";
-
 import TALENT_DATA from "../../pages/talent/talent.data";
 const INITIAL_STATE = {
   currentAttackLv: 1,
