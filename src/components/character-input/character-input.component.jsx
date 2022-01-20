@@ -3,6 +3,8 @@ import "./character-input.styles.scss";
 import FormDropdown from "../form-dropdown/form-dropdown.component";
 import FormInput from "../form-input/form-input.component";
 import CustomRadioGroup from "../custom-radio-group/custom-radio-group.component";
+import MainSectionContainer from "../main-section-container/main-section-container.component";
+import SubSectionContainer from "../sub-section-container/sub-section-container.component";
 import { connect } from "react-redux";
 import {
   selectBossMaterial,
@@ -81,8 +83,8 @@ const CharacterInput = ({
   ]);
   return (
     <div className="character-input">
-      <div className="input-container">
-        <div className="level-input-container">
+      <MainSectionContainer>
+        <SubSectionContainer>
           <FormDropdown
             name="currentLevel"
             label="Current Level"
@@ -98,9 +100,9 @@ const CharacterInput = ({
             data-ascension="sumCurrentAscension"
             data-currentAscension="currentAscension"
           ></CustomRadioGroup>
-        </div>
+        </SubSectionContainer>
 
-        <div className="level-input-container">
+        <SubSectionContainer>
           <FormDropdown
             name="desiredLevel"
             label="Desired Level"
@@ -116,9 +118,9 @@ const CharacterInput = ({
             data-ascension="sumDesiredAscension"
             data-currentAscension="desiredAscension"
           ></CustomRadioGroup>
-        </div>
+        </SubSectionContainer>
 
-        <div className="material-input-container">
+        <SubSectionContainer>
           <a
             className="info-link"
             target="_blank"
@@ -127,7 +129,7 @@ const CharacterInput = ({
           >
             Jewels
           </a>
-          <div className="input-row">
+          <div className="flex-row mobile-flex-wrap">
             <FormInput
               label="green"
               name="gemGreen"
@@ -157,9 +159,9 @@ const CharacterInput = ({
               handleChange={(e) => handleChange(e.target)}
             ></FormInput>
           </div>
-        </div>
+        </SubSectionContainer>
 
-        <div className="material-input-container">
+        <SubSectionContainer>
           <a
             className="info-link"
             target="_blank"
@@ -168,7 +170,7 @@ const CharacterInput = ({
           >
             Common Material
           </a>
-          <div className="input-row">
+          <div className="flex-row">
             <FormInput
               label="white"
               name="commonMaterialWhiteC"
@@ -191,8 +193,9 @@ const CharacterInput = ({
               handleChange={(e) => handleChange(e.target)}
             ></FormInput>
           </div>
-        </div>
-        <div className="material-input-container">
+        </SubSectionContainer>
+
+        <SubSectionContainer>
           <a
             className="info-link"
             target="_blank"
@@ -201,7 +204,7 @@ const CharacterInput = ({
           >
             EXP
           </a>
-          <div className="input-row">
+          <div className="flex-row">
             <FormInput
               label="green"
               name="heroWitGreen"
@@ -224,9 +227,9 @@ const CharacterInput = ({
               handleChange={(e) => handleChange(e.target)}
             ></FormInput>
           </div>
-        </div>
+        </SubSectionContainer>
 
-        <div className="material-input-container">
+        <SubSectionContainer>
           <a
             className="info-link"
             target="_blank"
@@ -235,7 +238,7 @@ const CharacterInput = ({
           >
             Boss Material
           </a>
-          <div className="input-row">
+          <div className="flex-row">
             <FormInput
               label="purple"
               name="bossMaterialC"
@@ -244,9 +247,9 @@ const CharacterInput = ({
               handleChange={(e) => handleChange(e.target)}
             ></FormInput>
           </div>
-        </div>
+        </SubSectionContainer>
 
-        <div className="material-input-container">
+        <SubSectionContainer>
           <a
             className="info-link"
             target="_blank"
@@ -255,7 +258,7 @@ const CharacterInput = ({
           >
             Local Specialty
           </a>
-          <div className="input-row">
+          <div className="flex-row">
             <FormInput
               label="white"
               name="localSpecialtyC"
@@ -264,9 +267,9 @@ const CharacterInput = ({
               handleChange={(e) => handleChange(e.target)}
             ></FormInput>
           </div>
-        </div>
+        </SubSectionContainer>
 
-        <div className="material-input-container">
+        <SubSectionContainer>
           <a
             className="info-link"
             target="_blank"
@@ -275,7 +278,7 @@ const CharacterInput = ({
           >
             Mora
           </a>
-          <div className="input-row">
+          <div className="flex-row">
             <FormInput
               label="blue"
               name="moraC"
@@ -284,8 +287,8 @@ const CharacterInput = ({
               handleChange={(e) => handleChange(e.target)}
             ></FormInput>
           </div>
-        </div>
-      </div>
+        </SubSectionContainer>
+      </MainSectionContainer>
     </div>
   );
 };

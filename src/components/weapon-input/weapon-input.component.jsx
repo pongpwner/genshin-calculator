@@ -5,6 +5,8 @@ import FormDropdown from "../form-dropdown/form-dropdown.component";
 import FormInput from "../form-input/form-input.component";
 import CustomRadioGroup from "../custom-radio-group/custom-radio-group.component";
 import WEAPON from "../../pages/weapon/weapon";
+import MainSectionContainer from "../main-section-container/main-section-container.component";
+import SubSectionContainer from "../sub-section-container/sub-section-container.component";
 import {
   CURRENT_ASCENSION_RADIO_BUTTONS,
   DESIRED_ASCENSION_RADIO_BUTTONS,
@@ -87,8 +89,8 @@ const WeaponInput = ({
   ]);
   return (
     <div className="weapon-input">
-      <div className="input-container">
-        <div className="material-input-container">
+      <MainSectionContainer>
+        <SubSectionContainer>
           <FormDropdown
             name="rarity"
             label="Weapon Rarity"
@@ -96,8 +98,9 @@ const WeaponInput = ({
             value={rarity}
             handleChange={(e) => handleChange(e.target)}
           />
-        </div>
-        <div className="level-input-container">
+        </SubSectionContainer>
+
+        <SubSectionContainer>
           <FormDropdown
             name="currentLevel"
             handleChange={(e) => handleCurrentLevel(e)}
@@ -113,9 +116,9 @@ const WeaponInput = ({
             data-ascension="sumCurrentAscension"
             data-currentAscension="currentAscension"
           ></CustomRadioGroup>
-        </div>
+        </SubSectionContainer>
 
-        <div className="level-input-container">
+        <SubSectionContainer>
           <FormDropdown
             name="desiredLevel"
             handleChange={(e) => handleDesiredLevel(e)}
@@ -131,9 +134,9 @@ const WeaponInput = ({
             data-ascension="sumDesiredAscension"
             data-currentAscension="desiredAscension"
           ></CustomRadioGroup>
-        </div>
+        </SubSectionContainer>
 
-        <div className="material-input-container">
+        <SubSectionContainer>
           <a
             className="info-link"
             target="_blank"
@@ -142,7 +145,7 @@ const WeaponInput = ({
           >
             Domain Material
           </a>
-          <div className="input-row">
+          <div className="flex-row mobile-flex-wrap">
             <FormInput
               label="green"
               name="domainMaterialGreen"
@@ -173,6 +176,8 @@ const WeaponInput = ({
               onChange={(e) => handleChange(e.target)}
             ></FormInput>
           </div>
+        </SubSectionContainer>
+        <SubSectionContainer>
           <a
             className="info-link"
             target="_blank"
@@ -181,7 +186,7 @@ const WeaponInput = ({
           >
             Weapon Material
           </a>
-          <div className="input-row">
+          <div className="flex-row">
             <FormInput
               label="green"
               name="eliteMaterialGreen"
@@ -204,6 +209,8 @@ const WeaponInput = ({
               onChange={(e) => handleChange(e.target)}
             ></FormInput>
           </div>
+        </SubSectionContainer>
+        <SubSectionContainer>
           <a
             className="info-link"
             target="_blank"
@@ -212,7 +219,7 @@ const WeaponInput = ({
           >
             Common Material
           </a>
-          <div className="input-row">
+          <div className="flex-row">
             <FormInput
               label="white"
               name="commonMaterialWhite"
@@ -235,8 +242,9 @@ const WeaponInput = ({
               onChange={(e) => handleChange(e.target)}
             ></FormInput>
           </div>
-        </div>
-        <div className="material-input-container">
+        </SubSectionContainer>
+
+        <SubSectionContainer>
           <a
             className="info-link"
             target="_blank"
@@ -245,7 +253,7 @@ const WeaponInput = ({
           >
             Enhancement Ore
           </a>
-          <div className="input-row">
+          <div className="flex-row">
             <FormInput
               label="white"
               name="whiteOre"
@@ -268,8 +276,9 @@ const WeaponInput = ({
               onChange={(e) => handleChange(e.target)}
             ></FormInput>
           </div>
-        </div>
-        <div className="material-input-container">
+        </SubSectionContainer>
+
+        <SubSectionContainer>
           <a
             className="info-link"
             target="_blank"
@@ -278,7 +287,7 @@ const WeaponInput = ({
           >
             Mora
           </a>
-          <div className="input-row">
+          <div className="flex-row">
             <FormInput
               label="blue"
               name="mora"
@@ -287,8 +296,8 @@ const WeaponInput = ({
               onChange={(e) => handleChange(e.target)}
             ></FormInput>
           </div>
-        </div>
-      </div>
+        </SubSectionContainer>
+      </MainSectionContainer>
     </div>
   );
 };

@@ -1,6 +1,8 @@
 import React, { useEffect } from "react";
 import FormInput from "../form-input/form-input.component";
 import FormDropdown from "../form-dropdown/form-dropdown.component";
+import MainSectionContainer from "../main-section-container/main-section-container.component";
+import SubSectionContainer from "../sub-section-container/sub-section-container.component";
 import "./talent-input.styles.scss";
 import { connect } from "react-redux";
 import {
@@ -77,10 +79,10 @@ const TalentInput = ({
   console.log(skillLv);
   return (
     <div className="talent-input">
-      <div className="input-container">
-        <div className="material-input-container">
+      <MainSectionContainer>
+        <SubSectionContainer>
           <div>Current Talent Level</div>
-          <div className="input-row">
+          <div className="flex-row mobile-column">
             <FormDropdown
               options={talentLv}
               label=" normal attack"
@@ -103,10 +105,11 @@ const TalentInput = ({
               handleChange={(e) => handleChange(e.target)}
             />
           </div>
-        </div>
-        <div className="material-input-container">
+        </SubSectionContainer>
+
+        <SubSectionContainer>
           <div>Desired Talent Level</div>
-          <div className="input-row">
+          <div className="flex-row mobile-column">
             <FormDropdown
               options={talentLv}
               label="normal attack"
@@ -129,17 +132,17 @@ const TalentInput = ({
               handleChange={(e) => handleChange(e.target)}
             />
           </div>
-        </div>
-        <div className="material-input-container">
+        </SubSectionContainer>
+
+        <SubSectionContainer>
           <a
-            className="info-link"
             target="_blank"
             rel="noopener noreferrer"
             href="https://genshin.honeyhunterworld.com/db/item/talent-level-up-material/?lang=EN"
           >
             Talent Books
           </a>
-          <div className="input-row">
+          <div className="flex-row">
             <FormInput
               label="green"
               name="greenTalent"
@@ -162,17 +165,17 @@ const TalentInput = ({
               handleChange={(e) => handleChange(e.target)}
             />
           </div>
-        </div>
-        <div className="material-input-container">
+        </SubSectionContainer>
+
+        <SubSectionContainer>
           <a
-            className="info-link"
             target="_blank"
             rel="noopener noreferrer"
             href="https://genshin.honeyhunterworld.com/db/item/character-ascension-material-secondary-material/?lang=EN"
           >
             Common Material
           </a>
-          <div className="input-row">
+          <div className="flex-row">
             <FormInput
               label="white"
               name="commonMaterialWhite"
@@ -195,17 +198,17 @@ const TalentInput = ({
               handleChange={(e) => handleChange(e.target)}
             />
           </div>
-        </div>
-        <div className="material-input-container">
+        </SubSectionContainer>
+
+        <SubSectionContainer>
           <a
-            className="info-link"
             target="_blank"
             rel="noopener noreferrer"
             href="https://genshin.honeyhunterworld.com/db/item/talent-level-up-material/?lang=EN"
           >
             Boss Material
           </a>
-          <div className="input-row">
+          <div className="flex-row">
             <FormInput
               label="orange"
               name="bossMaterial"
@@ -214,17 +217,17 @@ const TalentInput = ({
               handleChange={(e) => handleChange(e.target)}
             />
           </div>
-        </div>
-        <div className="material-input-container">
+        </SubSectionContainer>
+
+        <SubSectionContainer>
           <a
-            className="info-link"
             target="_blank"
             rel="noopener noreferrer"
             href="https://genshin.honeyhunterworld.com/db/item/talent-level-up-material/?lang=EN"
           >
             Crown
           </a>
-          <div className="input-row">
+          <div className="flex-row">
             <FormInput
               label="orange"
               name="crown"
@@ -233,9 +236,9 @@ const TalentInput = ({
               handleChange={(e) => handleChange(e.target)}
             />
           </div>
-        </div>
+        </SubSectionContainer>
 
-        <div className="material-input-container">
+        <SubSectionContainer>
           <a
             className="info-link"
             target="_blank"
@@ -244,7 +247,7 @@ const TalentInput = ({
           >
             Mora
           </a>
-          <div className="input-row">
+          <div className="flex-row">
             <FormInput
               label="blue"
               name="mora"
@@ -253,8 +256,8 @@ const TalentInput = ({
               handleChange={(e) => handleChange(e.target)}
             />
           </div>
-        </div>
-      </div>
+        </SubSectionContainer>
+      </MainSectionContainer>
     </div>
   );
 };

@@ -1,42 +1,8 @@
 @import "../../colors.scss";
 .talent-input {
-  .input-container {
-    background-color: $secondary;
-    padding: 1rem;
-    border-radius: 10px;
-
-    margin: 0.5%;
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-    justify-content: space-around;
-  }
-  .input-row {
-    display: flex;
-    flex-direction: row;
-    gap: 0.8rem;
+  .mobile-column {
     @media (max-width: 500px) {
       flex-direction: column;
     }
-  }
-  .level-input-container {
-    background-color: $secondary;
-    border-radius: 10px;
-    justify-content: space-around;
-    padding: 0.75rem;
-  }
-
-  .material-input-container {
-    background-color: $tertiary;
-    border-radius: 10px;
-    justify-content: space-around;
-    padding: 0.75rem;
-  }
-  .info-link {
-    color: $text;
-    text-decoration: none;
-  }
-  .info-link:hover {
-    color: $textHover;
   }
 }

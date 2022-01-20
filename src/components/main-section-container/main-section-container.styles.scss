@@ -1,0 +1,10 @@
+@import "../../colors.scss";
+.main-section-container {
+  background-color: $secondary;
+  padding: 1rem;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  justify-content: space-around;
+}
