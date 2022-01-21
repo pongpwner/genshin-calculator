@@ -88,6 +88,10 @@ export const selectBossMaterialNeeded = createSelector(
   [selectTalent],
   (talent) => talent.bossMaterialNeeded
 );
+export const selectBossMaterialRemaining = createSelector(
+  [selectTalent],
+  (talent) => talent.bossMaterialRemaining
+);
 export const selectBossMaterial = createSelector(
   [selectTalent],
   (talent) => talent.bossMaterial
@@ -95,6 +99,10 @@ export const selectBossMaterial = createSelector(
 export const selectCrown = createSelector(
   [selectTalent],
   (talent) => talent.crown
+);
+export const selectCrownRemaining = createSelector(
+  [selectTalent],
+  (talent) => talent.crownRemaining
 );
 export const selectCrownNeeded = createSelector(
   [selectTalent],
@@ -104,7 +112,33 @@ export const selectMora = createSelector(
   [selectTalent],
   (talent) => talent.mora
 );
-export const selectSubsections = createSelector(
+
+export const selectMoraRemaining = createSelector(
   [selectTalent],
-  (talent) => talent.subsections
+  (talent) => talent.moraRemaining
+);
+export const selectGreenTalentRemaining = createSelector(
+  [selectTalent],
+  (talent) => talent.greenTalentRemaining
+);
+export const selectBlueTalentRemaining = createSelector(
+  [selectTalent],
+  (talent) => talent.blueTalentRemaining
+);
+
+export const selectPurpleTalentRemaining = createSelector(
+  [selectTalent],
+  (talent) => talent.purpleTalentRemaining
+);
+export const selectCommonMaterialWhiteRemaining = createSelector(
+  [selectTalent],
+  (talent) => talent.commonMaterialWhiteRemaining
+);
+export const selectCommonMaterialGreenRemaining = createSelector(
+  [selectTalent],
+  (talent) => talent.commonMaterialGreenRemaining
+);
+export const selectCommonMaterialBlueRemaining = createSelector(
+  [selectTalent],
+  (talent) => talent.commonMaterialBlueRemaining
 );

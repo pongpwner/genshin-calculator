@@ -85,11 +85,7 @@ export const selectHeroWitPurple = createSelector(
   [selectCharacter],
   (character) => character.heroWitPurple
 );
-export const selectSubsections = createSelector(
-  [selectCharacter],
-  (character) => character.subsections
-);
-//////////
+
 export const selectMoraNeeded = createSelector(
   [selectCharacter],
   (character) => character.moraNeeded

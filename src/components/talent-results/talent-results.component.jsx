@@ -1,10 +1,16 @@
 import React from "react";
+import "./talent-results.styles.scss";
 import { connect } from "react-redux";
-import "./character-results.styles.scss";
 import MainSectionContainer from "../main-section-container/main-section-container.component";
-import ResultRow from "../result-row/result-row.component";
 import SubSectionContainer from "../sub-section-container/sub-section-container.component";
+import ResultRow from "../result-row/result-row.component";
 import {
+  selectBlueTalentNeeded,
+  selectBlueTalentRemaining,
+  selectGreenTalentNeeded,
+  selectGreenTalentRemaining,
+  selectPurpleTalentNeeded,
+  selectPurpleTalentRemaining,
   selectBossMaterialNeeded,
   selectBossMaterialRemaining,
   selectCommonMaterialBlueNeeded,
@@ -13,26 +19,20 @@ import {
   selectCommonMaterialGreenRemaining,
   selectCommonMaterialWhiteNeeded,
   selectCommonMaterialWhiteRemaining,
-  selectExpBlueNeeded,
-  selectExpBlueRemaining,
-  selectExpGreenNeeded,
-  selectExpGreenRemaining,
-  selectExpPurpleNeeded,
-  selectExpPurpleRemaining,
-  selectGemBlueNeeded,
-  selectGemBlueRemaining,
-  selectGemGreenNeeded,
-  selectGemGreenRemaining,
-  selectGemOrangeNeeded,
-  selectGemOrangeRemaining,
-  selectGemPurpleNeeded,
-  selectGemPurpleRemaining,
-  selectLocalSpecialtyNeeded,
-  selectLocalSpecialtyRemaining,
   selectMoraNeeded,
   selectMoraRemaining,
-} from "../../redux/character/character.selector";
-const CharacterResults = ({
+  selectCrownNeeded,
+  selectCrownRemaining,
+} from "../../redux/talent/talent.selector";
+const TalentResults = ({
+  talentGreenNeeded,
+  talentGreenRemaining,
+  talentBlueNeeded,
+  talentBlueRemaining,
+  talentPurpleNeeded,
+  talentPurpleRemaining,
+  crownNeeded,
+  crownRemaining,
   bossMaterialNeeded,
   bossMaterialRemaining,
   commonMaterialBlueNeeded,
@@ -41,56 +41,34 @@ const CharacterResults = ({
   commonMaterialGreenRemaining,
   commonMaterialWhiteNeeded,
   commonMaterialWhiteRemaining,
-  expBlueNeeded,
-  expBlueRemaining,
-  expGreenNeeded,
-  expGreenRemaining,
-  expPurpleNeeded,
-  expPurpleRemaining,
-  gemBlueNeeded,
-  gemBlueRemaining,
-  gemGreenNeeded,
-  gemGreenRemaining,
-  gemOrangeNeeded,
-  gemOrangeRemaining,
-  gemPurpleNeeded,
-  gemPurpleRemaining,
-  localSpecialtyNeeded,
-  localSpecialtyRemaining,
   moraNeeded,
   moraRemaining,
 }) => {
   return (
-    <div className="character-results">
+    <div className="talent-results">
       <MainSectionContainer>
         <SubSectionContainer>
-          <h2>Jewls</h2>
+          <h2>Talent Books</h2>
           <div className="heading">
             <h3>required</h3>
             <h3>remaining</h3>
           </div>
           <ResultRow
-            required={gemGreenNeeded}
-            remaining={gemGreenRemaining}
+            required={talentGreenNeeded}
+            remaining={talentGreenRemaining}
             rarity="green"
           />
           <ResultRow
-            required={gemBlueNeeded}
-            remaining={gemBlueRemaining}
+            required={talentBlueNeeded}
+            remaining={talentBlueRemaining}
             rarity="blue"
           />
           <ResultRow
-            required={gemPurpleNeeded}
-            remaining={gemPurpleRemaining}
+            required={talentPurpleNeeded}
+            remaining={talentPurpleRemaining}
             rarity="purple"
           />
-          <ResultRow
-            required={gemOrangeNeeded}
-            remaining={gemOrangeRemaining}
-            rarity="orange"
-          />
         </SubSectionContainer>
-
         <SubSectionContainer>
           <h2>Common Materials</h2>
           <div className="heading">
@@ -113,30 +91,6 @@ const CharacterResults = ({
             rarity="blue"
           />
         </SubSectionContainer>
-
-        <SubSectionContainer>
-          <h2>EXP</h2>
-          <div className="heading">
-            <h3>required</h3>
-            <h3>remaining</h3>
-          </div>
-          <ResultRow
-            required={expGreenNeeded}
-            remaining={expGreenRemaining}
-            rarity="green"
-          />
-          <ResultRow
-            required={expBlueNeeded}
-            remaining={expBlueRemaining}
-            rarity="blue"
-          />
-          <ResultRow
-            required={expPurpleNeeded}
-            remaining={expPurpleRemaining}
-            rarity="purple"
-          />
-        </SubSectionContainer>
-
         <SubSectionContainer>
           <h2>Boss Materials</h2>
           <div className="heading">
@@ -146,23 +100,21 @@ const CharacterResults = ({
           <ResultRow
             required={bossMaterialNeeded}
             remaining={bossMaterialRemaining}
-            rarity="purple"
+            rarity="orange"
           />
         </SubSectionContainer>
-
         <SubSectionContainer>
-          <h2>Local Specialties</h2>
+          <h2>Crowns</h2>
           <div className="heading">
             <h3>required</h3>
             <h3>remaining</h3>
           </div>
           <ResultRow
-            required={localSpecialtyNeeded}
-            remaining={localSpecialtyRemaining}
-            rarity="white"
+            required={crownNeeded}
+            remaining={crownRemaining}
+            rarity="orange"
           />
         </SubSectionContainer>
-
         <SubSectionContainer>
           <h2>Mora</h2>
           <div className="heading">
@@ -180,31 +132,23 @@ const CharacterResults = ({
   );
 };
 const mapStateToProps = (state) => ({
-  moraNeeded: selectMoraNeeded(state),
-  moraRemaining: selectMoraRemaining(state),
-  bossMaterialNeeded: selectBossMaterialNeeded(state),
-  bossMaterialRemaining: selectBossMaterialRemaining(state),
-  localSpecialtyNeeded: selectLocalSpecialtyNeeded(state),
-  localSpecialtyRemaining: selectLocalSpecialtyRemaining(state),
-  gemGreenNeeded: selectGemGreenNeeded(state),
-  gemGreenRemaining: selectGemGreenRemaining(state),
-  gemBlueNeeded: selectGemBlueNeeded(state),
-  gemBlueRemaining: selectGemBlueRemaining(state),
-  gemPurpleNeeded: selectGemPurpleNeeded(state),
-  gemPurpleRemaining: selectGemPurpleRemaining(state),
-  gemOrangeNeeded: selectGemOrangeNeeded(state),
-  gemOrangeRemaining: selectGemOrangeRemaining(state),
-  expGreenNeeded: selectExpGreenNeeded(state),
-  expGreenRemaining: selectExpGreenRemaining(state),
-  expBlueNeeded: selectExpBlueNeeded(state),
-  expBlueRemaining: selectExpBlueRemaining(state),
-  expPurpleNeeded: selectExpPurpleNeeded(state),
-  expPurpleRemaining: selectExpPurpleRemaining(state),
+  talentGreenNeeded: selectGreenTalentNeeded(state),
+  talentGreenRemaining: selectGreenTalentRemaining(state),
+  talentBlueNeeded: selectBlueTalentNeeded(state),
+  talentBlueRemaining: selectBlueTalentRemaining(state),
+  talentPurpleNeeded: selectPurpleTalentNeeded(state),
+  talentPurpleRemaining: selectPurpleTalentRemaining(state),
   commonMaterialWhiteNeeded: selectCommonMaterialWhiteNeeded(state),
   commonMaterialWhiteRemaining: selectCommonMaterialWhiteRemaining(state),
   commonMaterialGreenNeeded: selectCommonMaterialGreenNeeded(state),
   commonMaterialGreenRemaining: selectCommonMaterialGreenRemaining(state),
   commonMaterialBlueNeeded: selectCommonMaterialBlueNeeded(state),
   commonMaterialBlueRemaining: selectCommonMaterialBlueRemaining(state),
+  bossMaterialNeeded: selectBossMaterialNeeded(state),
+  bossMaterialRemaining: selectBossMaterialRemaining(state),
+  moraNeeded: selectMoraNeeded(state),
+  moraRemaining: selectMoraRemaining(state),
+  crownNeeded: selectCrownNeeded(state),
+  crownRemaining: selectCrownRemaining(state),
 });
-export default connect(mapStateToProps)(CharacterResults);
+export default connect(mapStateToProps)(TalentResults);

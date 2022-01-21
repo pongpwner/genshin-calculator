@@ -49,69 +49,6 @@ const INITIAL_STATE = {
   desiredRadioButton: 0,
   sumCurrentAscension: 0,
   sumDesiredAscension: 6,
-
-  subsections: [
-    { label: "Mora Needed:", value: "moraNeeded", type: 1, id: 0 },
-    {
-      label: "Mystic Enhancement Ore Needed",
-      value: "blueOreNeeded",
-      type: 1,
-      id: 1,
-    },
-    {
-      mainHeader: "Domain Materials",
-      type: 2,
-      id: 2,
-      header1: "Materials Needed",
-      materialsNeeded: [
-        { label: "green:", value: "domainMaterialGreenNeeded" },
-        { label: "blue:", value: "domainMaterialBlueNeeded" },
-        { label: "purple:", value: "domainMaterialPurpleNeeded" },
-        { label: "orange:", value: "domainMaterialOrangeNeeded" },
-      ],
-      header2: "Materials left",
-      materialsLeft: [
-        { label: "green:", value: "domainMaterialGreenRemaining" },
-        { label: "blue:", value: "domainMaterialBlueRemaining" },
-        { label: "purple:", value: "domainMaterialPurpleRemaining" },
-        { label: "orange:", value: "domainMaterialOrangeRemaining" },
-      ],
-    },
-    {
-      mainHeader: "Weapon Materials",
-      type: 2,
-      id: 3,
-      header1: "Materials Needed",
-      materialsNeeded: [
-        { label: "green:", value: "eliteMaterialGreenNeeded" },
-        { label: "blue:", value: "eliteMaterialBlueNeeded" },
-        { label: "purple:", value: "eliteMaterialPurpleNeeded" },
-      ],
-      header2: "Materials left",
-      materialsLeft: [
-        { label: "green:", value: "eliteMaterialGreenRemaining" },
-        { label: "blue:", value: "eliteMaterialBlueRemaining" },
-        { label: "purple:", value: "eliteMaterialPurpleRemaining" },
-      ],
-    },
-    {
-      mainHeader: "Common Materials",
-      type: 2,
-      id: 4,
-      header1: "Materials Needed",
-      materialsNeeded: [
-        { label: "white:", value: "commonMaterialWhiteNeeded" },
-        { label: "green:", value: "commonMaterialGreenNeeded" },
-        { label: "blue:", value: "commonMaterialBlueNeeded" },
-      ],
-      header2: "Materials left",
-      materialsLeft: [
-        { label: "white:", value: "commonMaterialWhiteRemaining" },
-        { label: "green:", value: "commonMaterialGreenRemaining" },
-        { label: "blue:", value: "commonMaterialBlueRemaining" },
-      ],
-    },
-  ],
 };
 
 const weaponReducer = (state = INITIAL_STATE, action) => {

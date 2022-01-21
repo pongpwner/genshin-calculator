@@ -1,6 +1,9 @@
 import { TalentActionTypes } from "./talent.types";
 import TALENT_DATA from "../../pages/talent/talent.data";
 const INITIAL_STATE = {
+  crownRemaining: 0,
+  moraRemaining: 0,
+  bossMaterialRemaining: 0,
   currentAttackLv: 1,
   currentSkillLv: 1,
   currentBurstLv: 1,
@@ -45,56 +48,6 @@ const INITIAL_STATE = {
   ],
 
   talentCost: TALENT_DATA.level,
-  subsections: [
-    { label: "Mora Needed:", value: "moraNeeded", type: 1, id: 0 },
-    {
-      label: "Crown Needed:",
-      value: "crownNeeded",
-      type: 1,
-      id: 1,
-    },
-    {
-      label: "Boss Material Needed:",
-      value: "bossMaterialNeeded",
-      type: 1,
-      id: 1,
-    },
-
-    {
-      mainHeader: "Talent Materials",
-      type: 2,
-      id: 3,
-      header1: "Materials Needed",
-      materialsNeeded: [
-        { label: "green:", value: "greenTalentNeeded" },
-        { label: "blue:", value: "blueTalentNeeded" },
-        { label: "purple:", value: "purpleTalentNeeded" },
-      ],
-      header2: "Materials left",
-      materialsLeft: [
-        { label: "green:", value: "greenTalentRemaining" },
-        { label: "blue:", value: "blueTalentRemaining" },
-        { label: "purple:", value: "purpleTalentRemaining" },
-      ],
-    },
-    {
-      mainHeader: "Common Materials",
-      type: 2,
-      id: 4,
-      header1: "Materials Needed",
-      materialsNeeded: [
-        { label: "white:", value: "commonMaterialWhiteNeeded" },
-        { label: "green:", value: "commonMaterialGreenNeeded" },
-        { label: "blue:", value: "commonMaterialBlueNeeded" },
-      ],
-      header2: "Materials left",
-      materialsLeft: [
-        { label: "white:", value: "commonMaterialWhiteRemaining" },
-        { label: "green:", value: "commonMaterialGreenRemaining" },
-        { label: "blue:", value: "commonMaterialBlueRemaining" },
-      ],
-    },
-  ],
 };
 
 const talentReducer = (state = INITIAL_STATE, action) => {
@@ -280,6 +233,9 @@ const talentReducer = (state = INITIAL_STATE, action) => {
       rCWhite = oCWhite % 3;
       rCGreen = pCGreen % 3;
       rCBlue = pCBlue;
+      let rCrown = crown - nCrown;
+      let rMora = mora - nMora;
+      let rBossMaterial = bossMaterial - nBoss;
       // final mora
       nMora = nMora - mora;
       nBoss = nBoss - bossMaterial;
@@ -287,6 +243,9 @@ const talentReducer = (state = INITIAL_STATE, action) => {
 
       return {
         ...state,
+        crownRemaining: rCrown,
+        moraRemaining: rMora,
+        bossMaterialRemaining: rBossMaterial,
         purpleTalentNeeded: mPurple,
         blueTalentNeeded: mBlue,
         greenTalentNeeded: mGreen,

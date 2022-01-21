@@ -84,11 +84,7 @@ export const selectMora = createSelector(
   [selectWeapon],
   (weapon) => weapon.mora
 );
-export const selectSubsections = createSelector(
-  [selectWeapon],
-  (weapon) => weapon.subsections
-);
-//
+
 export const selectMoraNeeded = createSelector(
   [selectWeapon],
   (weapon) => weapon.moraNeeded
