@@ -2,6 +2,7 @@ import "./character.styles.scss";
 import { connect } from "react-redux";
 import CharacterInput from "../../components/character-input/character-input.component";
 import MainSection from "../../components/main-section/main-section.component";
+import CharacterResults from "../../components/character-results/character-results.component";
 import {
   selectCharacter,
   selectSubsections,
@@ -12,7 +13,8 @@ const Character = ({ subsections, state }) => (
     <h1 className="title">Character Calculator</h1>
     <div className="content">
       <CharacterInput />
-      <MainSection subsections={subsections} state={state} />
+
+      <CharacterResults />
     </div>
   </div>
 );

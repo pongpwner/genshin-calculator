@@ -13,25 +13,20 @@
 
     border: none;
     color: $text;
+    &.white {
+      background-color: $white;
+    }
+    &.green {
+      background-color: $green;
+    }
+    &.blue {
+      background-color: $blue;
+    }
+    &.purple {
+      background-color: $purple;
+    }
+    &.orange {
+      background-color: $orange;
+    }
   }
-}
-.white {
-  background-color: #89898b;
-  justify-content: center;
-}
-.green {
-  background-color: #548a72;
-  justify-content: center;
-}
-.blue {
-  justify-content: center;
-  background-color: #4c7fa1;
-}
-.purple {
-  background-color: #a07db6;
-  justify-content: center;
-}
-.orange {
-  background-color: #c88635;
-  justify-content: center;
 }

@@ -89,3 +89,111 @@ export const selectSubsections = createSelector(
   [selectCharacter],
   (character) => character.subsections
 );
+//////////
+export const selectMoraNeeded = createSelector(
+  [selectCharacter],
+  (character) => character.moraNeeded
+);
+export const selectBossMaterialNeeded = createSelector(
+  [selectCharacter],
+  (character) => character.bossMaterialNeeded
+);
+export const selectLocalSpecialtyNeeded = createSelector(
+  [selectCharacter],
+  (character) => character.localSpecialtyNeeded
+);
+export const selectGemGreenNeeded = createSelector(
+  [selectCharacter],
+  (character) => character.gemGreenNeeded
+);
+export const selectGemBlueNeeded = createSelector(
+  [selectCharacter],
+  (character) => character.gemBlueNeeded
+);
+export const selectGemPurpleNeeded = createSelector(
+  [selectCharacter],
+  (character) => character.gemPurpleNeeded
+);
+export const selectGemOrangeNeeded = createSelector(
+  [selectCharacter],
+  (character) => character.gemOrangeNeeded
+);
+export const selectExpGreenNeeded = createSelector(
+  [selectCharacter],
+  (character) => character.expGreenNeeded
+);
+export const selectExpBlueNeeded = createSelector(
+  [selectCharacter],
+  (character) => character.expBlueNeeded
+);
+export const selectExpPurpleNeeded = createSelector(
+  [selectCharacter],
+  (character) => character.expPurpleNeeded
+);
+export const selectCommonMaterialWhiteNeeded = createSelector(
+  [selectCharacter],
+  (character) => character.commonMaterialWhiteNeeded
+);
+export const selectCommonMaterialGreenNeeded = createSelector(
+  [selectCharacter],
+  (character) => character.commonMaterialGreenNeeded
+);
+
+export const selectCommonMaterialBlueNeeded = createSelector(
+  [selectCharacter],
+  (character) => character.commonMaterialBlueNeeded
+);
+////remaining
+export const selectMoraRemaining = createSelector(
+  [selectCharacter],
+  (character) => character.moraRemaining
+);
+export const selectBossMaterialRemaining = createSelector(
+  [selectCharacter],
+  (character) => character.bossMaterialRemaining
+);
+export const selectLocalSpecialtyRemaining = createSelector(
+  [selectCharacter],
+  (character) => character.localSpecialtyRemaining
+);
+export const selectGemGreenRemaining = createSelector(
+  [selectCharacter],
+  (character) => character.gemGreenRemaining
+);
+export const selectGemBlueRemaining = createSelector(
+  [selectCharacter],
+  (character) => character.gemBlueRemaining
+);
+export const selectGemPurpleRemaining = createSelector(
+  [selectCharacter],
+  (character) => character.gemPurpleRemaining
+);
+export const selectGemOrangeRemaining = createSelector(
+  [selectCharacter],
+  (character) => character.gemOrangeRemaining
+);
+export const selectExpGreenRemaining = createSelector(
+  [selectCharacter],
+  (character) => character.expGreenRemaining
+);
+export const selectExpBlueRemaining = createSelector(
+  [selectCharacter],
+  (character) => character.expBlueRemaining
+);
+export const selectExpPurpleRemaining = createSelector(
+  [selectCharacter],
+  (character) => character.expPurpleRemaining
+);
+export const selectCommonMaterialWhiteRemaining = createSelector(
+  [selectCharacter],
+  (character) => character.commonMaterialWhiteRemaining
+);
+export const selectCommonMaterialGreenRemaining = createSelector(
+  [selectCharacter],
+  (character) => character.commonMaterialGreenRemaining
+);
+
+export const selectCommonMaterialBlueRemaining = createSelector(
+  [selectCharacter],
+  (character) => character.commonMaterialBlueRemaining
+);

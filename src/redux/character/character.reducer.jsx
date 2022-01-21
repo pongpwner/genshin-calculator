@@ -730,6 +730,7 @@ const characterReducer = (state = INITIAL_STATE, action) => {
       rCWhite = oCWhite % 3;
       rCGreen = pCGreen % 3;
       rCBlue = pCBlue;
+      rMora = moraC - nMora;
       // final mora
       nMora = nMora - moraC;
       nBoss = nBoss - bossMaterialC;
@@ -746,6 +747,7 @@ const characterReducer = (state = INITIAL_STATE, action) => {
         gemPurpleRemaining: rGemPurple,
         gemOrangeRemaining: rGemOrange,
         moraNeeded: nMora,
+        moraRemaining: rMora,
         bossMaterialNeeded: nBoss,
         localSpecialtyNeeded: nSpecialty,
         commonMaterialWhiteNeeded: mCWhite,

@@ -1,0 +1,27 @@
+@import "../../colors.scss";
+.result-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  &.white {
+    background-color: $white;
+  }
+  &.green {
+    background-color: $green;
+  }
+  &.blue {
+    background-color: $blue;
+  }
+  &.purple {
+    background-color: $purple;
+  }
+  &.orange {
+    background-color: $orange;
+  }
+  &.heading {
+  }
+  .result {
+    width: 50%;
+    text-align: center;
+  }
+}
