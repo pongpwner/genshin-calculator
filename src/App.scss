@@ -3,6 +3,9 @@
 }
 body {
   padding: 0;
+  background-color: black;
+  color: white;
+  font-size: 1.5rem;
 }
 .App {
   width: 100%;
@@ -13,7 +16,11 @@ body {
 h1 {
   text-align: center;
 }
-
+h1,
+h2,
+h3 {
+  color: white;
+}
 .mobile {
   display: none;
   @media (max-width: 800px) {

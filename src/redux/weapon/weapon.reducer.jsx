@@ -37,9 +37,11 @@ const INITIAL_STATE = {
   commonMaterialGreenRemaining: 0,
   commonMaterialBlueRemaining: 0,
   moraNeeded: 0,
+  moraRemaining: 0,
   currentAscension: 0,
   desiredAscension: 6,
   blueOre: "",
+  blueOreRemaining: "",
   greenOre: "",
   whiteOre: "",
   blueOreNeeded: 0,
@@ -690,6 +692,7 @@ const weaponReducer = (state = INITIAL_STATE, action) => {
       ///////////////////////////////////////////////////////////////CALCULATE MORA
 
       let totalMora = 0;
+      let rMora = mora;
       for (
         let i = Number(currentLevel) + 1;
         i < Number(desiredLevel) + 1;
@@ -705,10 +708,13 @@ const weaponReducer = (state = INITIAL_STATE, action) => {
         totalMora += WEAPON[rarity].ascension[i].mora;
       }
       if (totalMora - mora <= 0) {
+        rMora = mora - totalMora;
         totalMora = 0;
       } else {
+        rMora = mora - totalMora;
         totalMora = totalMora - mora;
       }
+
       //////////////////////////////////////////// calculate xp
 
       let totalXP =
@@ -718,6 +724,11 @@ const weaponReducer = (state = INITIAL_STATE, action) => {
       let totalXPNeeded = 0;
       let xpNeeded = 0;
       let blueOreNeeded = 0;
+      let blueOreRemaining;
+      let totalBlueOre = Math.floor(
+        totalXP / WEAPON_MATERIALS.enhancementOre.blue
+      );
+
       for (
         let i = Number(currentLevel) + 1;
         i < Number(desiredLevel) + 1;
@@ -733,6 +744,11 @@ const weaponReducer = (state = INITIAL_STATE, action) => {
       blueOreNeeded = Math.ceil(
         xpNeeded / WEAPON_MATERIALS.enhancementOre.blue
       );
+      console.log(totalBlueOre);
+      console.log(blueOreNeeded);
+      blueOreRemaining =
+        totalBlueOre -
+        Math.ceil(totalXPNeeded / WEAPON_MATERIALS.enhancementOre.blue);
 
       return {
         ...state,
@@ -757,7 +773,9 @@ const weaponReducer = (state = INITIAL_STATE, action) => {
         commonMaterialBlueRemaining: rCBlue,
         commonMaterialGreenRemaining: rCGreen,
         moraNeeded: totalMora,
+        moraRemaining: rMora,
         blueOreNeeded: blueOreNeeded,
+        blueOreRemaining: blueOreRemaining,
       };
     default:
       return { ...state };

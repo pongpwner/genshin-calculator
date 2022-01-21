@@ -2,7 +2,7 @@ import "./App.scss";
 import Weapon from "./pages/weapon/weapon.component";
 import Header from "./components/header/header.component";
 import Talent from "./pages/talent/talent.component";
-import Character from "./pages/character/character.component";
+import Character from "./pages/character/character.component.jsx";
 import HomePage from "./pages/home-page/home-page.component";
 import CVBasePower from "./pages/cv-base-power/cv-base-power.component";
 import { Switch, Route } from "react-router-dom";

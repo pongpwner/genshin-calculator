@@ -1,17 +1,3 @@
-body {
-  font-size: 1.4em;
-
-  background-color: #111111;
-  color: white;
-}
-h2,
-h3 {
-  margin: 1%;
-}
-
-h3 {
-  width: 100%;
-}
 .talent {
   display: flex;
   flex-direction: column;
@@ -25,7 +11,7 @@ h3 {
       flex-direction: column;
     }
   }
-}
-.title {
-  align-self: center;
+  .title {
+    align-self: center;
+  }
 }
