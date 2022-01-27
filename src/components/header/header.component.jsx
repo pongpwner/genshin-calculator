@@ -52,7 +52,7 @@ const Header = () => {
           <Link to="/talent">Talent</Link>
         </li>
         <li>
-          <Link to="/cv-base-power">Crit Value and Power Level</Link>
+          <Link to="/strength-comparison">Strength Comparison</Link>
         </li>
       </ul>
     </header>

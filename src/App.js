@@ -4,7 +4,7 @@ import Header from "./components/header/header.component";
 import Talent from "./pages/talent/talent.component";
 import Character from "./pages/character/character.component.jsx";
 import HomePage from "./pages/home-page/home-page.component";
-import CVBasePower from "./pages/cv-base-power/cv-base-power.component";
+import StrengthComparison from "./pages/strength-comparison/strength-comparison.component";
 import { Switch, Route } from "react-router-dom";
 
 function App() {
@@ -24,8 +24,8 @@ function App() {
         <Route path="/character" component={Character}>
           <Character />
         </Route>
-        <Route path="/cv-base-power" componet={CVBasePower}>
-          <CVBasePower />
+        <Route path="/strength-comparison" componet={StrengthComparison}>
+          <StrengthComparison />
         </Route>
       </Switch>
     </div>
