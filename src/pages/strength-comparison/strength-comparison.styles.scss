@@ -19,14 +19,15 @@
   .content {
     display: flex;
     gap: 2rem;
-    @media (max-width: 600px) {
+    @media (max-width: 1200px) {
       flex-direction: column;
     }
   }
   .results {
+    margin-top: 1rem;
     display: flex;
-    flex-direction: column;
+    //flex-direction: column;
+    gap: 0.5rem;
     justify-content: flex-start;
-    min-width: 10ch;
   }
 }

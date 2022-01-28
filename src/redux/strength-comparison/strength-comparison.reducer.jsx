@@ -31,10 +31,10 @@ const strengthComparisonReducer = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         bp1: (atk1 * (1 + (cr1 / 100) * (cd1 / 100)) * (1 + pd1 / 100)).toFixed(
-          5
+          1
         ),
         bp2: (atk2 * (1 + (cr2 / 100) * (cd2 / 100)) * (1 + pd2 / 100)).toFixed(
-          5
+          1
         ),
       };
     case StrengthComparisonActionTypes.CALCULATE_CRIT_VALUE:

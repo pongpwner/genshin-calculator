@@ -56,10 +56,9 @@ const StrengthComparison = ({
   }, [artifactCD, artifactCR, artifactCD2, artifactCR2, calculateCritValue]);
   return (
     <div className="strength-comparison">
-      <h1>strength comparison calculator </h1>
+      <h1>Strength Comparison Calculator </h1>
       <div className="content">
-        <MainSectionContainer>
-          <h2> Artifact Crit Value</h2>
+        <MainSectionContainer row title="Artifact Crit Value" mobileCol>
           <SubSectionContainer>
             <h3>crit value 1</h3>
             <div className="section">
@@ -81,7 +80,7 @@ const StrengthComparison = ({
                 />
               </div>
               <div className="results">
-                crit value 1:<span className="result">{critValue}</span>
+                crit value:<span className="result">{critValue}</span>
               </div>
             </div>
           </SubSectionContainer>
@@ -106,14 +105,13 @@ const StrengthComparison = ({
                 />
               </div>
               <div className="results">
-                crit value 2:<span className="result">{critValue2}</span>
+                crit value:<span className="result">{critValue2}</span>
               </div>
             </div>
           </SubSectionContainer>
         </MainSectionContainer>
 
-        <MainSectionContainer>
-          <h2>Character Power Level</h2>
+        <MainSectionContainer row title="Character Power Level" mobileCol>
           <SubSectionContainer>
             <h3> power level 1 </h3>
             <div className="section">
@@ -150,7 +148,7 @@ const StrengthComparison = ({
                 />
               </div>
               <div className="results">
-                power level 1:<span className="result">{bp1}</span>
+                power level:<span className="result">{bp1}</span>
               </div>
             </div>
           </SubSectionContainer>
@@ -192,7 +190,7 @@ const StrengthComparison = ({
                 />
               </div>
               <div className="results">
-                powerlevel 2:<span className="result">{bp2}</span>
+                power level:<span className="result">{bp2}</span>
               </div>
             </div>
           </SubSectionContainer>
