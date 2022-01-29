@@ -53,7 +53,10 @@ const INITIAL_STATE = {
 const talentReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case TalentActionTypes.HANDLE_CHANGE:
-      return { ...state, [action.payload.name]: Number(action.payload.value) };
+      return {
+        ...state,
+        [action.payload.target.name]: Number(action.payload.target.value),
+      };
     case TalentActionTypes.HANDLE_SUBMIT:
       const {
         currentAttackLv,

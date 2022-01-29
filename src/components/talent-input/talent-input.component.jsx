@@ -88,21 +88,21 @@ const TalentInput = ({
               label=" normal attack"
               name="currentAttackLv"
               value={currentAttackLv}
-              handleChange={(e) => handleChange(e.target)}
+              handleChange={(e) => handleChange(e)}
             />
             <FormDropdown
               options={talentLv}
               label="elemental skill"
               name="currentSkillLv"
               value={currentSkillLv}
-              handleChange={(e) => handleChange(e.target)}
+              handleChange={(e) => handleChange(e)}
             />
             <FormDropdown
               options={talentLv}
               label="elemental burst"
               name="currentBurstLv"
               value={currentBurstLv}
-              handleChange={(e) => handleChange(e.target)}
+              handleChange={(e) => handleChange(e)}
             />
           </div>
         </SubSectionContainer>
@@ -115,21 +115,21 @@ const TalentInput = ({
               label="normal attack"
               name="attackLv"
               value={attackLv}
-              handleChange={(e) => handleChange(e.target)}
+              handleChange={(e) => handleChange(e)}
             />
             <FormDropdown
               options={talentLv}
               label="elemental skill"
               name="skillLv"
               value={skillLv}
-              handleChange={(e) => handleChange(e.target)}
+              handleChange={(e) => handleChange(e)}
             />
             <FormDropdown
               options={talentLv}
               label="elemental burst"
               name="burstLv"
               value={burstLv}
-              handleChange={(e) => handleChange(e.target)}
+              handleChange={(e) => handleChange(e)}
             />
           </div>
         </SubSectionContainer>
@@ -148,21 +148,21 @@ const TalentInput = ({
               name="greenTalent"
               type="number"
               value={greenTalent}
-              handleChange={(e) => handleChange(e.target)}
+              handleChange={(e) => handleChange(e)}
             />
             <FormInput
               label="blue"
               name="blueTalent"
               type="number"
               value={blueTalent}
-              handleChange={(e) => handleChange(e.target)}
+              handleChange={(e) => handleChange(e)}
             />
             <FormInput
               label="purple"
               name="purpleTalent"
               type="number"
               value={purpleTalent}
-              handleChange={(e) => handleChange(e.target)}
+              handleChange={(e) => handleChange(e)}
             />
           </div>
         </SubSectionContainer>
@@ -181,21 +181,21 @@ const TalentInput = ({
               name="commonMaterialWhite"
               type="number"
               value={commonMaterialWhite}
-              handleChange={(e) => handleChange(e.target)}
+              handleChange={(e) => handleChange(e)}
             />
             <FormInput
               label="green"
               name="commonMaterialGreen"
               type="number"
               value={commonMaterialGreen}
-              handleChange={(e) => handleChange(e.target)}
+              handleChange={(e) => handleChange(e)}
             />
             <FormInput
               label="blue"
               name="commonMaterialBlue"
               type="number"
               value={commonMaterialBlue}
-              handleChange={(e) => handleChange(e.target)}
+              handleChange={(e) => handleChange(e)}
             />
           </div>
         </SubSectionContainer>
@@ -214,7 +214,7 @@ const TalentInput = ({
               name="bossMaterial"
               type="number"
               value={bossMaterial}
-              handleChange={(e) => handleChange(e.target)}
+              handleChange={(e) => handleChange(e)}
             />
           </div>
         </SubSectionContainer>
@@ -233,7 +233,7 @@ const TalentInput = ({
               name="crown"
               type="number"
               value={crown}
-              handleChange={(e) => handleChange(e.target)}
+              handleChange={(e) => handleChange(e)}
             />
           </div>
         </SubSectionContainer>
@@ -253,7 +253,7 @@ const TalentInput = ({
               name="mora"
               type="number"
               value={mora}
-              handleChange={(e) => handleChange(e.target)}
+              handleChange={(e) => handleChange(e)}
             />
           </div>
         </SubSectionContainer>

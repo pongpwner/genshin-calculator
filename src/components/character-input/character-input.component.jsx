@@ -6,8 +6,11 @@ import CustomRadioGroup from "../custom-radio-group/custom-radio-group.component
 import MainSectionContainer from "../main-section-container/main-section-container.component";
 import SubSectionContainer from "../sub-section-container/sub-section-container.component";
 import { connect } from "react-redux";
+
 import {
   selectBossMaterial,
+  selectCharacterPortraits,
+  selectCharacters,
   selectCommonMaterialBlue,
   selectCommonMaterialGreen,
   selectCommonMaterialWhite,
@@ -23,6 +26,7 @@ import {
   selectHeroWitBlue,
   selectHeroWitGreen,
   selectHeroWitPurple,
+  selectIsFetching,
   selectLocalSpecialty,
   selectMora,
   selectRadioButtonOptions,
@@ -33,6 +37,8 @@ import {
   handleCurrentLevel,
   handleDesiredLevel,
   handleSubmit,
+  fetchCharactersStartAsync,
+  fetchCharacterPortraitsStartAsync,
 } from "../../redux/character/character.actions";
 
 const CharacterInput = ({
@@ -60,6 +66,11 @@ const CharacterInput = ({
   handleCurrentLevel,
   handleDesiredLevel,
   handleSubmit,
+  fetchCharactersStartAsync,
+  fetchCharacterPortraitsStartAsync,
+  characterPortraits,
+  characters,
+  isFetching,
 }) => {
   useEffect(handleSubmit, [
     gemGreen,
@@ -81,8 +92,29 @@ const CharacterInput = ({
     desiredRadioButton,
     handleSubmit,
   ]);
+
+  useEffect(() => {
+    fetchCharactersStartAsync();
+  }, [fetchCharactersStartAsync]);
+  useEffect(() => {
+    if (characters) {
+      fetchCharacterPortraitsStartAsync();
+    }
+  }, [characters, fetchCharacterPortraitsStartAsync]);
+  useEffect(() => {
+    console.log(characterPortraits);
+    console.log(characterPortraits.length);
+  }, [characterPortraits]);
   return (
     <div className="character-input">
+      {!isFetching ? (
+        <>
+          {characterPortraits.map((cp) => (
+            <img src={cp} alt="character portrait" />
+          ))}
+        </>
+      ) : null}
+
       <MainSectionContainer>
         <SubSectionContainer>
           <FormDropdown
@@ -135,28 +167,28 @@ const CharacterInput = ({
               name="gemGreen"
               type="number"
               value={gemGreen}
-              handleChange={(e) => handleChange(e.target)}
+              handleChange={(e) => handleChange(e)}
             ></FormInput>
             <FormInput
               label="blue"
               name="gemBlue"
               type="number"
               value={gemBlue}
-              handleChange={(e) => handleChange(e.target)}
+              handleChange={(e) => handleChange(e)}
             ></FormInput>
             <FormInput
               label="purple"
               name="gemPurple"
               type="number"
               value={gemPurple}
-              handleChange={(e) => handleChange(e.target)}
+              handleChange={(e) => handleChange(e)}
             ></FormInput>
             <FormInput
               label="orange"
               name="gemOrange"
               type="number"
               value={gemOrange}
-              handleChange={(e) => handleChange(e.target)}
+              handleChange={(e) => handleChange(e)}
             ></FormInput>
           </div>
         </SubSectionContainer>
@@ -176,21 +208,21 @@ const CharacterInput = ({
               name="commonMaterialWhiteC"
               type="number"
               value={commonMaterialWhite}
-              handleChange={(e) => handleChange(e.target)}
+              handleChange={(e) => handleChange(e)}
             ></FormInput>
             <FormInput
               label="green"
               name="commonMaterialGreenC"
               type="number"
               value={commonMaterialGreen}
-              handleChange={(e) => handleChange(e.target)}
+              handleChange={(e) => handleChange(e)}
             ></FormInput>
             <FormInput
               label="blue"
               name="commonMaterialBlueC"
               type="number"
               value={commonMaterialBlue}
-              handleChange={(e) => handleChange(e.target)}
+              handleChange={(e) => handleChange(e)}
             ></FormInput>
           </div>
         </SubSectionContainer>
@@ -210,21 +242,21 @@ const CharacterInput = ({
               name="heroWitGreen"
               type="number"
               value={heroWitGreen}
-              handleChange={(e) => handleChange(e.target)}
+              handleChange={(e) => handleChange(e)}
             ></FormInput>
             <FormInput
               label="blue"
               name="heroWitBlue"
               type="number"
               value={heroWitBlue}
-              handleChange={(e) => handleChange(e.target)}
+              handleChange={(e) => handleChange(e)}
             ></FormInput>
             <FormInput
               label="purple"
               name="heroWitPurple"
               type="number"
               value={heroWitPurple}
-              handleChange={(e) => handleChange(e.target)}
+              handleChange={(e) => handleChange(e)}
             ></FormInput>
           </div>
         </SubSectionContainer>
@@ -244,7 +276,7 @@ const CharacterInput = ({
               name="bossMaterialC"
               type="number"
               value={bossMaterial}
-              handleChange={(e) => handleChange(e.target)}
+              handleChange={(e) => handleChange(e)}
             ></FormInput>
           </div>
         </SubSectionContainer>
@@ -264,7 +296,7 @@ const CharacterInput = ({
               name="localSpecialtyC"
               type="number"
               value={localSpecialty}
-              handleChange={(e) => handleChange(e.target)}
+              handleChange={(e) => handleChange(e)}
             ></FormInput>
           </div>
         </SubSectionContainer>
@@ -284,7 +316,7 @@ const CharacterInput = ({
               name="moraC"
               type="number"
               value={mora}
-              handleChange={(e) => handleChange(e.target)}
+              handleChange={(e) => handleChange(e)}
             ></FormInput>
           </div>
         </SubSectionContainer>
@@ -299,7 +331,6 @@ const mapStateToProps = (state) => ({
   currentRadioButton: selectCurrentRadioButton(state),
   desiredRadioButton: selectDesiredRadioButton(state),
   radioButtonOptions: selectRadioButtonOptions(state),
-
   gemGreen: selectGemGreen(state),
   gemBlue: selectGemBlue(state),
   gemPurple: selectGemPurple(state),
@@ -313,6 +344,9 @@ const mapStateToProps = (state) => ({
   heroWitGreen: selectHeroWitGreen(state),
   heroWitBlue: selectHeroWitBlue(state),
   heroWitPurple: selectHeroWitPurple(state),
+  characterPortraits: selectCharacterPortraits(state),
+  characters: selectCharacters(state),
+  isFetching: selectIsFetching(state),
 });
 const mapDispatchToProps = (dispatch) => ({
   handleChange: (change) => dispatch(handleChange(change)),
@@ -320,5 +354,8 @@ const mapDispatchToProps = (dispatch) => ({
   handleCurrentLevel: (e) => dispatch(handleCurrentLevel(e)),
   handleDesiredLevel: (e) => dispatch(handleDesiredLevel(e)),
   handleSubmit: (e) => dispatch(handleSubmit(e)),
+  fetchCharactersStartAsync: () => dispatch(fetchCharactersStartAsync()),
+  fetchCharacterPortraitsStartAsync: () =>
+    dispatch(fetchCharacterPortraitsStartAsync()),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(CharacterInput);

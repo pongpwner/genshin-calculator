@@ -96,7 +96,7 @@ const WeaponInput = ({
             label="Weapon Rarity"
             options={WEAPON.rarity}
             value={rarity}
-            handleChange={(e) => handleChange(e.target)}
+            handleChange={(e) => handleChange(e)}
           />
         </SubSectionContainer>
 
@@ -151,21 +151,21 @@ const WeaponInput = ({
               name="domainMaterialGreen"
               type="number"
               value={domainMaterialGreen}
-              onChange={(e) => handleChange(e.target)}
+              onChange={(e) => handleChange(e)}
             ></FormInput>
             <FormInput
               label="blue"
               name="domainMaterialBlue"
               type="number"
               value={domainMaterialBlue}
-              onChange={(e) => handleChange(e.target)}
+              onChange={(e) => handleChange(e)}
             ></FormInput>
             <FormInput
               label="purple"
               name="domainMaterialPurple"
               type="number"
               value={domainMaterialPurple}
-              onChange={(e) => handleChange(e.target)}
+              onChange={(e) => handleChange(e)}
             ></FormInput>
 
             <FormInput
@@ -173,7 +173,7 @@ const WeaponInput = ({
               name="domainMaterialOrange"
               type="number"
               value={domainMaterialOrange}
-              onChange={(e) => handleChange(e.target)}
+              onChange={(e) => handleChange(e)}
             ></FormInput>
           </div>
         </SubSectionContainer>
@@ -192,21 +192,21 @@ const WeaponInput = ({
               name="eliteMaterialGreen"
               type="number"
               value={eliteMaterialGreen}
-              onChange={(e) => handleChange(e.target)}
+              onChange={(e) => handleChange(e)}
             ></FormInput>
             <FormInput
               label="blue"
               name="eliteMaterialBlue"
               type="number"
               value={eliteMaterialBlue}
-              onChange={(e) => handleChange(e.target)}
+              onChange={(e) => handleChange(e)}
             ></FormInput>
             <FormInput
               label="purple"
               name="eliteMaterialPurple"
               type="number"
               value={eliteMaterialPurple}
-              onChange={(e) => handleChange(e.target)}
+              onChange={(e) => handleChange(e)}
             ></FormInput>
           </div>
         </SubSectionContainer>
@@ -225,21 +225,21 @@ const WeaponInput = ({
               name="commonMaterialWhite"
               type="number"
               value={commonMaterialWhite}
-              onChange={(e) => handleChange(e.target)}
+              onChange={(e) => handleChange(e)}
             ></FormInput>
             <FormInput
               label="green"
               name="commonMaterialGreen"
               type="number"
               value={commonMaterialGreen}
-              onChange={(e) => handleChange(e.target)}
+              onChange={(e) => handleChange(e)}
             ></FormInput>
             <FormInput
               label="blue"
               name="commonMaterialBlue"
               type="number"
               value={commonMaterialBlue}
-              onChange={(e) => handleChange(e.target)}
+              onChange={(e) => handleChange(e)}
             ></FormInput>
           </div>
         </SubSectionContainer>
@@ -259,21 +259,21 @@ const WeaponInput = ({
               name="whiteOre"
               type="number"
               value={whiteOre}
-              onChange={(e) => handleChange(e.target)}
+              onChange={(e) => handleChange(e)}
             ></FormInput>
             <FormInput
               label="green"
               name="greenOre"
               type="number"
               value={greenOre}
-              onChange={(e) => handleChange(e.target)}
+              onChange={(e) => handleChange(e)}
             ></FormInput>
             <FormInput
               label="blue"
               name="blueOre"
               type="number"
               value={blueOre}
-              onChange={(e) => handleChange(e.target)}
+              onChange={(e) => handleChange(e)}
             ></FormInput>
           </div>
         </SubSectionContainer>
@@ -293,7 +293,7 @@ const WeaponInput = ({
               name="mora"
               type="number"
               value={mora}
-              onChange={(e) => handleChange(e.target)}
+              onChange={(e) => handleChange(e)}
             ></FormInput>
           </div>
         </SubSectionContainer>

@@ -193,3 +193,15 @@ export const selectCommonMaterialBlueRemaining = createSelector(
   [selectCharacter],
   (character) => character.commonMaterialBlueRemaining
 );
+export const selectCharacters = createSelector(
+  [selectCharacter],
+  (character) => character.characters
+);
+export const selectCharacterPortraits = createSelector(
+  [selectCharacter],
+  (character) => character.characterPortraits
+);
+export const selectIsFetching = createSelector(
+  [selectCharacter],
+  (character) => character.isFetching
+);

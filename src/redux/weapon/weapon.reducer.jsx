@@ -54,7 +54,10 @@ const INITIAL_STATE = {
 const weaponReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case WeaponActionTypes.HANDLE_CHANGE:
-      return { ...state, [action.payload.name]: action.payload.value };
+      return {
+        ...state,
+        [action.payload.target.name]: action.payload.target.value,
+      };
     case WeaponActionTypes.HANDLE_RADIO_BUTTON:
       const { name, value } = action.payload.target;
 
@@ -681,8 +684,7 @@ const weaponReducer = (state = INITIAL_STATE, action) => {
       blueOreNeeded = Math.ceil(
         xpNeeded / WEAPON_MATERIALS.enhancementOre.blue
       );
-      console.log(totalBlueOre);
-      console.log(blueOreNeeded);
+
       blueOreRemaining =
         totalBlueOre -
         Math.ceil(totalXPNeeded / WEAPON_MATERIALS.enhancementOre.blue);

@@ -1,6 +1,10 @@
 import { CharacterActionTypes } from "./character.types";
 import CHARACTER_DATA from "../../pages/character/character.data";
 const INITIAL_STATE = {
+  characters: null,
+  isFetching: false,
+  errorMessage: undefined,
+  characterPortraits: [],
   moraC: "",
   moraNeeded: 0,
   gemGreen: "",
@@ -84,18 +88,16 @@ const INITIAL_STATE = {
 //state is from the store
 const characterReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-    case CharacterActionTypes.HANDLE_CHANGE:
-      if (
-        action.payload.name === "currentLevel" ||
-        action.payload.name === "desiredLevel"
-      ) {
+    case CharacterActionTypes.HANDLE_CHANGE: {
+      const { name, value } = action.payload.target;
+      if (name === "currentLevel" || name === "desiredLevel") {
         return {
           ...state,
-          [action.payload.name]: Number(action.payload.value),
+          [name]: Number(value),
         };
       }
-      return { ...state, [action.payload.name]: Number(action.payload.value) };
-
+      return { ...state, [name]: Number(value) };
+    }
     case CharacterActionTypes.HANDLE_RADIO_BUTTON:
       const { name, value } = action.payload.target;
 
@@ -693,6 +695,25 @@ const characterReducer = (state = INITIAL_STATE, action) => {
         expPurpleRemaining: rExpPurple,
       };
 
+    case CharacterActionTypes.FETCH_CHARACTERS_START:
+      return { ...state, isFetching: true };
+
+    case CharacterActionTypes.FETCH_CHARACTERS_SUCCESS:
+      return { ...state, isFetching: false, characters: action.payload };
+    case CharacterActionTypes.FETCH_CHARACTERS_FAILURE:
+      return { ...state, isFetching: false, errorMessage: action.payload };
+
+    case CharacterActionTypes.FETCH_CHARACTER_PORTRAITS_START:
+      return { ...state, isFetching: true };
+
+    case CharacterActionTypes.FETCH_CHARACTER_PORTRAITS_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+        characterPortraits: action.payload,
+      };
+    case CharacterActionTypes.FETCH_CHARACTER_PORTRAITS_FAILURE:
+      return { ...state, isFetching: false, errorMessage: action.payload };
     default:
       return state;
   }
