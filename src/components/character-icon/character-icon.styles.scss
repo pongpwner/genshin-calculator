@@ -1,0 +1,10 @@
+.character-icon {
+  border: none;
+
+  &:hover {
+    cursor: pointer;
+  }
+  img {
+    width: 75px;
+  }
+}

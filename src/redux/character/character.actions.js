@@ -43,7 +43,7 @@ export const fetchCharactersStartAsync = () => {
     fetch("https://api.genshin.dev/characters")
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+        //console.log(data);
         dispatch(fetchCharactersSuccess(data));
       })
       .catch((error) => dispatch(error.message));
@@ -69,7 +69,9 @@ export const fetchCharacterPortraitsStartAsync = () => {
     dispatch(fetchCharacterPortraitsStart());
     let portraits = [];
     characters.map((character) => {
-      return fetch(`https://api.genshin.dev/characters/${character}/icon.png`)
+      return fetch(
+        `https://api.genshin.dev/characters/${character.characterName}/icon.png`
+      )
         .then((response) => response.blob())
         .then((imageBlob) => {
           // Then create a local URL for that image and print it
@@ -84,3 +86,40 @@ export const fetchCharacterPortraitsStartAsync = () => {
     dispatch(fetchCharacterPortraitsSuccess(portraits));
   };
 };
+export const combineData = () => ({
+  type: CharacterActionTypes.COMBINE_DATA,
+});
+export const fetchMaterialsStart = () => ({
+  type: CharacterActionTypes.FETCH_MATERIALS_START,
+});
+export const fetchMaterialsSuccess = (materials) => ({
+  type: CharacterActionTypes.FETCH_MATERIALS_SUCCESS,
+  payload: materials,
+});
+export const fetchMaterialsStartAsync = () => {
+  return async (dispatch) => {
+    dispatch(fetchMaterialsStart());
+    const fetch1 = await fetch(
+      `https://api.genshin.dev/materials/common-ascension`
+    );
+    const data1 = await fetch1.json();
+    const commonMaterials = Object.entries(data1);
+
+    const fetch2 = await fetch(
+      `https://api.genshin.dev/materials/local-specialties`
+    );
+    const data2 = await fetch2.json();
+    const localSpecialties = Object.values(data2).flat();
+    dispatch(
+      fetchMaterialsSuccess({
+        localSpecialties: localSpecialties,
+        commonMaterials: commonMaterials,
+      })
+    );
+  };
+};
+
+export const getMaterialNames = (characterName) => ({
+  type: CharacterActionTypes.GET_MATERIAL_NAMES,
+  payload: characterName,
+});

@@ -1,10 +1,16 @@
 import { CharacterActionTypes } from "./character.types";
 import CHARACTER_DATA from "../../pages/character/character.data";
 const INITIAL_STATE = {
+  currentCharacter: { name: "", link: "./" },
+  localSpecialtyList: null,
+  commonMaterialList: null,
+  materials: null,
+  commonMaterialLabel: "",
+  localSpecialtyLabel: "",
   characters: null,
   isFetching: false,
   errorMessage: undefined,
-  characterPortraits: [],
+  characterPortraits: null,
   moraC: "",
   moraNeeded: 0,
   gemGreen: "",
@@ -699,7 +705,11 @@ const characterReducer = (state = INITIAL_STATE, action) => {
       return { ...state, isFetching: true };
 
     case CharacterActionTypes.FETCH_CHARACTERS_SUCCESS:
-      return { ...state, isFetching: false, characters: action.payload };
+      let temp = action.payload.map((character) => {
+        return { characterName: character };
+      });
+
+      return { ...state, isFetching: false, characters: temp };
     case CharacterActionTypes.FETCH_CHARACTERS_FAILURE:
       return { ...state, isFetching: false, errorMessage: action.payload };
 
@@ -709,11 +719,63 @@ const characterReducer = (state = INITIAL_STATE, action) => {
     case CharacterActionTypes.FETCH_CHARACTER_PORTRAITS_SUCCESS:
       return {
         ...state,
-        isFetching: false,
+
         characterPortraits: action.payload,
+        isFetching: false,
       };
     case CharacterActionTypes.FETCH_CHARACTER_PORTRAITS_FAILURE:
       return { ...state, isFetching: false, errorMessage: action.payload };
+
+    case CharacterActionTypes.COMBINE_DATA:
+      const { characters, characterPortraits } = state;
+      let temp1 = characters;
+      for (let i = 0; i < characters.length; i++) {
+        temp1[i].icon = characterPortraits[i];
+      }
+
+      return { ...state };
+
+    case CharacterActionTypes.FETCH_MATERIALS_START:
+      return { ...state };
+
+    case CharacterActionTypes.FETCH_MATERIALS_SUCCESS:
+      const { localSpecialties, commonMaterials } = action.payload;
+      return {
+        ...state,
+        localSpecialtyList: localSpecialties,
+        commonMaterialList: commonMaterials,
+      };
+
+    case CharacterActionTypes.GET_MATERIAL_NAMES:
+      const { localSpecialtyList, commonMaterialList } = state;
+      const charName = action.payload.name;
+      let ln = "";
+      let cn = "";
+      localSpecialtyList.forEach((ls) => {
+        ls.characters.forEach((character) => {
+          if (character === charName) {
+            ln = ls.name;
+          }
+        });
+      });
+
+      commonMaterialList.forEach((cm) => {
+        console.log(cm[1]);
+        if (cm[1].characters) {
+          cm[1].characters.forEach((character) => {
+            console.log(character);
+            if (character === charName) {
+              cn = cm[0];
+            }
+          });
+        }
+      });
+      return {
+        ...state,
+        localSpecialtyLabel: ln,
+        commonMaterialLabel: cn,
+        currentCharacter: action.payload,
+      };
     default:
       return state;
   }

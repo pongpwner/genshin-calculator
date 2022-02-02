@@ -205,3 +205,15 @@ export const selectIsFetching = createSelector(
   [selectCharacter],
   (character) => character.isFetching
 );
+export const selectCommonMaterialLabel = createSelector(
+  [selectCharacter],
+  (character) => character.commonMaterialLabel
+);
+export const selectLocalSpecialtyLabel = createSelector(
+  [selectCharacter],
+  (character) => character.localSpecialtyLabel
+);
+export const selectCurrentCharacter = createSelector(
+  [selectCharacter],
+  (character) => character.currentCharacter
+);

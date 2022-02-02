@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./character-input.styles.scss";
 import FormDropdown from "../form-dropdown/form-dropdown.component";
 import FormInput from "../form-input/form-input.component";
@@ -6,14 +6,19 @@ import CustomRadioGroup from "../custom-radio-group/custom-radio-group.component
 import MainSectionContainer from "../main-section-container/main-section-container.component";
 import SubSectionContainer from "../sub-section-container/sub-section-container.component";
 import { connect } from "react-redux";
-
+import CharacterIconList from "../character-icon-list/character-icon-list.component";
+import Modal from "../modal/modal.component";
+import CustomButton from "../custom-button/custom-button.component";
+import CharacterIcon from "../character-icon/character-icon.component";
 import {
   selectBossMaterial,
   selectCharacterPortraits,
   selectCharacters,
   selectCommonMaterialBlue,
   selectCommonMaterialGreen,
+  selectCommonMaterialLabel,
   selectCommonMaterialWhite,
+  selectCurrentCharacter,
   selectCurrentLevel,
   selectCurrentRadioButton,
   selectDesiredLevel,
@@ -28,6 +33,7 @@ import {
   selectHeroWitPurple,
   selectIsFetching,
   selectLocalSpecialty,
+  selectLocalSpecialtyLabel,
   selectMora,
   selectRadioButtonOptions,
 } from "../../redux/character/character.selector";
@@ -39,6 +45,8 @@ import {
   handleSubmit,
   fetchCharactersStartAsync,
   fetchCharacterPortraitsStartAsync,
+  combineData,
+  fetchMaterialsStartAsync,
 } from "../../redux/character/character.actions";
 
 const CharacterInput = ({
@@ -71,6 +79,11 @@ const CharacterInput = ({
   characterPortraits,
   characters,
   isFetching,
+  combineData,
+  fetchMaterialsStartAsync,
+  commonMaterialLabel,
+  localSpecialtyLabel,
+  currentCharacter,
 }) => {
   useEffect(handleSubmit, [
     gemGreen,
@@ -90,32 +103,42 @@ const CharacterInput = ({
     desiredLevel,
     currentRadioButton,
     desiredRadioButton,
+
     handleSubmit,
   ]);
+  const [hidden, setHidden] = useState(true);
 
   useEffect(() => {
     fetchCharactersStartAsync();
   }, [fetchCharactersStartAsync]);
   useEffect(() => {
+    fetchMaterialsStartAsync();
+  }, [fetchMaterialsStartAsync]);
+  useEffect(() => {
     if (characters) {
       fetchCharacterPortraitsStartAsync();
     }
   }, [characters, fetchCharacterPortraitsStartAsync]);
-  useEffect(() => {
-    console.log(characterPortraits);
-    console.log(characterPortraits.length);
-  }, [characterPortraits]);
+
   return (
     <div className="character-input">
-      {!isFetching ? (
-        <>
-          {characterPortraits.map((cp) => (
-            <img src={cp} alt="character portrait" />
-          ))}
-        </>
-      ) : null}
+      <Modal hidden={hidden} setHidden={setHidden}>
+        <CharacterIconList setHidden={setHidden} />
+      </Modal>
 
       <MainSectionContainer>
+        <SubSectionContainer>
+          <CustomButton
+            onClick={() => {
+              setHidden(false);
+              combineData();
+            }}
+          >
+            Select Character
+          </CustomButton>
+
+          <img src={currentCharacter.link} alt={currentCharacter.name}></img>
+        </SubSectionContainer>
         <SubSectionContainer>
           <FormDropdown
             name="currentLevel"
@@ -200,7 +223,7 @@ const CharacterInput = ({
             rel="noopener noreferrer"
             href="https://genshin.honeyhunterworld.com/db/item/character-ascension-material-secondary-material/?lang=EN"
           >
-            Common Material
+            Common Material: {commonMaterialLabel}
           </a>
           <div className="flex-row">
             <FormInput
@@ -288,7 +311,7 @@ const CharacterInput = ({
             rel="noopener noreferrer"
             href="https://genshin.honeyhunterworld.com/db/item/character-ascension-material-local-material/?lang=EN"
           >
-            Local Specialty
+            Local Specialty: {localSpecialtyLabel}
           </a>
           <div className="flex-row">
             <FormInput
@@ -347,6 +370,9 @@ const mapStateToProps = (state) => ({
   characterPortraits: selectCharacterPortraits(state),
   characters: selectCharacters(state),
   isFetching: selectIsFetching(state),
+  commonMaterialLabel: selectCommonMaterialLabel(state),
+  localSpecialtyLabel: selectLocalSpecialtyLabel(state),
+  currentCharacter: selectCurrentCharacter(state),
 });
 const mapDispatchToProps = (dispatch) => ({
   handleChange: (change) => dispatch(handleChange(change)),
@@ -357,5 +383,7 @@ const mapDispatchToProps = (dispatch) => ({
   fetchCharactersStartAsync: () => dispatch(fetchCharactersStartAsync()),
   fetchCharacterPortraitsStartAsync: () =>
     dispatch(fetchCharacterPortraitsStartAsync()),
+  combineData: () => dispatch(combineData()),
+  fetchMaterialsStartAsync: () => dispatch(fetchMaterialsStartAsync()),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(CharacterInput);
