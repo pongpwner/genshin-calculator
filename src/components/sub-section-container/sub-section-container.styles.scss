@@ -4,6 +4,17 @@
   background-color: $tertiary;
   border-radius: 10px;
   padding: 0.75rem;
+  &.center {
+    // display: flex;
+    // align-items: center;
+    // justify-content: center;
+    width: 100%;
+    // gap: 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: center;
+    justify-content: center;
+  }
   .mobile-flex-wrap {
     @media (max-width: 390px) {
       flex-wrap: wrap;

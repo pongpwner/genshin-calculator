@@ -1,13 +1,14 @@
-.custom-button{
-    border-radius:25px;
-    width:100px;
-    height:50px;
-    color:white;
-    background-color:#2582fa ;
-    border:none;
-   
+.custom-button {
+  border-radius: 10px;
+
+  height: 50px;
+  max-width: 120px;
+  color: white;
+  background-color: orange;
+  border: none;
+  font-size: 1rem;
 }
-.center{
-    align-self:center;
-    justify-content: center;
+.center {
+  align-self: center;
+  justify-content: center;
 }

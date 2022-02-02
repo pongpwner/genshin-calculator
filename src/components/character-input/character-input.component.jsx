@@ -127,7 +127,7 @@ const CharacterInput = ({
       </Modal>
 
       <MainSectionContainer>
-        <SubSectionContainer>
+        <SubSectionContainer center>
           <CustomButton
             onClick={() => {
               setHidden(false);
@@ -137,7 +137,11 @@ const CharacterInput = ({
             Select Character
           </CustomButton>
 
-          <img src={currentCharacter.link} alt={currentCharacter.name}></img>
+          <img
+            className="character-icon"
+            src={currentCharacter.link}
+            alt={currentCharacter.name}
+          ></img>
         </SubSectionContainer>
         <SubSectionContainer>
           <FormDropdown
