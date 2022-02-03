@@ -44,8 +44,6 @@ import {
   handleDesiredLevel,
   handleSubmit,
   fetchCharactersStartAsync,
-  fetchCharacterPortraitsStartAsync,
-  combineData,
   fetchMaterialsStartAsync,
 } from "../../redux/character/character.actions";
 
@@ -75,11 +73,11 @@ const CharacterInput = ({
   handleDesiredLevel,
   handleSubmit,
   fetchCharactersStartAsync,
-  fetchCharacterPortraitsStartAsync,
+
   characterPortraits,
   characters,
   isFetching,
-  combineData,
+
   fetchMaterialsStartAsync,
   commonMaterialLabel,
   localSpecialtyLabel,
@@ -114,11 +112,11 @@ const CharacterInput = ({
   useEffect(() => {
     fetchMaterialsStartAsync();
   }, [fetchMaterialsStartAsync]);
-  useEffect(() => {
-    if (characters) {
-      fetchCharacterPortraitsStartAsync();
-    }
-  }, [characters, fetchCharacterPortraitsStartAsync]);
+  // useEffect(() => {
+  //   if (characters) {
+  //     fetchCharacterPortraitsStartAsync();
+  //   }
+  // }, [characters, fetchCharacterPortraitsStartAsync]);
 
   return (
     <div className="character-input">
@@ -131,14 +129,13 @@ const CharacterInput = ({
           <CustomButton
             onClick={() => {
               setHidden(false);
-              combineData();
             }}
           >
             Select Character
           </CustomButton>
 
           <img
-            className="character-icon"
+            className="current-character"
             src={currentCharacter.link}
             alt={currentCharacter.name}
           ></img>
@@ -385,9 +382,6 @@ const mapDispatchToProps = (dispatch) => ({
   handleDesiredLevel: (e) => dispatch(handleDesiredLevel(e)),
   handleSubmit: (e) => dispatch(handleSubmit(e)),
   fetchCharactersStartAsync: () => dispatch(fetchCharactersStartAsync()),
-  fetchCharacterPortraitsStartAsync: () =>
-    dispatch(fetchCharacterPortraitsStartAsync()),
-  combineData: () => dispatch(combineData()),
   fetchMaterialsStartAsync: () => dispatch(fetchMaterialsStartAsync()),
 });
 export default connect(mapStateToProps, mapDispatchToProps)(CharacterInput);

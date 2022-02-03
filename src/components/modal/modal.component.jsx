@@ -7,7 +7,12 @@ const Modal = ({ children, hidden, setHidden }) => {
   return (
     <div className="modal">
       <div className="container">
-        <button onClick={() => setHidden(true)}> X</button>
+        <div className="top-row">
+          <button className="close" onClick={() => setHidden(true)}>
+            {" "}
+            X
+          </button>
+        </div>
         <div className="content ">{children}</div>
       </div>
     </div>

@@ -1,7 +1,58 @@
 .modal {
   z-index: 1;
   position: fixed;
-  background-color: white;
+  background-color: black;
   border-radius: 10px;
   padding: 1rem;
+  border: 1px solid white;
+  height: 630px;
+  overflow: scroll;
+  left: 50%;
+  margin-left: -350px;
+  padding-top: 3rem;
+  @media (max-width: 800px) {
+    margin-left: -260px;
+  }
+  @media (max-width: 600px) {
+    margin-left: -180px;
+    top: 10vh;
+    height: 80vh;
+  }
+  @media (max-width: 400px) {
+    margin-left: -140px;
+    top: 10vh;
+    height: 80vh;
+  }
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  .top-row {
+    position: fixed;
+    background-color: black;
+    width: 630px;
+    margin-left: -0.9rem;
+    margin-top: -3rem;
+    border-radius: 10px;
+    @media (max-width: 800px) {
+      width: 520px;
+    }
+    @media (max-width: 600px) {
+      width: 359px;
+    }
+    @media (max-width: 400px) {
+      width: 270px;
+    }
+  }
+  .close {
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    background-color: rgba(211, 209, 209, 0);
+    border: none;
+    color: white;
+    &:hover {
+      cursor: pointer;
+    }
+  }
 }

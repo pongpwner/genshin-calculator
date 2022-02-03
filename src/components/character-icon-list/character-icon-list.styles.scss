@@ -1,5 +1,15 @@
 .character-icon-list {
   display: grid;
   grid-template-columns: 75px 75px 75px 75px 75px 75px 75px 75px;
-  gap: 1rem;
+  gap: 0.6rem;
+  @media (max-width: 800px) {
+    grid-template-columns: 75px 75px 75px 75px 75px 75px;
+  }
+
+  @media (max-width: 600px) {
+    grid-template-columns: 75px 75px 75px 75px;
+  }
+  @media (max-width: 400px) {
+    grid-template-columns: 75px 75px 75px;
+  }
 }

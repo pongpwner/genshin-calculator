@@ -7,15 +7,12 @@ import {
   selectCharacters,
   selectIsFetching,
 } from "../../redux/character/character.selector";
-import {
-  fetchCharactersStartAsync,
-  fetchCharacterPortraitsStartAsync,
-} from "../../redux/character/character.actions";
+import { fetchCharactersStartAsync } from "../../redux/character/character.actions";
 const CharacterIconList = ({
   characterPortraits,
   characters,
   isFetching,
-  fetchCharacterPortraitsStartAsync,
+
   fetchCharactersStartAsync,
   setHidden,
 }) => {
@@ -26,7 +23,7 @@ const CharacterIconList = ({
           {characters.map((character) => (
             <CharacterIcon
               setHidden={setHidden}
-              link={character.icon}
+              link={character.link}
               name={character.characterName}
             />
           ))}
@@ -42,8 +39,6 @@ const mapStateToProps = (state) => ({
 });
 const mapDispatchToProps = (dispatch) => ({
   fetchCharactersStartAsync: () => dispatch(fetchCharactersStartAsync()),
-  fetchCharacterPortraitsStartAsync: () =>
-    dispatch(fetchCharacterPortraitsStartAsync()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(CharacterIconList);

@@ -705,35 +705,18 @@ const characterReducer = (state = INITIAL_STATE, action) => {
       return { ...state, isFetching: true };
 
     case CharacterActionTypes.FETCH_CHARACTERS_SUCCESS:
-      let temp = action.payload.map((character) => {
-        return { characterName: character };
-      });
-
-      return { ...state, isFetching: false, characters: temp };
+      return { ...state, isFetching: false, characters: action.payload };
     case CharacterActionTypes.FETCH_CHARACTERS_FAILURE:
       return { ...state, isFetching: false, errorMessage: action.payload };
 
-    case CharacterActionTypes.FETCH_CHARACTER_PORTRAITS_START:
-      return { ...state, isFetching: true };
+    // case CharacterActionTypes.COMBINE_DATA:
+    //   const { characters, characterPortraits } = state;
+    //   let temp1 = characters;
+    //   for (let i = 0; i < characters.length; i++) {
+    //     temp1[i].icon = characterPortraits[i];
+    //   }
 
-    case CharacterActionTypes.FETCH_CHARACTER_PORTRAITS_SUCCESS:
-      return {
-        ...state,
-
-        characterPortraits: action.payload,
-        isFetching: false,
-      };
-    case CharacterActionTypes.FETCH_CHARACTER_PORTRAITS_FAILURE:
-      return { ...state, isFetching: false, errorMessage: action.payload };
-
-    case CharacterActionTypes.COMBINE_DATA:
-      const { characters, characterPortraits } = state;
-      let temp1 = characters;
-      for (let i = 0; i < characters.length; i++) {
-        temp1[i].icon = characterPortraits[i];
-      }
-
-      return { ...state };
+    // return { ...state };
 
     case CharacterActionTypes.FETCH_MATERIALS_START:
       return { ...state };
