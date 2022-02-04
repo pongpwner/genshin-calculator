@@ -10,6 +10,9 @@
   left: 50%;
   margin-left: -350px;
   padding-top: 3rem;
+  @media (max-height: 800px) {
+    top: 10vh;
+  }
   @media (max-width: 800px) {
     margin-left: -260px;
   }
