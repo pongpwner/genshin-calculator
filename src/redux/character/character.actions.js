@@ -50,7 +50,7 @@ export const fetchCharactersStartAsync = () => {
     //////
     const fetchCharacters = await fetch("https://api.genshin.dev/characters");
     const characters = await fetchCharacters.json();
-    console.log(characters);
+
     let characterList = [];
     await characters.forEach((character) => {
       return fetch(`https://api.genshin.dev/characters/${character}/icon.png`)
@@ -58,64 +58,19 @@ export const fetchCharactersStartAsync = () => {
         .then((imageBlob) => {
           // Then create a local URL for that image and print it
           const imageObjectURL = URL.createObjectURL(imageBlob);
-          console.log(imageObjectURL);
 
           characterList.push({
             characterName: character,
             link: imageObjectURL,
           });
-          console.log(characterList);
         })
         .catch((error) => dispatch(fetchCharactersFailure(error.message)));
     });
-    console.log(characterList);
+
     dispatch(fetchCharactersSuccess(characterList));
   };
 };
 
-// export const fetchCharacterPortraitsSuccess = (characterList) => ({
-//   type: CharacterActionTypes.FETCH_CHARACTER_PORTRAITS_SUCCESS,
-//   payload: characterList,
-// });
-// export const fetchCharacterPortraitsFailure = (errorMessage) => ({
-//   type: CharacterActionTypes.FETCH_CHARACTER_PORTRAITS_FAILURE,
-//   payload: errorMessage,
-// });
-
-// export const fetchCharacterPortraitsStart = () => ({
-//   type: CharacterActionTypes.FETCH_CHARACTER_PORTRAITS_START,
-// });
-// export const fetchCharacterPortraitsStartAsync = () => {
-//   return (dispatch, getState) => {
-//     const state = getState();
-//     const characters = selectCharacters(state);
-//     dispatch(fetchCharacterPortraitsStart());
-//     let portraits = [];
-//     characters.map((character) => {
-//       return fetch(
-//         `https://api.genshin.dev/characters/${character.characterName}/icon.png`
-//       )
-//         .then((response) => response.blob())
-//         .then((imageBlob) => {
-//           // Then create a local URL for that image and print it
-//           const imageObjectURL = URL.createObjectURL(imageBlob);
-//           //console.log(imageObjectURL);
-//           character.link = imageObjectURL;
-//           portraits.push({
-//             characterName: character.characterName,
-//             link: imageObjectURL,
-//           });
-//         })
-//         .catch((error) =>
-//           dispatch(fetchCharacterPortraitsFailure(error.message))
-//         );
-//     });
-//     dispatch(fetchCharacterPortraitsSuccess(portraits));
-//   };
-// };
-export const combineData = () => ({
-  type: CharacterActionTypes.COMBINE_DATA,
-});
 export const fetchMaterialsStart = () => ({
   type: CharacterActionTypes.FETCH_MATERIALS_START,
 });

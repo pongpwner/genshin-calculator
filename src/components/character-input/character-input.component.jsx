@@ -83,6 +83,7 @@ const CharacterInput = ({
   localSpecialtyLabel,
   currentCharacter,
 }) => {
+  const [hidden, setHidden] = useState(true);
   useEffect(handleSubmit, [
     gemGreen,
     gemBlue,
@@ -104,19 +105,16 @@ const CharacterInput = ({
 
     handleSubmit,
   ]);
-  const [hidden, setHidden] = useState(true);
 
+  // fetches character info
   useEffect(() => {
     fetchCharactersStartAsync();
   }, [fetchCharactersStartAsync]);
+
+  //fetches materials characters use
   useEffect(() => {
     fetchMaterialsStartAsync();
   }, [fetchMaterialsStartAsync]);
-  // useEffect(() => {
-  //   if (characters) {
-  //     fetchCharacterPortraitsStartAsync();
-  //   }
-  // }, [characters, fetchCharacterPortraitsStartAsync]);
 
   return (
     <div className="character-input">
