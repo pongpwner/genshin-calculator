@@ -1,5 +1,6 @@
 import { CharacterActionTypes } from "./character.types";
 import CHARACTER_DATA from "../../pages/character/character.data";
+import { CharacterCalculationParams, calculateJewls } from "./character.utils";
 const INITIAL_STATE = {
   currentCharacter: { name: "", link: "./" },
   localSpecialtyList: null,
@@ -135,12 +136,11 @@ const characterReducer = (state = INITIAL_STATE, action) => {
   let oGemBlue = 0;
   let oGemPurple = 0;
   let oGemOrange = 0;
-  let oMora = 0;
-  let oBoss = 0;
+
   let oCWhite = 0;
   let oCGreen = 0;
   let oCBlue = 0;
-  let oSpecialty = 0;
+
   let oExpGreen = 0;
   let oExpBlue = 0;
   let oExpPurple = 0;
@@ -150,29 +150,23 @@ const characterReducer = (state = INITIAL_STATE, action) => {
   let uGemBlue = 0;
   let uGemPurple = 0;
   let uGemOrange = 0;
-  let uMora = 0;
-  let uBoss = 0;
   let uCWhite = 0;
   let uCGreen = 0;
   let uCBlue = 0;
-  let uSpecialty = 0;
+
   let uExpGreen = 0;
   let uExpBlue = 0;
   let uExpPurple = 0;
 
   //potential material
   //no green
-  let pGemGreen = 0;
   let pGemBlue = 0;
   let pGemPurple = 0;
   let pGemOrange = 0;
-  let pMora = 0;
-  let pBoss = 0;
-  let pCWhite = 0;
+
   let pCGreen = 0;
   let pCBlue = 0;
-  let pSpecialty = 0;
-  let pExpGreen = 0;
+
   let pExpBlue = 0;
   let pExpPurple = 0;
 
@@ -196,77 +190,76 @@ const characterReducer = (state = INITIAL_STATE, action) => {
   let mGemBlue = 0;
   let mGemPurple = 0;
   let mGemOrange = 0;
-  let mMora = 0;
-  let mBoss = 0;
+
   let mCWhite = 0;
   let mCGreen = 0;
   let mCBlue = 0;
-  let mSpecialty = 0;
+
   let mExpGreen = 0;
   let mExpBlue = 0;
   let mExpPurple = 0;
 
-  function calculateJewles() {
-    for (let i = sumCurrentAscension + 1; i < sumDesiredAscension + 1; i++) {
-      nGemGreen += constants.ascension[i].gemGreen;
-      nGemBlue += constants.ascension[i].gemBlue;
-      nGemPurple += constants.ascension[i].gemPurple;
-      nGemOrange += constants.ascension[i].gemOrange;
-    }
+  // function calculateJewles() {
+  //   for (let i = sumCurrentAscension + 1; i < sumDesiredAscension + 1; i++) {
+  //     nGemGreen += constants.ascension[i].gemGreen;
+  //     nGemBlue += constants.ascension[i].gemBlue;
+  //     nGemPurple += constants.ascension[i].gemPurple;
+  //     nGemOrange += constants.ascension[i].gemOrange;
+  //   }
 
-    //calculate overflow and underflow
-    if (nGemGreen - gemGreen < 0) {
-      oGemGreen = Math.abs(nGemGreen - gemGreen);
-    } else {
-      uGemGreen = nGemGreen - gemGreen;
-    }
-    if (nGemBlue - gemBlue < 0) {
-      oGemBlue = Math.abs(nGemBlue - gemBlue);
-    } else {
-      uGemBlue = nGemBlue - gemBlue;
-    }
-    if (nGemPurple - gemPurple < 0) {
-      oGemPurple = Math.abs(nGemPurple - gemPurple);
-    } else {
-      uGemPurple = nGemPurple - gemPurple;
-    }
-    if (nGemOrange - gemOrange < 0) {
-      oGemOrange = Math.abs(nGemOrange - gemOrange);
-    } else {
-      uGemOrange = nGemOrange - gemOrange;
-    }
+  //   //calculate overflow and underflow
+  //   if (nGemGreen - gemGreen < 0) {
+  //     oGemGreen = Math.abs(nGemGreen - gemGreen);
+  //   } else {
+  //     uGemGreen = nGemGreen - gemGreen;
+  //   }
+  //   if (nGemBlue - gemBlue < 0) {
+  //     oGemBlue = Math.abs(nGemBlue - gemBlue);
+  //   } else {
+  //     uGemBlue = nGemBlue - gemBlue;
+  //   }
+  //   if (nGemPurple - gemPurple < 0) {
+  //     oGemPurple = Math.abs(nGemPurple - gemPurple);
+  //   } else {
+  //     uGemPurple = nGemPurple - gemPurple;
+  //   }
+  //   if (nGemOrange - gemOrange < 0) {
+  //     oGemOrange = Math.abs(nGemOrange - gemOrange);
+  //   } else {
+  //     uGemOrange = nGemOrange - gemOrange;
+  //   }
 
-    // calculate what materials can be converted
-    //can't convert green
-    mGemGreen = Math.abs(0 - uGemGreen);
-    //top block = underflow greater bottom block = over flow greater
-    if (Math.floor(oGemGreen / 3) + oGemBlue - uGemBlue <= 0) {
-      pGemBlue = 0;
-      mGemBlue = Math.abs(Math.floor(oGemGreen / 3) + oGemBlue - uGemBlue);
-    } else {
-      pGemBlue = Math.floor(oGemGreen / 3) + oGemBlue - uGemBlue;
-    }
-    if (Math.floor(pGemBlue / 3) + oGemPurple - uGemPurple <= 0) {
-      pGemPurple = 0;
-      mGemPurple = Math.abs(Math.floor(pGemBlue / 3) + oGemPurple - uGemPurple);
-    } else {
-      pGemPurple = Math.floor(pGemBlue / 3) + oGemPurple - uGemPurple;
-    }
-    if (Math.floor(pGemPurple / 3) + oGemOrange - uGemOrange <= 0) {
-      pGemOrange = 0;
-      mGemOrange = Math.abs(
-        Math.floor(pGemPurple / 3) + oGemOrange - uGemOrange
-      );
-    } else {
-      pGemOrange = Math.floor(pGemPurple / 3) + oGemOrange - uGemOrange;
-    }
+  //   // calculate what materials can be converted
+  //   //can't convert green
+  //   mGemGreen = Math.abs(0 - uGemGreen);
+  //   //top block = underflow greater bottom block = over flow greater
+  //   if (Math.floor(oGemGreen / 3) + oGemBlue - uGemBlue <= 0) {
+  //     pGemBlue = 0;
+  //     mGemBlue = Math.abs(Math.floor(oGemGreen / 3) + oGemBlue - uGemBlue);
+  //   } else {
+  //     pGemBlue = Math.floor(oGemGreen / 3) + oGemBlue - uGemBlue;
+  //   }
+  //   if (Math.floor(pGemBlue / 3) + oGemPurple - uGemPurple <= 0) {
+  //     pGemPurple = 0;
+  //     mGemPurple = Math.abs(Math.floor(pGemBlue / 3) + oGemPurple - uGemPurple);
+  //   } else {
+  //     pGemPurple = Math.floor(pGemBlue / 3) + oGemPurple - uGemPurple;
+  //   }
+  //   if (Math.floor(pGemPurple / 3) + oGemOrange - uGemOrange <= 0) {
+  //     pGemOrange = 0;
+  //     mGemOrange = Math.abs(
+  //       Math.floor(pGemPurple / 3) + oGemOrange - uGemOrange
+  //     );
+  //   } else {
+  //     pGemOrange = Math.floor(pGemPurple / 3) + oGemOrange - uGemOrange;
+  //   }
 
-    //calculate remainders
-    rGemGreen = oGemGreen % 3;
-    rGemBlue = pGemBlue % 3;
-    rGemPurple = pGemPurple % 3;
-    rGemOrange = pGemOrange;
-  }
+  //   //calculate remainders
+  //   rGemGreen = oGemGreen % 3;
+  //   rGemBlue = pGemBlue % 3;
+  //   rGemPurple = pGemPurple % 3;
+  //   rGemOrange = pGemOrange;
+  // }
   function caclculateCommonMaterial() {
     for (let i = sumCurrentAscension + 1; i < sumDesiredAscension + 1; i++) {
       nCWhite += constants.ascension[i].commonMaterialWhite;
@@ -362,27 +355,12 @@ const characterReducer = (state = INITIAL_STATE, action) => {
     for (let i = sumCurrentAscension + 1; i < sumDesiredAscension + 1; i++) {
       nBoss += constants.ascension[i].bossMaterial;
     }
-    if (nBoss - bossMaterialC < 0) {
-      oBoss = Math.abs(nBoss - bossMaterialC);
-    } else {
-      uBoss = nBoss - bossMaterialC;
-    }
     rBoss = bossMaterialC - nBoss;
     nBoss = nBoss - bossMaterialC;
   }
   function calculateLocalSpecialty() {
-    console.log(localSpecialtyC);
-
     for (let i = sumCurrentAscension + 1; i < sumDesiredAscension + 1; i++) {
       nSpecialty += constants.ascension[i].localSpecialty;
-    }
-    console.log(nSpecialty);
-    for (let i = sumCurrentAscension + 1; i < sumDesiredAscension + 1; i++) {
-      if (nSpecialty - localSpecialtyC < 0) {
-        oSpecialty = Math.abs(nSpecialty - localSpecialtyC);
-      } else {
-        uSpecialty = nSpecialty - localSpecialtyC;
-      }
     }
     rSpecialty = localSpecialtyC - nSpecialty;
     nSpecialty = nSpecialty - localSpecialtyC;
@@ -704,7 +682,14 @@ const characterReducer = (state = INITIAL_STATE, action) => {
       }
 
     case CharacterActionTypes.HANDLE_SUBMIT:
-      calculateJewles();
+      calculateJewls(
+        sumCurrentAscension,
+        sumDesiredAscension,
+        gemGreen,
+        gemBlue,
+        gemPurple,
+        gemOrange
+      );
       caclculateCommonMaterial();
       calculateBossMaterial();
       calculateLocalSpecialty();
@@ -713,14 +698,14 @@ const characterReducer = (state = INITIAL_STATE, action) => {
 
       return {
         ...state,
-        gemOrangeNeeded: mGemOrange,
-        gemPurpleNeeded: mGemPurple,
-        gemBlueNeeded: mGemBlue,
-        gemGreenNeeded: mGemGreen,
-        gemGreenRemaining: rGemGreen,
-        gemBlueRemaining: rGemBlue,
-        gemPurpleRemaining: rGemPurple,
-        gemOrangeRemaining: rGemOrange,
+        gemOrangeNeeded: CharacterCalculationParams.mGemOrange,
+        gemPurpleNeeded: CharacterCalculationParams.mGemPurple,
+        gemBlueNeeded: CharacterCalculationParams.mGemBlue,
+        gemGreenNeeded: CharacterCalculationParams.mGemGreen,
+        gemGreenRemaining: CharacterCalculationParams.rGemGreen,
+        gemBlueRemaining: CharacterCalculationParams.rGemBlue,
+        gemPurpleRemaining: CharacterCalculationParams.rGemPurple,
+        gemOrangeRemaining: CharacterCalculationParams.rGemOrange,
         moraNeeded: nMora,
         moraRemaining: rMora,
         bossMaterialNeeded: nBoss,
