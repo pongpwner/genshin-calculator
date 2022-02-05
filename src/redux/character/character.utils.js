@@ -1,9 +1,10 @@
 import CHARACTER_DATA from "../../pages/character/character.data";
 export const CharacterCalculationParams = {
-  nGemGreen: 0,
-  nGemBlue: 0,
-  nGemPurple: 0,
-  nGemOrange: 0,
+  //total needed materials (does not change based on form inputs, only when selecting level and ascension)
+  neededJewlGreen: 0,
+  neededJewlBlue: 0,
+  neededJewlPurple: 0,
+  neededJewlOrange: 0,
   nMora: 0,
   nBoss: 0,
   nCWhite: 0,
@@ -16,10 +17,10 @@ export const CharacterCalculationParams = {
 
   // over flow
 
-  oGemGreen: 0,
-  oGemBlue: 0,
-  oGemPurple: 0,
-  oGemOrange: 0,
+  overflowJewlGreen: 0,
+  overflowJewlBlue: 0,
+  overflowJewlPurple: 0,
+  overflowJewlOrange: 0,
   oCWhite: 0,
   oCGreen: 0,
   oCBlue: 0,
@@ -28,10 +29,10 @@ export const CharacterCalculationParams = {
   oExpPurple: 0,
 
   // underflow
-  uGemGreen: 0,
-  uGemBlue: 0,
-  uGemPurple: 0,
-  uGemOrange: 0,
+  underflowJewlGreen: 0,
+  underflowJewlBlue: 0,
+  underflowJewlPurple: 0,
+  underflowJewlOrange: 0,
   uCWhite: 0,
   uCGreen: 0,
   uCBlue: 0,
@@ -39,21 +40,21 @@ export const CharacterCalculationParams = {
   uExpBlue: 0,
   uExpPurple: 0,
 
-  //potential material
+  //potential material (helps calculate remainder)
   //no green
-  pGemBlue: 0,
-  pGemPurple: 0,
-  pGemOrange: 0,
+  potentialJewlBlue: 0,
+  potentialJewlPurple: 0,
+  potentialJewlOrange: 0,
   pCGreen: 0,
   pCBlue: 0,
   pExpBlue: 0,
   pExpPurple: 0,
 
-  // remaining material
-  rGemGreen: 0,
-  rGemBlue: 0,
-  rGemPurple: 0,
-  rGemOrange: 0,
+  // remaining material (value that is shown to user)
+  remainderJewlGreen: 0,
+  remainderJewlBlue: 0,
+  remainderJewlPurple: 0,
+  remainderJewlOrange: 0,
   rMora: 0,
   rBoss: 0,
   rCWhite: 0,
@@ -64,11 +65,11 @@ export const CharacterCalculationParams = {
   rExpBlue: 0,
   rExpPurple: 0,
 
-  //missing material
-  mGemGreen: 0,
-  mGemBlue: 0,
-  mGemPurple: 0,
-  mGemOrange: 0,
+  //required material (value that is shown to user)
+  requiredJewlGreen: 0,
+  requiredJewlBlue: 0,
+  requiredJewlPurple: 0,
+  requiredJewlOrange: 0,
   mCWhite: 0,
   mCGreen: 0,
   mCBlue: 0,
@@ -85,249 +86,377 @@ export function calculateJewls(
   gemPurple,
   gemOrange
 ) {
-  CharacterCalculationParams.nGemGreen = 0;
-  CharacterCalculationParams.nGemBlue = 0;
-  CharacterCalculationParams.nGemPurple = 0;
-  CharacterCalculationParams.nGemOrange = 0;
+  CharacterCalculationParams.neededJewlGreen = 0;
+  CharacterCalculationParams.neededJewlBlue = 0;
+  CharacterCalculationParams.neededJewlPurple = 0;
+  CharacterCalculationParams.neededJewlOrange = 0;
   for (let i = sumCurrentAscension + 1; i < sumDesiredAscension + 1; i++) {
-    CharacterCalculationParams.nGemGreen +=
+    CharacterCalculationParams.neededJewlGreen +=
       CHARACTER_DATA.ascension[i].gemGreen;
-    CharacterCalculationParams.nGemBlue += CHARACTER_DATA.ascension[i].gemBlue;
-    CharacterCalculationParams.nGemPurple +=
+    CharacterCalculationParams.neededJewlBlue +=
+      CHARACTER_DATA.ascension[i].gemBlue;
+    CharacterCalculationParams.neededJewlPurple +=
       CHARACTER_DATA.ascension[i].gemPurple;
-    CharacterCalculationParams.nGemOrange +=
+    CharacterCalculationParams.neededJewlOrange +=
       CHARACTER_DATA.ascension[i].gemOrange;
   }
-  CharacterCalculationParams.mGemGreen = 0;
+  CharacterCalculationParams.requiredJewlGreen = 0;
 
   //calculate overflow and underflow
-  if (CharacterCalculationParams.nGemGreen - gemGreen < 0) {
-    CharacterCalculationParams.oGemGreen = Math.abs(
-      CharacterCalculationParams.nGemGreen - gemGreen
+  if (CharacterCalculationParams.neededJewlGreen - gemGreen < 0) {
+    CharacterCalculationParams.overflowJewlGreen = Math.abs(
+      CharacterCalculationParams.neededJewlGreen - gemGreen
     );
   } else {
-    CharacterCalculationParams.oGemGreen = 0;
-    CharacterCalculationParams.uGemGreen =
-      CharacterCalculationParams.nGemGreen - gemGreen;
+    CharacterCalculationParams.overflowJewlGreen = 0;
+    CharacterCalculationParams.underflowJewlGreen =
+      CharacterCalculationParams.neededJewlGreen - gemGreen;
   }
-  if (CharacterCalculationParams.nGemBlue - gemBlue < 0) {
-    CharacterCalculationParams.oGemBlue = Math.abs(
-      CharacterCalculationParams.nGemBlue - gemBlue
+  if (CharacterCalculationParams.neededJewlBlue - gemBlue < 0) {
+    CharacterCalculationParams.overflowJewlBlue = Math.abs(
+      CharacterCalculationParams.neededJewlBlue - gemBlue
     );
   } else {
-    CharacterCalculationParams.oGemBlue = 0;
-    CharacterCalculationParams.uGemBlue =
-      CharacterCalculationParams.nGemBlue - gemBlue;
+    CharacterCalculationParams.overflowJewlBlue = 0;
+    CharacterCalculationParams.underflowJewlBlue =
+      CharacterCalculationParams.neededJewlBlue - gemBlue;
   }
-  if (CharacterCalculationParams.nGemPurple - gemPurple < 0) {
-    CharacterCalculationParams.oGemPurple = Math.abs(
-      CharacterCalculationParams.nGemPurple - gemPurple
+  if (CharacterCalculationParams.neededJewlPurple - gemPurple < 0) {
+    CharacterCalculationParams.overflowJewlPurple = Math.abs(
+      CharacterCalculationParams.neededJewlPurple - gemPurple
     );
   } else {
-    CharacterCalculationParams.oGemPurple = 0;
-    CharacterCalculationParams.uGemPurple =
-      CharacterCalculationParams.nGemPurple - gemPurple;
+    CharacterCalculationParams.overflowJewlPurple = 0;
+    CharacterCalculationParams.underflowJewlPurple =
+      CharacterCalculationParams.neededJewlPurple - gemPurple;
   }
-  console.log(gemOrange);
-  console.log(CharacterCalculationParams.nGemOrange);
-  if (CharacterCalculationParams.nGemOrange - gemOrange < 0) {
-    CharacterCalculationParams.oGemOrange = Math.abs(
-      CharacterCalculationParams.nGemOrange - gemOrange
+
+  if (CharacterCalculationParams.neededJewlOrange - gemOrange < 0) {
+    CharacterCalculationParams.overflowJewlOrange = Math.abs(
+      CharacterCalculationParams.neededJewlOrange - gemOrange
     );
   } else {
-    CharacterCalculationParams.oGemOrange = 0;
-    CharacterCalculationParams.uGemOrange =
-      CharacterCalculationParams.nGemOrange - gemOrange;
+    CharacterCalculationParams.overflowJewlOrange = 0;
+    CharacterCalculationParams.underflowJewlOrange =
+      CharacterCalculationParams.neededJewlOrange - gemOrange;
   }
-  console.log(CharacterCalculationParams.oGemOrange);
-  console.log(CharacterCalculationParams.uGemOrange);
+
   // calculate what materials can be converted
   //can't convert green
 
-  CharacterCalculationParams.mGemGreen = Number(
-    Math.abs(0 - CharacterCalculationParams.uGemGreen)
+  CharacterCalculationParams.requiredJewlGreen = Number(
+    Math.abs(0 - CharacterCalculationParams.underflowJewlGreen)
   );
 
   //top block = underflow greater bottom block = over flow greater
   if (
-    Math.floor(CharacterCalculationParams.oGemGreen / 3) +
-      CharacterCalculationParams.oGemBlue -
-      CharacterCalculationParams.uGemBlue <=
+    Math.floor(CharacterCalculationParams.overflowJewlGreen / 3) +
+      CharacterCalculationParams.overflowJewlBlue -
+      CharacterCalculationParams.underflowJewlBlue <=
     0
   ) {
-    CharacterCalculationParams.pGemBlue = 0;
-    CharacterCalculationParams.mGemBlue = Math.abs(
-      Math.floor(CharacterCalculationParams.oGemGreen / 3) +
-        CharacterCalculationParams.oGemBlue -
-        CharacterCalculationParams.uGemBlue
+    CharacterCalculationParams.potentialJewlBlue = 0;
+    CharacterCalculationParams.requiredJewlBlue = Math.abs(
+      Math.floor(CharacterCalculationParams.overflowJewlGreen / 3) +
+        CharacterCalculationParams.overflowJewlBlue -
+        CharacterCalculationParams.underflowJewlBlue
     );
   } else {
-    CharacterCalculationParams.pGemBlue =
-      Math.floor(CharacterCalculationParams.oGemGreen / 3) +
-      CharacterCalculationParams.oGemBlue -
-      CharacterCalculationParams.uGemBlue;
+    CharacterCalculationParams.potentialJewlBlue =
+      Math.floor(CharacterCalculationParams.overflowJewlGreen / 3) +
+      CharacterCalculationParams.overflowJewlBlue -
+      CharacterCalculationParams.underflowJewlBlue;
   }
   if (
-    Math.floor(CharacterCalculationParams.pGemBlue / 3) +
-      CharacterCalculationParams.oGemPurple -
-      CharacterCalculationParams.uGemPurple <=
+    Math.floor(CharacterCalculationParams.potentialJewlBlue / 3) +
+      CharacterCalculationParams.overflowJewlPurple -
+      CharacterCalculationParams.underflowJewlPurple <=
     0
   ) {
-    CharacterCalculationParams.pGemPurple = 0;
-    CharacterCalculationParams.mGemPurple = Math.abs(
-      Math.floor(CharacterCalculationParams.pGemBlue / 3) +
-        CharacterCalculationParams.oGemPurple -
-        CharacterCalculationParams.uGemPurple
+    CharacterCalculationParams.potentialJewlPurple = 0;
+    CharacterCalculationParams.requiredJewlPurple = Math.abs(
+      Math.floor(CharacterCalculationParams.potentialJewlBlue / 3) +
+        CharacterCalculationParams.overflowJewlPurple -
+        CharacterCalculationParams.underflowJewlPurple
     );
   } else {
-    CharacterCalculationParams.pGemPurple =
-      Math.floor(CharacterCalculationParams.pGemBlue / 3) +
-      CharacterCalculationParams.oGemPurple -
-      CharacterCalculationParams.uGemPurple;
+    CharacterCalculationParams.potentialJewlPurple =
+      Math.floor(CharacterCalculationParams.potentialJewlBlue / 3) +
+      CharacterCalculationParams.overflowJewlPurple -
+      CharacterCalculationParams.underflowJewlPurple;
   }
 
   if (
-    Math.floor(CharacterCalculationParams.pGemPurple / 3) +
-      CharacterCalculationParams.oGemOrange -
-      CharacterCalculationParams.uGemOrange <=
+    Math.floor(CharacterCalculationParams.potentialJewlPurple / 3) +
+      CharacterCalculationParams.overflowJewlOrange -
+      CharacterCalculationParams.underflowJewlOrange <=
     0
   ) {
-    CharacterCalculationParams.pGemOrange = 0;
-    CharacterCalculationParams.mGemOrange = Math.abs(
-      Math.floor(CharacterCalculationParams.pGemPurple / 3) +
-        CharacterCalculationParams.oGemOrange -
-        CharacterCalculationParams.uGemOrange
+    CharacterCalculationParams.potentialJewlOrange = 0;
+    CharacterCalculationParams.requiredJewlOrange = Math.abs(
+      Math.floor(CharacterCalculationParams.potentialJewlPurple / 3) +
+        CharacterCalculationParams.overflowJewlOrange -
+        CharacterCalculationParams.underflowJewlOrange
     );
   } else {
-    CharacterCalculationParams.pGemOrange =
-      Math.floor(CharacterCalculationParams.pGemPurple / 3) +
-      CharacterCalculationParams.oGemOrange -
-      CharacterCalculationParams.uGemOrange;
+    CharacterCalculationParams.potentialJewlOrange =
+      Math.floor(CharacterCalculationParams.potentialJewlPurple / 3) +
+      CharacterCalculationParams.overflowJewlOrange -
+      CharacterCalculationParams.underflowJewlOrange;
   }
 
   //calculate remainders
-  CharacterCalculationParams.rGemGreen =
-    CharacterCalculationParams.oGemGreen % 3;
-  CharacterCalculationParams.rGemBlue = CharacterCalculationParams.pGemBlue % 3;
-  CharacterCalculationParams.rGemPurple =
-    CharacterCalculationParams.pGemPurple % 3;
-  CharacterCalculationParams.rGemOrange = CharacterCalculationParams.pGemOrange;
+  CharacterCalculationParams.remainderJewlGreen =
+    CharacterCalculationParams.overflowJewlGreen % 3;
+  CharacterCalculationParams.remainderJewlBlue =
+    CharacterCalculationParams.potentialJewlBlue % 3;
+  CharacterCalculationParams.remainderJewlPurple =
+    CharacterCalculationParams.potentialJewlPurple % 3;
+  CharacterCalculationParams.remainderJewlOrange =
+    CharacterCalculationParams.potentialJewlOrange;
 }
-// function caclculateCommonMaterial() {
-//   for (let i = sumCurrentAscension + 1; i < sumDesiredAscension + 1; i++) {
-//     nCWhite += constants.ascension[i].commonMaterialWhite;
-//     nCGreen += constants.ascension[i].commonMaterialGreen;
-//     nCBlue += constants.ascension[i].commonMaterialBlue;
-//   }
+export function calculateCommonMaterial(
+  sumCurrentAscension,
+  sumDesiredAscension,
+  commonMaterialWhiteC,
+  commonMaterialGreenC,
+  commonMaterialBlueC
+) {
+  CharacterCalculationParams.nCWhite = 0;
+  CharacterCalculationParams.nCGreen = 0;
+  CharacterCalculationParams.nCBlue = 0;
 
-//   //calculate overflow and underflow
+  for (let i = sumCurrentAscension + 1; i < sumDesiredAscension + 1; i++) {
+    CharacterCalculationParams.nCWhite +=
+      CHARACTER_DATA.ascension[i].commonMaterialWhite;
+    CharacterCalculationParams.nCGreen +=
+      CHARACTER_DATA.ascension[i].commonMaterialGreen;
+    CharacterCalculationParams.nCBlue +=
+      CHARACTER_DATA.ascension[i].commonMaterialBlue;
+  }
+  CharacterCalculationParams.mCWhite = 0;
 
-//   if (nCWhite - commonMaterialWhiteC < 0) {
-//     oCWhite = Math.abs(nCWhite - commonMaterialWhiteC);
-//   } else {
-//     uCWhite = nCWhite - commonMaterialWhiteC;
-//   }
-//   if (nCGreen - commonMaterialGreenC < 0) {
-//     oCGreen = Math.abs(nCGreen - commonMaterialGreenC);
-//   } else {
-//     uCGreen = nCGreen - commonMaterialGreenC;
-//   }
-//   if (nCBlue - commonMaterialBlueC < 0) {
-//     oCBlue = Math.abs(nCBlue - commonMaterialBlueC);
-//   } else {
-//     uCBlue = nCBlue - commonMaterialBlueC;
-//   }
+  //calculate overflow and underflow
 
-//   // calculate what materials can be converted
-//   //can't convert green
+  if (CharacterCalculationParams.nCWhite - commonMaterialWhiteC < 0) {
+    CharacterCalculationParams.oCWhite = Math.abs(
+      CharacterCalculationParams.nCWhite - commonMaterialWhiteC
+    );
+  } else {
+    CharacterCalculationParams.oCWhite = 0;
+    CharacterCalculationParams.uCWhite =
+      CharacterCalculationParams.nCWhite - commonMaterialWhiteC;
+  }
 
-//   mCWhite = Math.abs(0 - uCWhite);
+  if (CharacterCalculationParams.nCGreen - commonMaterialGreenC < 0) {
+    CharacterCalculationParams.oCGreen = Math.abs(
+      CharacterCalculationParams.nCGreen - commonMaterialGreenC
+    );
+  } else {
+    CharacterCalculationParams.oCGreen = 0;
+    CharacterCalculationParams.uCGreen =
+      CharacterCalculationParams.nCGreen - commonMaterialGreenC;
+  }
+  if (CharacterCalculationParams.nCBlue - commonMaterialBlueC < 0) {
+    CharacterCalculationParams.oCBlue = Math.abs(
+      CharacterCalculationParams.nCBlue - commonMaterialBlueC
+    );
+  } else {
+    CharacterCalculationParams.oCBlue = 0;
+    CharacterCalculationParams.uCBlue =
+      CharacterCalculationParams.nCBlue - commonMaterialBlueC;
+  }
 
-//   if (Math.floor(oCWhite / 3) + oCGreen - uCGreen <= 0) {
-//     pCGreen = 0;
-//     mCGreen = Math.abs(Math.floor(oCWhite / 3) + oCGreen - uCGreen);
-//   } else {
-//     pCGreen = Math.floor(oCWhite / 3) + oCGreen - uCGreen;
-//   }
-//   if (Math.floor(pCGreen / 3) + oCBlue - uCBlue <= 0) {
-//     pCBlue = 0;
-//     mCBlue = Math.abs(Math.floor(pCGreen / 3) + oCBlue - uCBlue);
-//   } else {
-//     pCBlue = Math.floor(pCGreen / 3) + oCBlue - uCBlue;
-//   }
+  // calculate what materials can be converted
+  //can't convert green
 
-//   //calculate remainders
+  CharacterCalculationParams.mCWhite = Math.abs(
+    0 - CharacterCalculationParams.uCWhite
+  );
 
-//   rCWhite = oCWhite % 3;
-//   rCGreen = pCGreen % 3;
-//   rCBlue = pCBlue;
-// }
-// function calculateXP() {
-//   for (let i = currentLevel + 1; i < desiredLevel + 1; i++) {
-//     if (currentLevel == 7) {
-//       break;
-//     }
-//     nExpGreen += constants.level[i].green;
-//     nExpBlue += constants.level[i].blue;
-//     nExpPurple += constants.level[i].purple;
-//   }
-//   if (nExpGreen - heroWitGreen < 0) {
-//     oExpGreen = Math.abs(nExpGreen - heroWitGreen);
-//   } else {
-//     uExpGreen = nExpGreen - heroWitGreen;
-//   }
-//   if (nExpBlue - heroWitBlue < 0) {
-//     oExpBlue = Math.abs(nExpBlue - heroWitBlue);
-//   } else {
-//     uExpBlue = nExpBlue - heroWitBlue;
-//   }
-//   if (nExpPurple - heroWitPurple < 0) {
-//     oExpPurple = Math.abs(nExpPurple - heroWitPurple);
-//   } else {
-//     uExpPurple = nExpPurple - heroWitPurple;
-//   }
-//   mExpGreen = Math.abs(0 - uExpGreen);
-//   //top block = underflow greater bottom block = over flow greater
-//   if (Math.floor(oExpGreen / 3) + oExpBlue - uExpBlue <= 0) {
-//     pExpBlue = 0;
-//     mExpBlue = Math.abs(Math.floor(oExpGreen / 3) + oExpBlue - uExpBlue);
-//   } else {
-//     pExpBlue = Math.floor(oExpGreen / 3) + oExpBlue - uExpBlue;
-//   }
-//   if (Math.floor(pExpBlue / 3) + oExpPurple - uExpPurple <= 0) {
-//     pExpPurple = 0;
-//     mExpPurple = Math.abs(Math.floor(pExpBlue / 3) + oExpPurple - uExpPurple);
-//   } else {
-//     pExpPurple = Math.floor(pExpBlue / 3) + oExpPurple - uExpPurple;
-//   }
-//   rExpGreen = oExpGreen % 3;
-//   rExpBlue = pExpBlue % 3;
-//   rExpPurple = pExpPurple;
-// }
-// function calculateBossMaterial() {
-//   for (let i = sumCurrentAscension + 1; i < sumDesiredAscension + 1; i++) {
-//     nBoss += constants.ascension[i].bossMaterial;
-//   }
-//   rBoss = bossMaterialC - nBoss;
-//   nBoss = nBoss - bossMaterialC;
-// }
-// function calculateLocalSpecialty() {
-//   for (let i = sumCurrentAscension + 1; i < sumDesiredAscension + 1; i++) {
-//     nSpecialty += constants.ascension[i].localSpecialty;
-//   }
-//   rSpecialty = localSpecialtyC - nSpecialty;
-//   nSpecialty = nSpecialty - localSpecialtyC;
-// }
-// function calculateMora() {
-//   for (let i = sumCurrentAscension + 1; i < sumDesiredAscension + 1; i++) {
-//     nMora += constants.ascension[i].mora;
-//   }
-//   for (let i = currentLevel + 1; i < desiredLevel + 1; i++) {
-//     if (currentLevel == 7) {
-//       break;
-//     }
-//     nMora += constants.level[i].mora;
-//   }
-//   rMora = moraC - nMora;
-//   nMora = nMora - moraC;
-// }
+  if (
+    Math.floor(CharacterCalculationParams.oCWhite / 3) +
+      CharacterCalculationParams.oCGreen -
+      CharacterCalculationParams.uCGreen <=
+    0
+  ) {
+    CharacterCalculationParams.pCGreen = 0;
+    CharacterCalculationParams.mCGreen = Math.abs(
+      Math.floor(CharacterCalculationParams.oCWhite / 3) +
+        CharacterCalculationParams.oCGreen -
+        CharacterCalculationParams.uCGreen
+    );
+  } else {
+    CharacterCalculationParams.pCGreen =
+      Math.floor(CharacterCalculationParams.oCWhite / 3) +
+      CharacterCalculationParams.oCGreen -
+      CharacterCalculationParams.uCGreen;
+  }
+  if (
+    Math.floor(CharacterCalculationParams.pCGreen / 3) +
+      CharacterCalculationParams.oCBlue -
+      CharacterCalculationParams.uCBlue <=
+    0
+  ) {
+    CharacterCalculationParams.pCBlue = 0;
+    CharacterCalculationParams.mCBlue = Math.abs(
+      Math.floor(CharacterCalculationParams.pCGreen / 3) +
+        CharacterCalculationParams.oCBlue -
+        CharacterCalculationParams.uCBlue
+    );
+  } else {
+    CharacterCalculationParams.pCBlue =
+      Math.floor(CharacterCalculationParams.pCGreen / 3) +
+      CharacterCalculationParams.oCBlue -
+      CharacterCalculationParams.uCBlue;
+  }
+
+  //calculate remainders
+
+  CharacterCalculationParams.rCWhite = CharacterCalculationParams.oCWhite % 3;
+  CharacterCalculationParams.rCGreen = CharacterCalculationParams.pCGreen % 3;
+  CharacterCalculationParams.rCBlue = CharacterCalculationParams.pCBlue;
+}
+export function calculateXP(
+  currentLevel,
+  desiredLevel,
+  heroWitGreen,
+  heroWitBlue,
+  heroWitPurple
+) {
+  //////this functioni does not claculate blue and green conversions correctly
+  CharacterCalculationParams.nExpGreen = 0;
+  CharacterCalculationParams.nExpBlue = 0;
+  CharacterCalculationParams.nExpPurple = 0;
+  for (let i = currentLevel + 1; i < desiredLevel + 1; i++) {
+    if (currentLevel == 7) {
+      break;
+    }
+    CharacterCalculationParams.nExpGreen += CHARACTER_DATA.level[i].green;
+    CharacterCalculationParams.nExpBlue += CHARACTER_DATA.level[i].blue;
+    CharacterCalculationParams.nExpPurple += CHARACTER_DATA.level[i].purple;
+  }
+
+  if (CharacterCalculationParams.nExpGreen - heroWitGreen < 0) {
+    CharacterCalculationParams.oExpGreen = Math.abs(
+      CharacterCalculationParams.nExpGreen - heroWitGreen
+    );
+  } else {
+    CharacterCalculationParams.oExpGreen = 0;
+    CharacterCalculationParams.uExpGreen =
+      CharacterCalculationParams.nExpGreen - heroWitGreen;
+  }
+  if (CharacterCalculationParams.nExpBlue - heroWitBlue < 0) {
+    CharacterCalculationParams.oExpBlue = Math.abs(
+      CharacterCalculationParams.nExpBlue - heroWitBlue
+    );
+  } else {
+    CharacterCalculationParams.oExpBlue = 0;
+    CharacterCalculationParams.uExpBlue =
+      CharacterCalculationParams.nExpBlue - heroWitBlue;
+  }
+  if (CharacterCalculationParams.nExpPurple - heroWitPurple < 0) {
+    CharacterCalculationParams.oExpPurple = Math.abs(
+      CharacterCalculationParams.nExpPurple - heroWitPurple
+    );
+  } else {
+    CharacterCalculationParams.oExpPurple = 0;
+    CharacterCalculationParams.uExpPurple =
+      CharacterCalculationParams.nExpPurple - heroWitPurple;
+  }
+  CharacterCalculationParams.mExpGreen = Math.abs(
+    0 - CharacterCalculationParams.uExpGreen
+  );
+  //top block = underflow greater bottom block = over flow greater
+  if (
+    Math.floor(CharacterCalculationParams.oExpGreen / 5) +
+      CharacterCalculationParams.oExpBlue -
+      CharacterCalculationParams.uExpBlue <=
+    0
+  ) {
+    CharacterCalculationParams.pExpBlue = 0;
+    CharacterCalculationParams.mExpBlue = Math.abs(
+      Math.floor(CharacterCalculationParams.oExpGreen / 5) +
+        CharacterCalculationParams.oExpBlue -
+        CharacterCalculationParams.uExpBlue
+    );
+  } else {
+    CharacterCalculationParams.pExpBlue =
+      Math.floor(CharacterCalculationParams.oExpGreen / 5) +
+      CharacterCalculationParams.oExpBlue -
+      CharacterCalculationParams.uExpBlue;
+  }
+  if (
+    Math.floor(CharacterCalculationParams.pExpBlue / 4) +
+      CharacterCalculationParams.oExpPurple -
+      CharacterCalculationParams.uExpPurple <=
+    0
+  ) {
+    CharacterCalculationParams.pExpPurple = 0;
+    CharacterCalculationParams.mExpPurple = Math.abs(
+      Math.floor(CharacterCalculationParams.pExpBlue / 4) +
+        CharacterCalculationParams.oExpPurple -
+        CharacterCalculationParams.uExpPurple
+    );
+  } else {
+    CharacterCalculationParams.pExpPurple =
+      Math.floor(CharacterCalculationParams.pExpBlue / 4) +
+      CharacterCalculationParams.oExpPurple -
+      CharacterCalculationParams.uExpPurple;
+  }
+  CharacterCalculationParams.rExpGreen =
+    CharacterCalculationParams.oExpGreen % 5;
+  CharacterCalculationParams.rExpBlue = CharacterCalculationParams.pExpBlue % 4;
+  CharacterCalculationParams.rExpPurple = CharacterCalculationParams.pExpPurple;
+}
+export function calculateBossMaterial(
+  sumCurrentAscension,
+  sumDesiredAscension,
+  bossMaterialC
+) {
+  CharacterCalculationParams.nBoss = 0;
+  for (let i = sumCurrentAscension + 1; i < sumDesiredAscension + 1; i++) {
+    CharacterCalculationParams.nBoss +=
+      CHARACTER_DATA.ascension[i].bossMaterial;
+  }
+
+  CharacterCalculationParams.rBoss =
+    bossMaterialC - CharacterCalculationParams.nBoss;
+  CharacterCalculationParams.nBoss =
+    CharacterCalculationParams.nBoss - bossMaterialC;
+}
+export function calculateLocalSpecialty(
+  sumCurrentAscension,
+  sumDesiredAscension,
+  localSpecialtyC
+) {
+  CharacterCalculationParams.nSpecialty = 0;
+  for (let i = sumCurrentAscension + 1; i < sumDesiredAscension + 1; i++) {
+    CharacterCalculationParams.nSpecialty +=
+      CHARACTER_DATA.ascension[i].localSpecialty;
+  }
+  CharacterCalculationParams.rSpecialty =
+    localSpecialtyC - CharacterCalculationParams.nSpecialty;
+  CharacterCalculationParams.nSpecialty =
+    CharacterCalculationParams.nSpecialty - localSpecialtyC;
+}
+export function calculateMora(
+  sumCurrentAscension,
+  sumDesiredAscension,
+  currentLevel,
+  desiredLevel,
+  moraC
+) {
+  CharacterCalculationParams.nMora = 0;
+  for (let i = sumCurrentAscension + 1; i < sumDesiredAscension + 1; i++) {
+    CharacterCalculationParams.nMora += CHARACTER_DATA.ascension[i].mora;
+  }
+  for (let i = currentLevel + 1; i < desiredLevel + 1; i++) {
+    if (currentLevel == 7) {
+      break;
+    }
+    CharacterCalculationParams.nMora += CHARACTER_DATA.level[i].mora;
+  }
+  CharacterCalculationParams.rMora = moraC - CharacterCalculationParams.nMora;
+  CharacterCalculationParams.nMora = CharacterCalculationParams.nMora - moraC;
+}
