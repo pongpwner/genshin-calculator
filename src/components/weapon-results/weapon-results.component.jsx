@@ -75,22 +75,22 @@ const WeaponResults = ({
             <h3>remaining</h3>
           </div>
           <ResultRow
-            remaining={domainMaterialGreenNeeded}
+            remaining={domainMaterialGreenRemaining}
             required={domainMaterialGreenNeeded}
             rarity="green"
           />
           <ResultRow
-            remaining={domainMaterialBlueNeeded}
+            remaining={domainMaterialBlueRemaining}
             required={domainMaterialBlueNeeded}
             rarity="blue"
           />
           <ResultRow
-            remaining={domainMaterialPurpleNeeded}
+            remaining={domainMaterialPurpleRemaining}
             required={domainMaterialPurpleNeeded}
             rarity="purple"
           />
           <ResultRow
-            remaining={domainMaterialOrangeNeeded}
+            remaining={domainMaterialOrangeRemaining}
             required={domainMaterialOrangeNeeded}
             rarity="orange"
           />
@@ -103,17 +103,17 @@ const WeaponResults = ({
             <h3>remaining</h3>
           </div>
           <ResultRow
-            remaining={eliteMaterialGreenNeeded}
+            remaining={eliteMaterialGreenRemaining}
             required={eliteMaterialGreenNeeded}
             rarity="green"
           />
           <ResultRow
-            remaining={eliteMaterialBlueNeeded}
+            remaining={eliteMaterialBlueRemaining}
             required={eliteMaterialBlueNeeded}
             rarity="blue"
           />
           <ResultRow
-            remaining={eliteMaterialPurpleNeeded}
+            remaining={eliteMaterialPurpleRemaining}
             required={eliteMaterialPurpleNeeded}
             rarity="purple"
           />
@@ -126,17 +126,17 @@ const WeaponResults = ({
             <h3>remaining</h3>
           </div>
           <ResultRow
-            remaining={commonMaterialWhiteNeeded}
+            remaining={commonMaterialWhiteRemaining}
             required={commonMaterialWhiteNeeded}
             rarity="white"
           />
           <ResultRow
-            remaining={commonMaterialGreenNeeded}
+            remaining={commonMaterialGreenRemaining}
             required={commonMaterialGreenNeeded}
             rarity="green"
           />
           <ResultRow
-            remaining={commonMaterialBlueNeeded}
+            remaining={commonMaterialBlueRemaining}
             required={commonMaterialBlueNeeded}
             rarity="blue"
           />
@@ -147,16 +147,7 @@ const WeaponResults = ({
             <h3>required</h3>
             <h3>remaining</h3>
           </div>
-          <ResultRow
-            remaining={whiteOreRemaining}
-            required={whiteOreNeeded}
-            rarity="white"
-          />
-          <ResultRow
-            remaining={greenOreRemaining}
-            required={greenOreNeeded}
-            rarity="green"
-          />
+
           <ResultRow
             remaining={blueOreRemaining}
             required={blueOreNeeded}

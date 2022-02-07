@@ -1,6 +1,14 @@
 import { WeaponActionTypes } from "./weapon.types.js";
 import WEAPON_MATERIALS from "../../constants/weaponMaterials";
 import WEAPON from "../../pages/weapon/weapon";
+import {
+  WeaponCalculationParams,
+  calculateXP,
+  calculateDomainMaterial,
+  calculateWeaponMaterial,
+  calculateCommonMaterial,
+  calculateMora,
+} from "./weapon.utils.js";
 const INITIAL_STATE = {
   mora: "",
   rarity: "threeStar",
@@ -371,350 +379,74 @@ const weaponReducer = (state = INITIAL_STATE, action) => {
         greenOre,
         whiteOre,
       } = state;
-      //calculation functions
-      //calculate domain materials
-      //n... is how many are needed. t... is how many you have
-      let nGreen = 0;
-      let nBlue = 0;
-      let nPurple = 0;
-      let nOrange = 0;
-      // over flow
-
-      let oGreen = 0;
-      let oBlue = 0;
-      let oPurple = 0;
-      let oOrange = 0;
-      // underflow
-      let uGreen = 0;
-      let uBlue = 0;
-      let uPurple = 0;
-      let uOrange = 0;
-
-      //potential material
-      //no green
-      let pBlue = 0;
-      let pPurple = 0;
-      let pOrange = 0;
-      // remaining material
-      let rGreen = 0;
-      let rBlue = 0;
-      let rPurple = 0;
-      let rOrange = 0;
-      //missing material
-      let mGreen = 0;
-      let mBlue = 0;
-      let mPurple = 0;
-      let mOrange = 0;
-
-      // gets how many of each material is needed
-      for (
-        let i = Number(sumCurrentAscension) + 1;
-        i < sumDesiredAscension + 1;
-        i++
-      ) {
-        nGreen += WEAPON[rarity].ascension[i].domainCost.green;
-        nBlue += WEAPON[rarity].ascension[i].domainCost.blue;
-        nPurple += WEAPON[rarity].ascension[i].domainCost.purple;
-        nOrange += WEAPON[rarity].ascension[i].domainCost.orange;
-      }
-      //calculate overflow and underflow
-      if (nGreen - domainMaterialGreen < 0) {
-        oGreen = Math.abs(nGreen - domainMaterialGreen);
-      } else {
-        uGreen = nGreen - domainMaterialGreen;
-      }
-      if (nBlue - domainMaterialBlue < 0) {
-        oBlue = Math.abs(nBlue - domainMaterialBlue);
-      } else {
-        uBlue = nBlue - domainMaterialBlue;
-      }
-      if (nPurple - domainMaterialPurple < 0) {
-        oPurple = Math.abs(nPurple - domainMaterialPurple);
-      } else {
-        uPurple = nPurple - domainMaterialPurple;
-      }
-      if (nOrange - domainMaterialOrange < 0) {
-        oOrange = Math.abs(nOrange - domainMaterialOrange);
-      } else {
-        uOrange = nOrange - domainMaterialOrange;
-      }
-
-      // calculate what materials can be converted
-      //can't convert green
-      mGreen = Math.abs(0 - uGreen);
-      //top block = underflow greater bottom block = over flow greater
-      if (Math.floor(oGreen / 3) + oBlue - uBlue <= 0) {
-        pBlue = 0;
-        mBlue = Math.abs(Math.floor(oGreen / 3) + oBlue - uBlue);
-      } else {
-        pBlue = Math.floor(oGreen / 3) + oBlue - uBlue;
-      }
-      if (Math.floor(pBlue / 3) + oPurple - uPurple <= 0) {
-        pPurple = 0;
-        mPurple = Math.abs(Math.floor(pBlue / 3) + oPurple - uPurple);
-      } else {
-        pPurple = Math.floor(pBlue / 3) + oPurple - uPurple;
-      }
-      if (Math.floor(pPurple / 3) + oOrange - uOrange <= 0) {
-        pOrange = 0;
-        mOrange = Math.abs(Math.floor(pPurple / 3) + oOrange - uOrange);
-      } else {
-        pOrange = Math.floor(pPurple / 3) + oOrange - uOrange;
-      }
-
-      //calculate remainders
-      rGreen = oGreen % 3;
-      rBlue = pBlue % 3;
-      rPurple = pPurple % 3;
-      rOrange = pOrange;
-
-      //////////////////////////////////////////////////////////////calculate elite material
-
-      //n... is how many are needed. t... is how many you have
-      let nEGreen = 0;
-      let nEBlue = 0;
-      let nEPurple = 0;
-      // over flow
-
-      let oEGreen = 0;
-      let oEBlue = 0;
-      let oEPurple = 0;
-      // underflow
-      let uEGreen = 0;
-      let uEBlue = 0;
-      let uEPurple = 0;
-
-      //potential material
-      //no green
-      let pEBlue = 0;
-      let pEPurple = 0;
-
-      // remaining material
-      let rEGreen = 0;
-      let rEBlue = 0;
-      let rEPurple = 0;
-
-      //missing material
-      let mEGreen = 0;
-      let mEBlue = 0;
-      let mEPurple = 0;
-
-      // gets how many of each material is needed
-      for (
-        let i = Number(sumCurrentAscension) + 1;
-        i < sumDesiredAscension + 1;
-        i++
-      ) {
-        nEGreen += WEAPON[rarity].ascension[i].eliteCost.green;
-        nEBlue += WEAPON[rarity].ascension[i].eliteCost.blue;
-        nEPurple += WEAPON[rarity].ascension[i].eliteCost.purple;
-      }
-      //calculate overflow and underflow
-      if (nEGreen - eliteMaterialGreen < 0) {
-        oEGreen = Math.abs(nEGreen - eliteMaterialGreen);
-      } else {
-        uEGreen = nEGreen - eliteMaterialGreen;
-      }
-      if (nEBlue - eliteMaterialBlue < 0) {
-        oEBlue = Math.abs(nEBlue - eliteMaterialBlue);
-      } else {
-        uEBlue = nEBlue - eliteMaterialBlue;
-      }
-      if (nEPurple - eliteMaterialPurple < 0) {
-        oEPurple = Math.abs(nEPurple - eliteMaterialPurple);
-      } else {
-        uEPurple = nEPurple - eliteMaterialPurple;
-      }
-
-      // calculate what materials can be converted
-      //can't convert green
-      mEGreen = Math.abs(0 - uEGreen);
-      //top block = underflow greater bottom block = over flow greater
-      if (Math.floor(oEGreen / 3) + oEBlue - uEBlue <= 0) {
-        pEBlue = 0;
-        mEBlue = Math.abs(Math.floor(oEGreen / 3) + oEBlue - uEBlue);
-      } else {
-        pEBlue = Math.floor(oEGreen / 3) + oEBlue - uEBlue;
-      }
-      if (Math.floor(pEBlue / 3) + oEPurple - uEPurple <= 0) {
-        pEPurple = 0;
-        mEPurple = Math.abs(Math.floor(pEBlue / 3) + oEPurple - uEPurple);
-      } else {
-        pEPurple = Math.floor(pEBlue / 3) + oEPurple - uEPurple;
-      }
-
-      //calculate remainders
-      rEGreen = oEGreen % 3;
-      rEBlue = pEBlue % 3;
-      rEPurple = pEPurple;
-      ////////////////////////////////////////////////////////////CALCULATE COMMON MATERIALS
-
-      //n... is how many are needed. t... is how many you have
-      let nCWhite = 0;
-      let nCGreen = 0;
-      let nCBlue = 0;
-
-      // over flow
-
-      let oCWhite = 0;
-      let oCGreen = 0;
-      let oCBlue = 0;
-
-      // underflow
-      let uCWhite = 0;
-      let uCGreen = 0;
-      let uCBlue = 0;
-
-      //potential material
-      //no white
-      let pCGreen = 0;
-      let pCBlue = 0;
-
-      // remaining material
-      let rCWhite = 0;
-      let rCGreen = 0;
-      let rCBlue = 0;
-
-      //missing material
-      let mCWhite = 0;
-      let mCGreen = 0;
-      let mCBlue = 0;
-
-      // gets how many of each material is needed
-      for (
-        let i = Number(sumCurrentAscension) + 1;
-        i < sumDesiredAscension + 1;
-        i++
-      ) {
-        nCGreen += WEAPON[rarity].ascension[i].commonCost.green;
-        nCBlue += WEAPON[rarity].ascension[i].commonCost.blue;
-        nCWhite += WEAPON[rarity].ascension[i].commonCost.white;
-      }
-      //calculate overflow and underflow
-      if (nCWhite - commonMaterialWhite < 0) {
-        oCWhite = Math.abs(nCWhite - commonMaterialWhite);
-      } else {
-        uCWhite = nCWhite - commonMaterialWhite;
-      }
-      if (nGreen - commonMaterialGreen < 0) {
-        oCGreen = Math.abs(nCGreen - commonMaterialGreen);
-      } else {
-        uCGreen = nCGreen - commonMaterialGreen;
-      }
-      if (nCBlue - commonMaterialBlue < 0) {
-        oCBlue = Math.abs(nCBlue - commonMaterialBlue);
-      } else {
-        uCBlue = nCBlue - commonMaterialBlue;
-      }
-
-      // calculate what materials can be converted
-      //can't convert green
-      mCWhite = Math.abs(0 - uCWhite);
-      //top block = underflow greater bottom block = over flow greater
-      if (Math.floor(oCWhite / 3) + oCGreen - uCGreen <= 0) {
-        pCGreen = 0;
-        mCGreen = Math.abs(Math.floor(oCWhite / 3) + oCGreen - uCGreen);
-      } else {
-        pCGreen = Math.floor(oCWhite / 3) + oCGreen - uCGreen;
-      }
-      if (Math.floor(pCGreen / 3) + oCBlue - uCBlue <= 0) {
-        pCBlue = 0;
-        mCBlue = Math.abs(Math.floor(pCGreen / 3) + oCBlue - uCBlue);
-      } else {
-        pCBlue = Math.floor(pCGreen / 3) + oCBlue - uCBlue;
-      }
-
-      //calculate remainders
-      rCWhite = oCWhite % 3;
-      rCGreen = pCGreen % 3;
-      rCBlue = pCBlue;
-
-      ///////////////////////////////////////////////////////////////CALCULATE MORA
-
-      let totalMora = 0;
-      let rMora = mora;
-      for (
-        let i = Number(currentLevel) + 1;
-        i < Number(desiredLevel) + 1;
-        i++
-      ) {
-        totalMora += WEAPON[rarity].level[i].mora;
-      }
-      for (
-        let i = Number(sumCurrentAscension) + 1;
-        i < sumDesiredAscension + 1;
-        i++
-      ) {
-        totalMora += WEAPON[rarity].ascension[i].mora;
-      }
-      if (totalMora - mora <= 0) {
-        rMora = mora - totalMora;
-        totalMora = 0;
-      } else {
-        rMora = mora - totalMora;
-        totalMora = totalMora - mora;
-      }
-
-      //////////////////////////////////////////// calculate xp
-
-      let totalXP =
-        WEAPON_MATERIALS.enhancementOre.blue * blueOre +
-        WEAPON_MATERIALS.enhancementOre.green * greenOre +
-        WEAPON_MATERIALS.enhancementOre.white * whiteOre;
-      let totalXPNeeded = 0;
-      let xpNeeded = 0;
-      let blueOreNeeded = 0;
-      let blueOreRemaining;
-      let totalBlueOre = Math.floor(
-        totalXP / WEAPON_MATERIALS.enhancementOre.blue
+      calculateXP(
+        rarity,
+        currentLevel,
+        desiredLevel,
+        whiteOre,
+        greenOre,
+        blueOre
       );
-
-      for (
-        let i = Number(currentLevel) + 1;
-        i < Number(desiredLevel) + 1;
-        i++
-      ) {
-        totalXPNeeded += WEAPON[rarity].level[i].exp;
-      }
-      if (totalXPNeeded - totalXP <= 0) {
-        xpNeeded = 0;
-      } else {
-        xpNeeded = totalXPNeeded - totalXP;
-      }
-      blueOreNeeded = Math.ceil(
-        xpNeeded / WEAPON_MATERIALS.enhancementOre.blue
+      calculateDomainMaterial(
+        rarity,
+        sumCurrentAscension,
+        sumDesiredAscension,
+        domainMaterialGreen,
+        domainMaterialBlue,
+        domainMaterialPurple,
+        domainMaterialOrange
       );
-
-      blueOreRemaining =
-        totalBlueOre -
-        Math.ceil(totalXPNeeded / WEAPON_MATERIALS.enhancementOre.blue);
+      calculateWeaponMaterial(
+        rarity,
+        sumCurrentAscension,
+        sumDesiredAscension,
+        eliteMaterialGreen,
+        eliteMaterialBlue,
+        eliteMaterialPurple
+      );
+      calculateCommonMaterial(
+        rarity,
+        sumCurrentAscension,
+        sumDesiredAscension,
+        commonMaterialWhite,
+        commonMaterialGreen,
+        commonMaterialBlue
+      );
+      calculateMora(
+        rarity,
+        sumCurrentAscension,
+        sumDesiredAscension,
+        currentLevel,
+        desiredLevel,
+        mora
+      );
 
       return {
         ...state,
-        domainMaterialOrangeNeeded: mOrange,
-        domainMaterialPurpleNeeded: mPurple,
-        domainMaterialBlueNeeded: mBlue,
-        domainMaterialGreenNeeded: mGreen,
-        domainMaterialOrangeRemaining: rOrange,
-        domainMaterialPurpleRemaining: rPurple,
-        domainMaterialBlueRemaining: rBlue,
-        domainMaterialGreenRemaining: rGreen,
-        eliteMaterialPurpleNeeded: mEPurple,
-        eliteMaterialBlueNeeded: mEBlue,
-        eliteMaterialGreenNeeded: mEGreen,
-        eliteMaterialPurpleRemaining: rEPurple,
-        eliteMaterialBlueRemaining: rEBlue,
-        eliteMaterialGreenRemaining: rEGreen,
-        commonMaterialWhiteNeeded: mCWhite,
-        commonMaterialBlueNeeded: mCBlue,
-        commonMaterialGreenNeeded: mCGreen,
-        commonMaterialWhiteRemaining: rCWhite,
-        commonMaterialBlueRemaining: rCBlue,
-        commonMaterialGreenRemaining: rCGreen,
-        moraNeeded: totalMora,
-        moraRemaining: rMora,
-        blueOreNeeded: blueOreNeeded,
-        blueOreRemaining: blueOreRemaining,
+        domainMaterialOrangeNeeded: WeaponCalculationParams.mOrange,
+        domainMaterialPurpleNeeded: WeaponCalculationParams.mPurple,
+        domainMaterialBlueNeeded: WeaponCalculationParams.mBlue,
+        domainMaterialGreenNeeded: WeaponCalculationParams.mGreen,
+        domainMaterialOrangeRemaining: WeaponCalculationParams.rOrange,
+        domainMaterialPurpleRemaining: WeaponCalculationParams.rPurple,
+        domainMaterialBlueRemaining: WeaponCalculationParams.rBlue,
+        domainMaterialGreenRemaining: WeaponCalculationParams.rGreen,
+        eliteMaterialPurpleNeeded: WeaponCalculationParams.mEPurple,
+        eliteMaterialBlueNeeded: WeaponCalculationParams.mEBlue,
+        eliteMaterialGreenNeeded: WeaponCalculationParams.mEGreen,
+        eliteMaterialPurpleRemaining: WeaponCalculationParams.rEPurple,
+        eliteMaterialBlueRemaining: WeaponCalculationParams.rEBlue,
+        eliteMaterialGreenRemaining: WeaponCalculationParams.rEGreen,
+        commonMaterialWhiteNeeded: WeaponCalculationParams.mCWhite,
+        commonMaterialBlueNeeded: WeaponCalculationParams.mCBlue,
+        commonMaterialGreenNeeded: WeaponCalculationParams.mCGreen,
+        commonMaterialWhiteRemaining: WeaponCalculationParams.rCWhite,
+        commonMaterialBlueRemaining: WeaponCalculationParams.rCBlue,
+        commonMaterialGreenRemaining: WeaponCalculationParams.rCGreen,
+        moraNeeded: WeaponCalculationParams.totalMora,
+        moraRemaining: WeaponCalculationParams.rMora,
+        blueOreNeeded: WeaponCalculationParams.blueOreNeeded,
+        blueOreRemaining: WeaponCalculationParams.blueOreRemaining,
       };
     default:
       return { ...state };
