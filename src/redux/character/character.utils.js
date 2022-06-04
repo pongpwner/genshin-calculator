@@ -104,6 +104,7 @@ export function calculateJewls(
 
   //calculate overflow and underflow
   if (CharacterCalculationParams.neededJewlGreen - gemGreen < 0) {
+    CharacterCalculationParams.underflowJewlGreen = 0; //
     CharacterCalculationParams.overflowJewlGreen = Math.abs(
       CharacterCalculationParams.neededJewlGreen - gemGreen
     );
@@ -113,6 +114,7 @@ export function calculateJewls(
       CharacterCalculationParams.neededJewlGreen - gemGreen;
   }
   if (CharacterCalculationParams.neededJewlBlue - gemBlue < 0) {
+    CharacterCalculationParams.underflowJewlBlue = 0; //
     CharacterCalculationParams.overflowJewlBlue = Math.abs(
       CharacterCalculationParams.neededJewlBlue - gemBlue
     );
@@ -122,6 +124,7 @@ export function calculateJewls(
       CharacterCalculationParams.neededJewlBlue - gemBlue;
   }
   if (CharacterCalculationParams.neededJewlPurple - gemPurple < 0) {
+    CharacterCalculationParams.underflowJewlPurple = 0; //
     CharacterCalculationParams.overflowJewlPurple = Math.abs(
       CharacterCalculationParams.neededJewlPurple - gemPurple
     );
@@ -132,6 +135,7 @@ export function calculateJewls(
   }
 
   if (CharacterCalculationParams.neededJewlOrange - gemOrange < 0) {
+    CharacterCalculationParams.underflowJewlOrange = 0; //
     CharacterCalculationParams.overflowJewlOrange = Math.abs(
       CharacterCalculationParams.neededJewlOrange - gemOrange
     );
@@ -162,6 +166,7 @@ export function calculateJewls(
         CharacterCalculationParams.underflowJewlBlue
     );
   } else {
+    CharacterCalculationParams.requiredJewlBlue = 0; //
     CharacterCalculationParams.potentialJewlBlue =
       Math.floor(CharacterCalculationParams.overflowJewlGreen / 3) +
       CharacterCalculationParams.overflowJewlBlue -
@@ -180,6 +185,7 @@ export function calculateJewls(
         CharacterCalculationParams.underflowJewlPurple
     );
   } else {
+    CharacterCalculationParams.requiredJewlPurple = 0; //
     CharacterCalculationParams.potentialJewlPurple =
       Math.floor(CharacterCalculationParams.potentialJewlBlue / 3) +
       CharacterCalculationParams.overflowJewlPurple -
@@ -199,6 +205,7 @@ export function calculateJewls(
         CharacterCalculationParams.underflowJewlOrange
     );
   } else {
+    CharacterCalculationParams.requiredJewlOrange = 0; //
     CharacterCalculationParams.potentialJewlOrange =
       Math.floor(CharacterCalculationParams.potentialJewlPurple / 3) +
       CharacterCalculationParams.overflowJewlOrange -
@@ -239,6 +246,7 @@ export function calculateCommonMaterial(
   //calculate overflow and underflow
 
   if (CharacterCalculationParams.nCWhite - commonMaterialWhiteC < 0) {
+    CharacterCalculationParams.uCWhite = 0; //
     CharacterCalculationParams.oCWhite = Math.abs(
       CharacterCalculationParams.nCWhite - commonMaterialWhiteC
     );
@@ -249,6 +257,7 @@ export function calculateCommonMaterial(
   }
 
   if (CharacterCalculationParams.nCGreen - commonMaterialGreenC < 0) {
+    CharacterCalculationParams.uCGreen = 0; //
     CharacterCalculationParams.oCGreen = Math.abs(
       CharacterCalculationParams.nCGreen - commonMaterialGreenC
     );
@@ -258,6 +267,7 @@ export function calculateCommonMaterial(
       CharacterCalculationParams.nCGreen - commonMaterialGreenC;
   }
   if (CharacterCalculationParams.nCBlue - commonMaterialBlueC < 0) {
+    CharacterCalculationParams.uCBlue = 0; //
     CharacterCalculationParams.oCBlue = Math.abs(
       CharacterCalculationParams.nCBlue - commonMaterialBlueC
     );
@@ -287,6 +297,7 @@ export function calculateCommonMaterial(
         CharacterCalculationParams.uCGreen
     );
   } else {
+    CharacterCalculationParams.mCGreen = 0; //
     CharacterCalculationParams.pCGreen =
       Math.floor(CharacterCalculationParams.oCWhite / 3) +
       CharacterCalculationParams.oCGreen -
@@ -305,6 +316,7 @@ export function calculateCommonMaterial(
         CharacterCalculationParams.uCBlue
     );
   } else {
+    CharacterCalculationParams.mCBlue = 0; //
     CharacterCalculationParams.pCBlue =
       Math.floor(CharacterCalculationParams.pCGreen / 3) +
       CharacterCalculationParams.oCBlue -
