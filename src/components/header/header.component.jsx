@@ -13,6 +13,7 @@ const Header = () => {
           <span></span>
           <span></span>
         </div>
+
         <ul className={`dropdown-container ${active ? "active" : ""}`}>
           <li>
             <button onClick={() => setActive(false)}>X</button>
@@ -55,6 +56,7 @@ const Header = () => {
           <Link to="/strength-comparison">Strength Comparison</Link>
         </li>
       </ul>
+      <div className="title mobile">Genshin Impact Companion</div>
     </header>
   );
 };

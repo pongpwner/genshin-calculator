@@ -1,17 +1,12 @@
 import React from "react";
 import "./home-page.styles.scss";
-import picture from "../../images/characterAscension.PNG";
-
+import characterAscensionChart from "../../assets/images/characterAscension.PNG";
+import Hero from "../../components/hero/hero.component";
+import ChartContainer from "../../components/chart-container/chart-container.component";
 const HomePage = () => (
   <div className="home-page">
-    <div className="picture-container">
-      <h1>Character Ascension Cost </h1>
-      <img
-        src={picture}
-        className="responsive"
-        alt="character ascension chart"
-      />
-    </div>
+    <Hero />
+    <ChartContainer chart={characterAscensionChart} />
   </div>
 );
 export default HomePage;
