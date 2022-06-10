@@ -1,10 +1,10 @@
 import React from "react";
 import "./chart-container.styles.scss";
 
-const ChartContainer = ({ chart }) => {
+const ChartContainer = ({ chart, label }) => {
   return (
     <div className="chart-container">
-      <h1>Character Ascension Cost </h1>
+      <h2>{label} </h2>
       <img src={chart} className="responsive" alt="character ascension chart" />
     </div>
   );
