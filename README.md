@@ -7,10 +7,22 @@ This calculator does not tell you what characters need what items, so its primar
 The homepage has spreadsheets for materials.  This is useful for knowing the cost at each upgrade breakpoint without taking into account what you already have
 
 ## Features
+* weapon level up calculator
+* character level up calculator
+* talent level up calculator
+* artifact crit value calculator
+* character power level calculator (mainly for fun, not really a useful metric)
+* spreadsheets with cost at break points for characters and weapons
 
 ## How to use
 Calculators:
 Select what you want to calculate on the header.  Then enter the materials you have for the calculator.  The input is colorcoded based on the rarity of the material.  You do not have to fill in every field, just the ones you are interested in.  Then hit the submit button when you are done.  On the right there is a section that tells you what you need.  The calculator converts any extra material you have to the next level of rarity.  It will tell you what you still need, and how much of each material you have left if you were to convert them all.
+
+
+## Built With
+* [React](https://reactjs.org/)
+* [Redux](https://redux.js.org/)
+
 
 ## What I learned 
 Calculators
