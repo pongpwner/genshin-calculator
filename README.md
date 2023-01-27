@@ -1,5 +1,6 @@
 # Genshin Impact Companion
-Quickly calculate weapon materials, character materials, talent materials that you need!<br>
+
+Quickly calculate weapon materials, character materials, talent materials that you need!  [use it](https://elegant-cranachan-8da561.netlify.app/)
 ## Practical Usage
 This calculator will convert any extra materials you have into the next tier of rarity.  So if you have 3 extra green rarity items, it will convert those to 1 blue.<br>  This calculator is useful for telling you when you have farmed enough while you are in a domain for talent or weapon materials. <br>
 It is also useful for telling you if you need to farm at all for a new character. For example if you have 300 green talent books, it will convert those to blue and purple and tell you if you have enough materials if you crafted. <br>
