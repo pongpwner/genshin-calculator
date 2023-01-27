@@ -29,3 +29,7 @@ Select what you want to calculate on the header.  Then enter the materials you h
 Calculators
 This is my first project I created using react class componentes and redux.  The Weapon component is a class component where the state is stored in the component. The Character and Talent have their state stored in their respective reducers.  The  I also used the reselect library for selectors to use in mapStateToProps.
 I learned to use a folder structure with components, pages, redux, and images all having their own folder.  Each component has its own folder with a stylesheet to go with it.  I also learned how to use react-router to link to different pages on my app.
+
+## Contact
+* [portfolio](https://pongpwner.github.io/eric-shyu-portfolio/) 
+* [linkedin](https://www.linkedin.com/in/eric-shyu-105a84191/)
